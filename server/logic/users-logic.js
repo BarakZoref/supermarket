@@ -9,11 +9,12 @@ const validator = require('validator');
 async function addUser(userRegistrationData) {
     
     validateUserData(userRegistrationData);
-    if (await usersDal.isUserNameExist(userRegistrationData.userName)) {
-        throw new Error("User name already exist");
+    if (await usersDal.isUserExist(userRegistrationData.id, userRegistrationData.userName)) {
+        throw new Error("User already exist");
     }
 
     userRegistrationData.password = encryptPassword(userRegistrationData.password);
+    console.log(userRegistrationData);
     await usersDal.addUser(userRegistrationData);    
 }
 
