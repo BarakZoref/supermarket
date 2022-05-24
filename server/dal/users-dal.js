@@ -8,7 +8,7 @@ async function addUser(userDetails) {
 
 async function logIn(user){
     let sql = `SELECT id as userId, first_name as firstName, last_name as lastName,
-     city, street FROM users WHERE user_name = ? AND password = ? ;`;    
+     city, street, is_admin as isAdmin FROM users WHERE user_name = ? AND password = ? ;`;    
     let parameters = [user.userName, user.password];
     let [userData] = await connection.executeWithParameters(sql, parameters);
     if (!userData){

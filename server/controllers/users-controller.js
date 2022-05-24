@@ -11,7 +11,7 @@ const router = express.Router();
         userRegistrationData.isAdmin = false;
         try {
             await usersLogic.addUser(userRegistrationData);
-            response.json();
+            response.json({err: false, msg: "user was added successfuly!"});
         }
         catch (e) {
             console.error(e);

@@ -26,14 +26,21 @@ async function logIn(userLogInData){
         throw new Error("Login failed");
     }
 
-    const token = jwt.sign({ userId: userData.userId, userType:userData.userType}, config.secret);
-    let successfulLoginResponse = {token, firstName: userData.firstName, lastName: userData.lastName, followedVacationsArray: followedVacationsArray};
+    const token = jwt.sign({ userId: userData.userId, isAdmin:userData.isAdmin}, config.secret);
+    let successfulLoginResponse = {token, firstName: userData.firstName, lastName: userData.lastName, city: userData.city, street: userData.street};
     return successfulLoginResponse;
     
 }
 
 
 function validateUserData(userRegistrationData) {
+
+    let reg =  /[^0-9]/g;
+
+    if(userRegistrationData.id.length!=9 || reg.test(userRegistrationData.id)){
+        throw new Error("id is invalid");
+    }
+
     if (!validator.isEmail(userRegistrationData.userName)) {
         throw new Error("user name is invalid");
     }
