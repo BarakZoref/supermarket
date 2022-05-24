@@ -12,7 +12,7 @@ async function addUser(userRegistrationData) {
     if (await usersDal.isUserNameExist(userRegistrationData.userName)) {
         throw new Error("User name already exist");
     }
-    normalizeOptionalRegistrationData(userRegistrationData);
+
     userRegistrationData.password = encryptPassword(userRegistrationData.password);
     await usersDal.addUser(userRegistrationData);    
 }
@@ -48,6 +48,10 @@ function validateUserData(userRegistrationData) {
     if(!userRegistrationData.firstName){
         throw new Error("first name field can't be empty");
     }
+
+    if(!userRegistrationData.lastName){
+        throw new Error("last name field can't be empty");
+    }
     
     if(userRegistrationData.firstName.length>12){
         throw new Error("first name is too long");
@@ -65,12 +69,7 @@ function encryptPassword(password) {
     let passwordWithSalt = saltLeft + password + saltRight;
     return crypto.createHash("md5").update(passwordWithSalt).digest("hex");
 }
-
-function normalizeOptionalRegistrationData(userRegistrationData){
-    if (!userRegistrationData.lastName){
-        userRegistrationData.lastName = "";
-    }    
-}
+  
 
 
 module.exports = {

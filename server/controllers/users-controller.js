@@ -8,7 +8,7 @@ const router = express.Router();
     router.post("/", async (request, response) => {
 
         let userRegistrationData = request.body;
-        userRegistrationData.userType = "user";
+        userRegistrationData.isAdmin = false;
         try {
             await usersLogic.addUser(userRegistrationData);
             response.json();

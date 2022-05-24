@@ -2,7 +2,7 @@ const connection = require("./connection-wrapper");
 
 async function addUser(userDetails) {
     let sql = "INSERT INTO users (user_name, first_name, last_name, password, user_type) VALUES(?, ?, ?, ?, ?)";
-    let parameters = [userDetails.userName, userDetails.firstName, userDetails.lastName, userDetails.password, userDetails.userType];
+    let parameters = [userDetails.userName, userDetails.firstName, userDetails.lastName, userDetails.password, userDetails.isAdmin];
     await connection.executeWithParameters(sql, parameters);
 }
 
