@@ -26,4 +26,18 @@ router.get('/:categoryId', async (request, response) =>{
         response.status(600).send(e.message);
     }
 });
+
+//EDIT PRODUCT PRICE
+//PUT http://localhost:3000/products
+router.put('/', async (request, response) =>{
+    let productDetails = request.body;
+    try {
+        await productsLogic.editProductPrice(productDetails);
+        response.json({err: false, msg: "product was edited successfuly"});
+    } catch (e) {
+        console.error(e);
+        response.status(600).send(e.message);
+    }
+});
+
 module.exports = router;

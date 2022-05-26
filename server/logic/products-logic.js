@@ -10,7 +10,15 @@ async function getProductsByCategoryId(categoryId){
     return products;
 }
 
+async function editProductPrice(productDetails){
+    if(productDetails.price>200){
+        throw new Error("The price can't be larger than 200");
+    }
+    await productsDal.editProductPrice(productDetails);
+}
+
 module.exports = {
     getAllProducts,
-    getProductsByCategoryId
+    getProductsByCategoryId,
+    editProductPrice
 }
