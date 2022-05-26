@@ -14,4 +14,16 @@ router.get('/', async (request, response) =>{
     }
 });
 
+//GET PRODUCTS BY CATEGORIES
+//GET http://localhost:3000/products/categoryId
+router.get('/:categoryId', async (request, response) =>{
+    let categoryId = request.params.categoryId;
+    try {
+        let products = await productsLogic.getProductsByCategoryId(categoryId);
+        response.json(products);
+    } catch (e) {
+        console.error(e);
+        response.status(600).send(e.message);
+    }
+});
 module.exports = router;

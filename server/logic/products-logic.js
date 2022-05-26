@@ -5,6 +5,12 @@ async function getAllProducts(){
     return allProducts;
 }
 
+async function getProductsByCategoryId(categoryId){
+    let products = await productsDal.getProductsByCategoryId(categoryId);
+    return products;
+}
+
 module.exports = {
-    getAllProducts
+    getAllProducts,
+    getProductsByCategoryId
 }
