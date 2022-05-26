@@ -26,7 +26,7 @@ async function logIn(userLogInData){
         throw new Error("Login failed");
     }
 
-    const token = jwt.sign({ userId: userData.userId, isAdmin:userData.isAdmin}, config.secret);
+    const token = jwt.sign({ userId: userData.userId, isAdmin:userData.role}, config.secret);
     let successfulLoginResponse = {token, firstName: userData.firstName, lastName: userData.lastName, city: userData.city, street: userData.street};
     return successfulLoginResponse;
     

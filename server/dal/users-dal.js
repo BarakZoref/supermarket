@@ -1,8 +1,8 @@
 const connection = require("./connection-wrapper");
 
 async function addUser(userDetails) {
-    let sql = "INSERT INTO users (id, user_name, first_name, last_name, password, city, street, is_admin) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
-    let parameters = [userDetails.id, userDetails.userName, userDetails.firstName, userDetails.lastName, userDetails.password, userDetails.city, userDetails.street, userDetails.isAdmin];
+    let sql = "INSERT INTO users (id, user_name, first_name, last_name, password, city, street, role) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+    let parameters = [userDetails.id, userDetails.userName, userDetails.firstName, userDetails.lastName, userDetails.password, userDetails.city, userDetails.street, userDetails.role];
     await connection.executeWithParameters(sql, parameters);
 }
 

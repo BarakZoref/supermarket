@@ -8,7 +8,7 @@ const router = express.Router();
     router.post("/", async (request, response) => {
 
         let userRegistrationData = request.body;
-        userRegistrationData.isAdmin = false;
+        userRegistrationData.role = "user";
         try {
             await usersLogic.addUser(userRegistrationData);
             response.json({err: false, msg: "user was added successfuly!"});
