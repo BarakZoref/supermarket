@@ -22,8 +22,15 @@ async function editProductPrice(productDetails){
     await connection.executeWithParameters(sql, parameters);
 }
 
+async function addProduct(productDetails){
+    let sql = `INSERT INTO products (name, category_id, price, img_url) VALUES(?, ?, ?, ?)`
+    let parameters = [productDetails.name, productDetails.categoryId, productDetails.price, productDetails.imgUrl];
+    await connection.executeWithParameters(sql, parameters);
+}
+
 module.exports={
     getAllProducts,
     getProductsByCategoryId,
-    editProductPrice
+    editProductPrice,
+    addProduct
 }

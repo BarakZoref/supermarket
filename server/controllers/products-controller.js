@@ -27,6 +27,19 @@ router.get('/:categoryId', async (request, response) =>{
     }
 });
 
+//ADD PRODUCT
+//PUT http://localhost:3000/products
+router.post('/', async (request, response) =>{
+    let productDetails = request.body;
+    try {
+        await productsLogic.addProduct(productDetails);
+        response.json({err: false, msg: "product was added successfuly"});
+    } catch (e) {
+        console.error(e);
+        response.status(600).send(e.message);
+    }
+});
+
 //EDIT PRODUCT PRICE
 //PUT http://localhost:3000/products
 router.put('/', async (request, response) =>{
