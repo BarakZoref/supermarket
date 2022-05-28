@@ -5,6 +5,11 @@ async function addToCart(cartItemDetails){
     return cartItemId;
 }
 
+async function deleteCartItem(cartItemId){
+    await cartItemsDal.deleteCartItem(cartItemId);
+}
+
 module.exports = {
+    deleteCartItem,
     addToCart
 }

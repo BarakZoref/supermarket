@@ -16,5 +16,18 @@ router.post('/', async (request, response)=>{
     }
 });
 
+//DELETE CART ITEM
+//DELETE http://localhost:3000/cart-items/cartItemId
+router.delete('/:id', async (request, response)=>{
+    let cartItemId = request.params.id;
+    try {
+        await cartItemsLogic.deleteCartItem(cartItemId);
+        response.json({err: false, msg: "cart item was deleted successfuly"});
+    } catch (e) {
+        console.error(e);
+        response.status(600).send(e.message);
+    }
+});
+
 
 module.exports = router;

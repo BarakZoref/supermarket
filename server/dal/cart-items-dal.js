@@ -8,6 +8,13 @@ async function addToCart(cartItemDetails){
     return cartItemId;
 }
 
+async function deleteCartItem(cartItemId){
+    let sql = `DELETE FROM cart_items WHERE id = ?`
+    let parameters=[cartItemId];
+    await connection.executeWithParameters(sql, parameters);
+}
+
 module.exports = {
-    addToCart
+    addToCart,
+    deleteCartItem
 }
