@@ -3,8 +3,8 @@ const express = require("express");
 const router = express.Router();
 
 //GET AMOUNT OF PRODUCTS
-//GET http://localhost:3000/products/amount-of-products
-router.get('/amount-of-products', async (request, response) =>{
+//GET http://localhost:3000/products/amount_of_products
+router.get('/amount_of_products', async (request, response) =>{
     try {
         let amountOfProducts = await productsLogic.getAmountOfProducts();
         response.json(amountOfProducts);
