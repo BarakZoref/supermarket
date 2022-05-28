@@ -4,7 +4,7 @@ const express = require("express");
 const router = express.Router();
 
 //ADD TO CART
-//POST http://localhost:3000/cart-items
+//POST http://localhost:3000/cart_items
 router.post('/', async (request, response)=>{
     let cartItemDetails = request.body;
     try {
@@ -17,7 +17,7 @@ router.post('/', async (request, response)=>{
 });
 
 //DELETE CART ITEM
-//DELETE http://localhost:3000/cart-items/cartItemId
+//DELETE http://localhost:3000/cart_items/cartItemId
 router.delete('/:id', async (request, response)=>{
     let cartItemId = request.params.id;
     try {
@@ -30,12 +30,25 @@ router.delete('/:id', async (request, response)=>{
 });
 
 //UPDATE CART ITEM QUANTITY
-//PUT http://localhost:3000/cart-items
+//PUT http://localhost:3000/cart_items
 router.put('/', async (request, response)=>{
     let cartItemDetails = request.body;
     try {
         await cartItemsLogic.updateCartItemsQuantity(cartItemDetails);
         response.json({err: false, msg: "cart item was updated successfuly"});
+    } catch (e) {
+        console.error(e);
+        response.status(600).send(e.message);
+    }
+});
+
+//DELETE ALL CART ITEMS
+//DELETE http://localhost:3000/cart_items/by-cart-id
+router.delete('/by_cart_id/:id', async (request, response)=>{
+    let cartId = request.params.id;
+    try {
+        await cartItemsLogic.deleteAllCartItemsOfCart(cartId);
+        response.json({err: false, msg: "all cart items of the cart was deleted successfuly"});
     } catch (e) {
         console.error(e);
         response.status(600).send(e.message);

@@ -24,8 +24,14 @@ async function updateCartItemsQuantity(cartItemDetails){
     
 }
 
+async function deleteAllCartItemsOfCart(cartId){
+    await cartItemsDal.deleteAllCartItemsOfCart(cartId);
+
+}
+
 module.exports = {
-    updateCartItemsQuantity,
+    addToCart,
     deleteCartItem,
-    addToCart
+    updateCartItemsQuantity,
+    deleteAllCartItemsOfCart
 }

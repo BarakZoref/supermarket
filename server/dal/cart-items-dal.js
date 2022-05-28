@@ -20,8 +20,15 @@ async function updateCartItemsQuantity(cartItemDetails){
     await connection.executeWithParameters(sql, parameters);
 }
 
+async function deleteAllCartItemsOfCart(cartId){
+    let sql = `DELETE FROM cart_items WHERE cart_id = ?`
+    let parameters=[cartId];
+    await connection.executeWithParameters(sql, parameters);
+}
+
 module.exports = {
     addToCart,
     deleteCartItem,
-    updateCartItemsQuantity
+    updateCartItemsQuantity,
+    deleteAllCartItemsOfCart
 }

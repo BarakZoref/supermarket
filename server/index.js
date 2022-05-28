@@ -19,6 +19,6 @@ server.use("/users", usersController);
 server.use("/categories", categoriesController);
 server.use("/products", productsController);
 server.use("/carts", cartsController);
-server.use("/cart-items", cartItemsController)
+server.use("/cart_items", cartItemsController)
 
 server.listen(3001, () => console.log("Listening on http://localhost:3001"));
