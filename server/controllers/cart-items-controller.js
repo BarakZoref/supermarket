@@ -29,5 +29,17 @@ router.delete('/:id', async (request, response)=>{
     }
 });
 
+//UPDATE CART ITEM QUANTITY
+//PUT http://localhost:3000/cart-items
+router.put('/', async (request, response)=>{
+    let cartItemDetails = request.body;
+    try {
+        await cartItemsLogic.updateCartItemsQuantity(cartItemDetails);
+        response.json({err: false, msg: "cart item was updated successfuly"});
+    } catch (e) {
+        console.error(e);
+        response.status(600).send(e.message);
+    }
+});
 
 module.exports = router;
