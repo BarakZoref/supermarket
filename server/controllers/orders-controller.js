@@ -1,3 +1,4 @@
+const tokenDecoder = require("../utils/token-decoder");
 const ordersLogic = require('../logic/orders-logic');
 const express = require("express");
 const router = express.Router();
@@ -17,9 +18,10 @@ router.get('/amount_of_orders', async (request, response) =>{
 //ADD NEW ORDER
 //POST http://localhost:3000/orders
 router.post('/', async (request, response) =>{
+    let tokenData = tokenDecoder.decodeTokenFromRequest(request);
     let orderDetails = request.body;
     try {
-        let orderId = await ordersLogic.addNewOrder(orderDetails);
+        let orderId = await ordersLogic.addNewOrder(orderDetails, tokenData);
         response.json(orderId);
     } catch (e) {
         console.error(e);

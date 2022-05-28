@@ -5,8 +5,12 @@ async function getAmountOfOrders(){
     return amountOfOrders;
 }
 
-async function addNewOrder(orderDetails){
+async function addNewOrder(orderDetails, tokenData){
     orderDetails.orderDate = new Date();
+    if(tokenData.role!="user"){
+        throw new Error("Error: the role is not a user");
+    }
+    orderDetails.userId = tokenData.userId;
     let orderId = await ordersDal.addNewOrder(orderDetails);
     return orderId
 }
