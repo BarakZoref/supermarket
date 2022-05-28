@@ -29,9 +29,15 @@ async function deleteAllCartItemsOfCart(cartId){
 
 }
 
+async function getCartItems(cartId){
+    let cartItems = await cartItemsDal.getCartItems(cartId);
+    return cartItems;
+}
+
 module.exports = {
     addToCart,
     deleteCartItem,
     updateCartItemsQuantity,
-    deleteAllCartItemsOfCart
+    deleteAllCartItemsOfCart,
+    getCartItems
 }

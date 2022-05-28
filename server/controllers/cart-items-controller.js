@@ -43,12 +43,25 @@ router.put('/', async (request, response)=>{
 });
 
 //DELETE ALL CART ITEMS
-//DELETE http://localhost:3000/cart_items/by-cart-id
+//DELETE http://localhost:3000/cart_items/by_cart_id
 router.delete('/by_cart_id/:id', async (request, response)=>{
     let cartId = request.params.id;
     try {
         await cartItemsLogic.deleteAllCartItemsOfCart(cartId);
         response.json({err: false, msg: "all cart items of the cart was deleted successfuly"});
+    } catch (e) {
+        console.error(e);
+        response.status(600).send(e.message);
+    }
+});
+
+//GET CART ITEMS
+//GET http://localhost:3000/cart_items/cartId
+router.get('/:id', async (request, response)=>{
+    let cartId = request.params.id;
+    try {
+        let cartItems = await cartItemsLogic.getCartItems(cartId);
+        response.json(cartItems);
     } catch (e) {
         console.error(e);
         response.status(600).send(e.message);
