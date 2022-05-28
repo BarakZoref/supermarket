@@ -19,7 +19,16 @@ async function addNewOrder(orderDetails){
     return orderId;
 }
 
+async function getBusyDays(){
+    let sql = `SELECT shipping_date as shippingDate
+    FROM Orders GROUP BY shipping_date
+    HAVING count(*)>3`
+    let busyDays = await connection.execute(sql);
+    return busyDays;
+}
+
 module.exports = {
     getAmountOfOrders,
-    addNewOrder
+    addNewOrder,
+    getBusyDays
 }

@@ -11,7 +11,13 @@ async function addNewOrder(orderDetails){
     return orderId
 }
 
+async function getBusyDays(){
+    let busyDays = await ordersDal.getBusyDays();
+    return busyDays;
+}
+
 module.exports = {
     getAmountOfOrders,
-    addNewOrder
+    addNewOrder,
+    getBusyDays
 }

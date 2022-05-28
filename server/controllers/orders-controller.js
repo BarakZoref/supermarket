@@ -27,6 +27,18 @@ router.post('/', async (request, response) =>{
     }
 });
 
+//GET BUSY DAYS
+//GET http://localhost:3000/orders/busy_days
+router.get('/busy_days', async (request, response) =>{
+    try {
+        let busyDays = await ordersLogic.getBusyDays();
+        response.json(busyDays);
+    } catch (e) {
+        console.error(e);
+        response.status(600).send(e.message);
+    }
+});
+
 
 
 module.exports = router;
