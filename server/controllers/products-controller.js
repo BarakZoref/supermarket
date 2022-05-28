@@ -2,6 +2,18 @@ const productsLogic = require('../logic/products-logic');
 const express = require("express");
 const router = express.Router();
 
+//GET AMOUNT OF PRODUCTS
+//GET http://localhost:3000/products/amount-of-products
+router.get('/amount-of-products', async (request, response) =>{
+    try {
+        let amountOfProducts = await productsLogic.getAmountOfProducts();
+        response.json(amountOfProducts);
+    } catch (e) {
+        console.error(e);
+        response.status(600).send(e.message);
+    }
+});
+
 //GET ALL PRODUCTS
 //GET http://localhost:3000/products
 router.get('/', async (request, response) =>{

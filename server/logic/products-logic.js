@@ -1,5 +1,10 @@
 const productsDal = require('../dal/products-dal');
 
+async function getAmountOfProducts(){
+    let amountOfProducts = await productsDal.getAmountOfProducts();
+    return amountOfProducts;
+}
+
 async function getAllProducts(){
     let allProducts = await productsDal.getAllProducts();
     return allProducts;
@@ -31,6 +36,7 @@ async function addProduct(productDetails){
 }
 
 module.exports = {
+    getAmountOfProducts,
     getAllProducts,
     getProductsByCategoryId,
     editProductPrice,

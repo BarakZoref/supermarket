@@ -1,5 +1,13 @@
 const connection = require("./connection-wrapper");
 
+async function getAmountOfProducts(){
+    let sql = `SELECT count(*) as amountOfProducts
+                FROM products `
+    let amountOfProducts = await connection.execute(sql);
+    return amountOfProducts;
+}
+
+
 async function getAllProducts(){
     let sql = `SELECT id, name, price, img_url as imgUrl
                 FROM products `
@@ -28,7 +36,8 @@ async function addProduct(productDetails){
     await connection.executeWithParameters(sql, parameters);
 }
 
-module.exports={
+module.exports={ 
+    getAmountOfProducts,
     getAllProducts,
     getProductsByCategoryId,
     editProductPrice,
