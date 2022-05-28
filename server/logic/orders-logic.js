@@ -5,6 +5,13 @@ async function getAmountOfOrders(){
     return amountOfOrders;
 }
 
+async function addNewOrder(orderDetails){
+    orderDetails.orderDate = new Date();
+    let orderId = await ordersDal.addNewOrder(orderDetails);
+    return orderId
+}
+
 module.exports = {
-    getAmountOfOrders
+    getAmountOfOrders,
+    addNewOrder
 }
