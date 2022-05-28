@@ -16,8 +16,14 @@ async function getBusyDays(){
     return busyDays;
 }
 
+async function getOrderDetails(orderId){
+    let orderDetails = await ordersDal.getOrderDetails(orderId);
+    return orderDetails;
+}
+
 module.exports = {
     getAmountOfOrders,
     addNewOrder,
-    getBusyDays
+    getBusyDays,
+    getOrderDetails
 }

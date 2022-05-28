@@ -39,6 +39,20 @@ router.get('/busy_days', async (request, response) =>{
     }
 });
 
+//GET ORDER DETAILS
+//GET http://localhost:3000/orders/id
+router.get('/:id', async (request, response) =>{
+    let orderId = request.params.id
+    try {
+        let orderDetails = await ordersLogic.getOrderDetails(orderId);
+        response.json(orderDetails);
+    } catch (e) {
+        console.error(e);
+        response.status(600).send(e.message);
+    }
+});
+
+
 
 
 module.exports = router;

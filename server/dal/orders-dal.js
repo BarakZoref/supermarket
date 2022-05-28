@@ -27,8 +27,20 @@ async function getBusyDays(){
     return busyDays;
 }
 
+async function getOrderDetails(orderId){
+    let sql = `SELECT cart_id as cartId, final_price as finalPrice,
+                 city, street, shipping_date as shippingDate, order_date as orderDate,
+                 payment_last_digits as paymentLastDigits
+                 FROM orders
+                 WHERE id = 1`
+    let parameters = [orderId]
+    let unOrganizedOrderDetails = await connection.executeWithParameters(sql, parameters);
+    return unOrganizedOrderDetails;
+}
+
 module.exports = {
     getAmountOfOrders,
     addNewOrder,
-    getBusyDays
+    getBusyDays,
+    getOrderDetails
 }
