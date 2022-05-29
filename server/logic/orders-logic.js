@@ -20,8 +20,8 @@ async function getBusyDays(){
     return busyDays;
 }
 
-async function getOrderDetails(orderId){
-    let orderDetails = await ordersDal.getOrderDetails(orderId);
+async function getOrderDetails(cartId){
+    let orderDetails = await ordersDal.getOrderDetails(cartId);
     return orderDetails;
 }
 

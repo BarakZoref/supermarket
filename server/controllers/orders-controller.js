@@ -42,11 +42,11 @@ router.get('/busy_days', async (request, response) =>{
 });
 
 //GET ORDER DETAILS
-//GET http://localhost:3000/orders/id
+//GET http://localhost:3000/orders/cartId
 router.get('/:id', async (request, response) =>{
-    let orderId = request.params.id
+    let cartId = request.params.id
     try {
-        let orderDetails = await ordersLogic.getOrderDetails(orderId);
+        let orderDetails = await ordersLogic.getOrderDetails(cartId);
         response.json(orderDetails);
     } catch (e) {
         console.error(e);
