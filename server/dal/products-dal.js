@@ -9,7 +9,7 @@ async function getAmountOfProducts(){
 
 
 async function getAllProducts(){
-    let sql = `SELECT id, name, price, img_url as imgUrl
+    let sql = `SELECT id, name, category_id, price, img_url as imgUrl
                 FROM products`
     let allProducts = await connection.execute(sql);
     return allProducts;
