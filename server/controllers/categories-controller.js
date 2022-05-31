@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 
 //GET ALL CATEGORIES
-//GET http://localhost:3000/categories
+//GET http://localhost:4200/categories
 router.get("/", async (request, response)=>{
     try{
         let categories = await categoriesLogic.getAllCategories();

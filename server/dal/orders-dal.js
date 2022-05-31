@@ -22,7 +22,7 @@ async function addNewOrder(orderDetails){
 async function getBusyDays(){
     let sql = `SELECT shipping_date as shippingDate
     FROM Orders GROUP BY CAST(shipping_date AS DATE)
-    HAVING count(*)>3`
+    HAVING count(*) >= 3`
     let busyDays = await connection.execute(sql);
     return busyDays;
 }

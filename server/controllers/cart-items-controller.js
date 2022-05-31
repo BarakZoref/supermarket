@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 
 //ADD TO CART
-//POST http://localhost:3000/cart_items
+//POST http://localhost:4200/cart_items
 router.post('/', async (request, response)=>{
     let cartItemDetails = request.body;
     try {
@@ -16,7 +16,7 @@ router.post('/', async (request, response)=>{
 });
 
 //DELETE CART ITEM
-//DELETE http://localhost:3000/cart_items/cartItemId
+//DELETE http://localhost:4200/cart_items/cartItemId
 router.delete('/:id', async (request, response)=>{
     let cartItemId = request.params.id;
     try {
@@ -29,7 +29,7 @@ router.delete('/:id', async (request, response)=>{
 });
 
 //UPDATE CART ITEM QUANTITY
-//PUT http://localhost:3000/cart_items
+//PUT http://localhost:4200/cart_items
 router.put('/', async (request, response)=>{
     let cartItemDetails = request.body;
     try {
@@ -42,7 +42,7 @@ router.put('/', async (request, response)=>{
 });
 
 //DELETE ALL CART ITEMS
-//DELETE http://localhost:3000/cart_items/by_cart_id
+//DELETE http://localhost:4200/cart_items/by_cart_id
 router.delete('/by_cart_id/:id', async (request, response)=>{
     let cartId = request.params.id;
     try {
@@ -55,7 +55,7 @@ router.delete('/by_cart_id/:id', async (request, response)=>{
 });
 
 //GET CART ITEMS
-//GET http://localhost:3000/cart_items/cartId
+//GET http://localhost:4200/cart_items/cartId
 router.get('/:id', async (request, response)=>{
     let cartId = request.params.id;
     try {

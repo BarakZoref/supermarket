@@ -4,7 +4,7 @@ const express = require("express");
 const router = express.Router();
 
 // ADD USER
-// POST http://localhost:3000/users
+// POST http://localhost:4200/users
     router.post("/", async (request, response) => {
 
         let userRegistrationData = request.body;
@@ -20,7 +20,7 @@ const router = express.Router();
     });
 
     // LOG IN
-    // POST http://localhost:3000/users/login
+    // POST http://localhost:4200/users/login
     router.post("/login", async (request, response) => { 
         let userLogInData = request.body;
         try{

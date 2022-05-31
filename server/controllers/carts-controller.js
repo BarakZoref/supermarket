@@ -4,7 +4,7 @@ const express = require("express");
 const router = express.Router();
 
 //ADD CART
-//POST http://localhost:3000/carts
+//POST http://localhost:4200/carts
 router.post('/', async (request, response)=>{
     let tokenData = tokenDecoder.decodeTokenFromRequest(request);
     try {
@@ -18,7 +18,7 @@ router.post('/', async (request, response)=>{
 
 
 //GET LAST CART
-//GET http://localhost:3000/carts
+//GET http://localhost:4200/carts
 router.get('/', async (request, response)=>{
     let tokenData = tokenDecoder.decodeTokenFromRequest(request);
     try {

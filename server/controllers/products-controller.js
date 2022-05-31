@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 
 //GET AMOUNT OF PRODUCTS
-//GET http://localhost:3000/products/amount_of_products
+//GET http://localhost:4200/products/amount_of_products
 router.get('/amount_of_products', async (request, response) =>{
     try {
         let amountOfProducts = await productsLogic.getAmountOfProducts();
@@ -15,7 +15,7 @@ router.get('/amount_of_products', async (request, response) =>{
 });
 
 //GET ALL PRODUCTS
-//GET http://localhost:3000/products
+//GET http://localhost:4200/products
 router.get('/', async (request, response) =>{
     try {
         let allProducts = await productsLogic.getAllProducts();
@@ -27,7 +27,7 @@ router.get('/', async (request, response) =>{
 });
 
 //GET PRODUCTS BY CATEGORIES
-//GET http://localhost:3000/products/categoryId
+//GET http://localhost:4200/products/categoryId
 router.get('/:categoryId', async (request, response) =>{
     let categoryId = request.params.categoryId;
     try {
@@ -40,7 +40,7 @@ router.get('/:categoryId', async (request, response) =>{
 });
 
 //ADD PRODUCT
-//PUT http://localhost:3000/products
+//PUT http://localhost:4200/products
 router.post('/', async (request, response) =>{
     let productDetails = request.body;
     try {
@@ -53,7 +53,7 @@ router.post('/', async (request, response) =>{
 });
 
 //EDIT PRODUCT PRICE
-//PUT http://localhost:3000/products
+//PUT http://localhost:4200/products
 router.put('/', async (request, response) =>{
     let productDetails = request.body;
     try {

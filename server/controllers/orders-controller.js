@@ -4,7 +4,7 @@ const express = require("express");
 const router = express.Router();
 
 //GET AMOUNT OF ORDERS
-//GET http://localhost:3000/orders/amount_of_orders
+//GET http://localhost:4200/orders/amount_of_orders
 router.get('/amount_of_orders', async (request, response) =>{
     try {
         let amountOfOrders = await ordersLogic.getAmountOfOrders();
@@ -16,7 +16,7 @@ router.get('/amount_of_orders', async (request, response) =>{
 });
 
 //ADD NEW ORDER
-//POST http://localhost:3000/orders
+//POST http://localhost:4200/orders
 router.post('/', async (request, response) =>{
     let tokenData = tokenDecoder.decodeTokenFromRequest(request);
     let orderDetails = request.body;
@@ -30,7 +30,7 @@ router.post('/', async (request, response) =>{
 });
 
 //GET BUSY DAYS
-//GET http://localhost:3000/orders/busy_days
+//GET http://localhost:4200/orders/busy_days
 router.get('/busy_days', async (request, response) =>{
     try {
         let busyDays = await ordersLogic.getBusyDays();
@@ -42,7 +42,7 @@ router.get('/busy_days', async (request, response) =>{
 });
 
 //GET LAST ORDER DATE
-//GET http://localhost:3000/orders/
+//GET http://localhost:4200/orders/
 router.get('/', async (request, response) =>{
     let tokenData = tokenDecoder.decodeTokenFromRequest(request);
     try {
@@ -55,7 +55,7 @@ router.get('/', async (request, response) =>{
 });
 
 //GET ORDER DETAILS
-//GET http://localhost:3000/orders/order_details/cartId
+//GET http://localhost:4200/orders/order_details/cartId
 router.get('/order_details/:id', async (request, response) =>{
     let cartId = request.params.id
     try {
