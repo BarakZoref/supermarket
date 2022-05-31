@@ -27,8 +27,8 @@ async function deleteAllCartItemsOfCart(cartId){
 }
 
 async function getCartItems(cartId){
-    let sql = `SELECT id as cartItemId, product_id as productId, quantity 
-    FROM cart_items
+    let sql = `SELECT ci.id as cartItemId, p.name, ci.quantity as quantity, p.img_url as imgUrl 
+    FROM cart_items ci join products p on ci.product_id = p.id
     WHERE cart_id = ?`
     let parameters = [cartId];
     let cartItems = await connection.executeWithParameters(sql, parameters);
