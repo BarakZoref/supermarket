@@ -27,6 +27,15 @@ async function getBusyDays(){
     return busyDays;
 }
 
+async function getLastOrderDate(userId){
+    let sql = `SELECT max(order_date) as orderDate
+             FROM supermarket.orders
+            where user_id = ?`;
+     let parameters = [userId]
+    let orderDate = await connection.executeWithParameters(sql, parameters);
+    return orderDate;
+}
+
 async function getOrderDetails(cartId){
     let sql = `SELECT id, final_price as finalPrice,
                  city, street, shipping_date as shippingDate, order_date as orderDate,
@@ -42,5 +51,6 @@ module.exports = {
     getAmountOfOrders,
     addNewOrder,
     getBusyDays,
+    getLastOrderDate,
     getOrderDetails
 }

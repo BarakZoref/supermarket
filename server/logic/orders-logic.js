@@ -20,6 +20,15 @@ async function getBusyDays(){
     return busyDays;
 }
 
+async function getLastOrderDate(tokenData){
+    if(tokenData.role!="user"){
+        throw new Error("Error: the role is not a user");
+    }
+    let userId = tokenData.userId;
+    let orderDate = ordersDal.getLastOrderDate(userId);
+    return orderDate
+}
+
 async function getOrderDetails(cartId){
     let orderDetails = await ordersDal.getOrderDetails(cartId);
     return orderDetails;
@@ -29,5 +38,6 @@ module.exports = {
     getAmountOfOrders,
     addNewOrder,
     getBusyDays,
+    getLastOrderDate,
     getOrderDetails
 }

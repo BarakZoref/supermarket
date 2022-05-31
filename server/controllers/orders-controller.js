@@ -41,9 +41,22 @@ router.get('/busy_days', async (request, response) =>{
     }
 });
 
+//GET LAST ORDER DATE
+//GET http://localhost:3000/orders/
+router.get('/', async (request, response) =>{
+    let tokenData = tokenDecoder.decodeTokenFromRequest(request);
+    try {
+        let orderDate = await ordersLogic.getLastOrderDate(tokenData);
+        response.json(orderDate);
+    } catch (e) {
+        console.error(e);
+        response.status(600).send(e.message);
+    }
+});
+
 //GET ORDER DETAILS
-//GET http://localhost:3000/orders/cartId
-router.get('/:id', async (request, response) =>{
+//GET http://localhost:3000/orders/order_details/cartId
+router.get('/order_details/:id', async (request, response) =>{
     let cartId = request.params.id
     try {
         let orderDetails = await ordersLogic.getOrderDetails(cartId);
