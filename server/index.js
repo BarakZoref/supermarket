@@ -11,7 +11,7 @@ const loginFilter = require('./middleware/login-filter');
 
 
 
-server.use(cors({ origin: "http://localhost:3000"})); 
+server.use(cors({ origin: "http://localhost:4200"})); 
 // Extract the JSON from the body and create request.body object containing it: 
 server.use(loginFilter());
 
