@@ -58,7 +58,7 @@ export class ProductsService {
     },
       err => {
         console.log(err);
-        alert("Cannot get products")
+        alert("Cannot edit products")
       })
   }
 
