@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import IServerResponse from '../models/iserver-response.model';
 import ISuccessfulLoginServerResponse from '../models/isuccessfull-login-server-response.model';
 import IUserLoginData from '../models/iuser-login-data.model';
+import IUser from '../models/iuser-model';
 import IUserRegisterData from '../models/iuser-register-data.model';
 import { CartService } from './cart.service';
 
@@ -17,20 +18,21 @@ export class UsersService {
 
   private baseUrl: string = "http://localhost:3001/users/"
 
-  firstName: string;
-  lastName: string;
-  city: string;
-  street: string;
+  currentUser: IUser;
 
   public login(userLoginData: IUserLoginData): void{
     this._http.post<ISuccessfulLoginServerResponse>(this.baseUrl + 'login', userLoginData)
     .subscribe(response => {
       //Success function
-      sessionStorage.setItem("token", response.token);
-      this.firstName = response.firstName;
-      this.lastName = response.lastName;
-      this.city = response.city;
-      this.street = response.street;
+
+      this.currentUser = {
+        firstName: response.firstName,
+        lastName: response.lastName,
+        city: response.city,
+        street: response.street,
+        token: response.token
+      }
+      sessionStorage.setItem("userDetails", JSON.stringify(this.currentUser));
       this._cartService.currentCart = response.cart;
       console.log("login response", response);
       // this.router.navigate(['/vacations']);
@@ -41,7 +43,7 @@ export class UsersService {
       }
     )
   }
-  
+
   public register(registerData: IUserRegisterData): void{
     this._http.post<IServerResponse>(this.baseUrl, registerData)
     .subscribe(response => {

@@ -14,14 +14,14 @@ export class CartService {
   ) { }
 
   public getLastCart(): void{
-    this._http.post<any>(this.baseUrl, {})
+    this._http.get<ICart>(this.baseUrl, {})
     .subscribe(cart => {
       this.currentCart = cart;
       console.log(this.currentCart);
     },
       error => {
         console.log(error);
-        alert('Add new cart failed');
+        alert('get last cart failed');
       }
     )
   }
