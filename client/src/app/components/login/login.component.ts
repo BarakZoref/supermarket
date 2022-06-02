@@ -27,9 +27,13 @@ export class LoginComponent implements OnInit {
 
 
   }
-  addNewOrder() {
-    let shippingDate = new Date();
-    this._ordersService.addNewOrder({ cartId: 21, finalPrice: 100, city: "Jerusalem", street: "aluf sade", shippingDate, paymentLastDigits: 1234 })
+  // addNewOrder() {
+  //   let shippingDate = new Date();
+  //   this._ordersService.addNewOrder({ cartId: 21, finalPrice: 100, city: "Jerusalem", street: "aluf sade", shippingDate, paymentLastDigits: 1234 })
+  // }
+
+  getBusyDays(){
+    this._ordersService.getBusyDays();
   }
 
 }

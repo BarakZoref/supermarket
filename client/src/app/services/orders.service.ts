@@ -36,4 +36,17 @@ export class OrdersService {
           alert("cannot add new order");
         })
   }
+
+  public getBusyDays(): void{
+    this._http.get<any>(this.baseUrl + "busy_days")
+      .subscribe((busyDays) => {
+        //TODO:
+        //do somthing with the busyDays
+        console.log("get Busy Days: ", busyDays);
+      },
+        err => {
+          console.log(err);
+          alert("cannot add new order");
+        })
+  }
 }
