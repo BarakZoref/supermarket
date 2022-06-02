@@ -32,8 +32,12 @@ export class LoginComponent implements OnInit {
   //   this._ordersService.addNewOrder({ cartId: 21, finalPrice: 100, city: "Jerusalem", street: "aluf sade", shippingDate, paymentLastDigits: 1234 })
   // }
 
-  getBusyDays(){
-    this._ordersService.getBusyDays();
-  }
+  // getBusyDays(){
+  //   this._ordersService.getBusyDays();
+  // }
+
+  // getLastOrderDate(){
+  //   this._ordersService.getLastOrderDate()
+  // }
 
 }

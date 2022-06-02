@@ -49,4 +49,17 @@ export class OrdersService {
           alert("cannot add new order");
         })
   }
+
+  public getLastOrderDate(): void{
+    this._http.get<any>(this.baseUrl)
+    .subscribe((lastOrderDate) => {
+      //TODO:
+      //do somthing with the busyDays
+      console.log("get last order date: ", lastOrderDate);
+    },
+      err => {
+        console.log(err);
+        alert("cannot add new order");
+      })
+  }
 }
