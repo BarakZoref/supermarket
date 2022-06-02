@@ -3,6 +3,7 @@ const crypto = require("crypto");
 const jwt = require('jsonwebtoken');
 const config = require('../config.json');
 const validator = require('validator');
+const cartsLogic = require('../logic/carts-logic');
 
 
 
@@ -14,7 +15,6 @@ async function addUser(userRegistrationData) {
     }
 
     userRegistrationData.password = encryptPassword(userRegistrationData.password);
-    console.log(userRegistrationData);
     await usersDal.addUser(userRegistrationData);    
 }
 
@@ -27,7 +27,8 @@ async function logIn(userLogInData){
     }
 
     const token = jwt.sign({ userId: userData.userId, role: userData.role}, config.secret);
-    let successfulLoginResponse = {token, firstName: userData.firstName, lastName: userData.lastName, city: userData.city, street: userData.street};
+    let cart = await cartsLogic.getLastCart(userData.userId); 
+    let successfulLoginResponse = {token, firstName: userData.firstName, lastName: userData.lastName, city: userData.city, street: userData.street, cart};
     return successfulLoginResponse;
     
 }

@@ -7,6 +7,7 @@ async function getAmountOfOrders(){
 
 async function addNewOrder(orderDetails, tokenData){
     orderDetails.orderDate = new Date();
+    orderDetails.shippingDate = new Date(orderDetails.shippingDate);
     if(tokenData.role!="user"){
         throw new Error("Error: the role is not a user");
     }
