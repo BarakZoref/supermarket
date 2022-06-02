@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { OrdersService } from 'src/app/services/orders.service';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
@@ -12,15 +13,23 @@ export class LoginComponent implements OnInit {
   password: string;
 
   constructor(
-    public _usersService: UsersService
+    public _usersService: UsersService,
+    public _ordersService: OrdersService
   ) { }
 
   ngOnInit(): void {
+    this._ordersService.getAmountOfOrders();
   }
 
-  login(){
-     let loginDetails = {userName: this.userName, password: this.password}
-     this._usersService.login(loginDetails);
+  login() {
+    let loginDetails = { userName: this.userName, password: this.password }
+    this._usersService.login(loginDetails);
+
+
+  }
+  addNewOrder() {
+    let shippingDate = new Date();
+    this._ordersService.addNewOrder({ cartId: 21, finalPrice: 100, city: "Jerusalem", street: "aluf sade", shippingDate, paymentLastDigits: 1234 })
   }
 
 }

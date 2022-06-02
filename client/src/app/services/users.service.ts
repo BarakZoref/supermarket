@@ -33,6 +33,11 @@ export class UsersService {
         token: response.token
       }
       sessionStorage.setItem("userDetails", JSON.stringify(this.currentUser));
+
+      let userDetailsAsString = sessionStorage.getItem("userDetails");
+      let userDetails1 = JSON.parse(userDetailsAsString);
+      console.log("userDetails1" , userDetails1);
+
       this._cartService.currentCart = response.cart;
       console.log("login response", response);
       // this.router.navigate(['/vacations']);

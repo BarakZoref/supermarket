@@ -1,9 +1,39 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import IOrder from '../models/iorder.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrdersService {
+  amountOfOrders: number;
+  private baseUrl: string = "http://localhost:3001/orders/"
+  constructor(
+    public _http: HttpClient
+  ) { }
 
-  constructor() { }
+  public getAmountOfOrders(): void {
+    this._http.get<any>(this.baseUrl + 'amount_of_orders')
+      .subscribe((amountOfOrdersAsObject) => {
+        this.amountOfOrders = amountOfOrdersAsObject[0].amountOfOrders;
+        console.log("amount of orders: ", this.amountOfOrders);
+      },
+        err => {
+          console.log(err);
+          alert("cannot get amount of orders");
+        })
+  }
+
+  public addNewOrder(newOrder: IOrder): void {
+    this._http.post<any>(this.baseUrl, newOrder)
+      .subscribe((orderId) => {
+        //TODO:
+        //do somthing with the order id
+        console.log("orderId", orderId);
+      },
+        err => {
+          console.log(err);
+          alert("cannot add new order");
+        })
+  }
 }

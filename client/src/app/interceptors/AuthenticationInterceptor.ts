@@ -6,29 +6,29 @@ import IUser from '../models/iuser-model';
 
 @Injectable()
 export class AuthenticationInterceptor implements HttpInterceptor {
-    constructor() { }
+  constructor() { }
 
-    // Parameters :
-    // request : Represents the request object which is on his way to the server
-    // getting the request enables us to manipulate it.
-    // next : Maybe we have multiple interceptors... so calling next sends the request
-    // to the next interceptor (if exists)
-    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        // add authorization header with our token if available
-        let currentUserJson: string | null = sessionStorage.getItem("userDetails");
-        // Logically - token = null ---> false
-        // token != null --> true
-        // A situation for example : login (no token yet)
-        if (currentUserJson) {
-          let currentUser = JSON.parse(currentUserJson);
-          let token = currentUser.token;
-            request = request.clone({
-                setHeaders: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
+  // Parameters :
+  // request : Represents the request object which is on his way to the server
+  // getting the request enables us to manipulate it.
+  // next : Maybe we have multiple interceptors... so calling next sends the request
+  // to the next interceptor (if exists)
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    // add authorization header with our token if available
+    let currentUserJson: string | null = sessionStorage.getItem("userDetails");
+    // Logically - token = null ---> false
+    // token != null --> true
+    // A situation for example : login (no token yet)
+    if (currentUserJson) {
+      let currentUser = JSON.parse(currentUserJson);
+      let token = currentUser.token;
+      request = request.clone({
+        setHeaders: {
+          Authorization: `Bearer ${token}`
         }
-
-        return next.handle(request);
+      });
     }
+
+    return next.handle(request);
+  }
 }
