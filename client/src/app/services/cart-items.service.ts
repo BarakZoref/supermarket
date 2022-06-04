@@ -1,11 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import ICartItem from '../models/icart-item.model';
 import IServerResponse from '../models/iserver-response.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartItemsService {
+
+  cartItems: ICartItem[];
 
   private baseUrl = 'http://localhost:3001/cart_items/'
   constructor(
@@ -55,6 +58,19 @@ export class CartItemsService {
     this._http.delete<IServerResponse>(this.baseUrl + '/by_cart_id/' + cartId)
     .subscribe(serverResponse => {
       console.log(serverResponse.msg);
+    },
+      error => {
+        console.log(error);
+        alert('delete all cart items failed');
+      }
+    )
+  }
+
+  public getCartItems(cartId): void{
+    this._http.get<ICartItem[]>(this.baseUrl + cartId)
+    .subscribe(cartItems => {
+      this.cartItems = cartItems
+      console.log("cart items: ", this.cartItems)
     },
       error => {
         console.log(error);

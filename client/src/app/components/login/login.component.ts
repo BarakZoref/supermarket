@@ -69,7 +69,11 @@ export class LoginComponent implements OnInit {
   //   this._cartItemsService.updateCartItemQuantity(cartItemDetails);
   // }
 
-  deleteAllCartItems(){
-    this._cartItemsService.deleteAllCartItems(18);
-  }
+  // deleteAllCartItems(){
+  //   this._cartItemsService.deleteAllCartItems(18);
+  // }
+
+  // getCartItems(){
+  //   this._cartItemsService.getCartItems(21);
+  // }
 }
