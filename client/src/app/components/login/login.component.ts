@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CategoriesService } from 'src/app/services/categories.service';
 import { OrdersService } from 'src/app/services/orders.service';
 import { UsersService } from 'src/app/services/users.service';
 
@@ -14,7 +15,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     public _usersService: UsersService,
-    public _ordersService: OrdersService
+    public _ordersService: OrdersService,
+    public _categoriesService: CategoriesService
   ) { }
 
   ngOnInit(): void {
@@ -40,4 +42,7 @@ export class LoginComponent implements OnInit {
   //   this._ordersService.getLastOrderDate()
   // }
 
+  getAllCategories(){
+    this._categoriesService.getAllCategories();
+  }
 }
