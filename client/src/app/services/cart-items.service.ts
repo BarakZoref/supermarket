@@ -29,13 +29,23 @@ export class CartItemsService {
   public deleteCartItem(cartItemId): void{
     this._http.delete<IServerResponse>(this.baseUrl + cartItemId)
     .subscribe(serverResponse => {
-      //TODO:
-      //do something with cartItemId
       console.log(serverResponse.msg);
     },
       error => {
         console.log(error);
         alert('deleting cart item failed');
+      }
+    )
+  }
+
+  public updateCartItemQuantity(cartItemDetails): void{
+    this._http.put<IServerResponse>(this.baseUrl, cartItemDetails)
+    .subscribe(serverResponse => {
+      console.log(serverResponse.msg);
+    },
+      error => {
+        console.log(error);
+        alert('get last cart failed');
       }
     )
   }

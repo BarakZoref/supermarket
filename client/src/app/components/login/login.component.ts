@@ -60,4 +60,12 @@ export class LoginComponent implements OnInit {
   // deleteCartItem(){
   //   this._cartItemsService.deleteCartItem(10);
   // }
+
+  // updateCartItemQuantity(){
+  //   let cartItemDetails = {
+  //     cartItemId: 6,
+  //     quantity: 3
+  //   }
+  //   this._cartItemsService.updateCartItemQuantity(cartItemDetails);
+  // }
 }
