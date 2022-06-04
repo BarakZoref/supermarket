@@ -49,4 +49,17 @@ export class CartItemsService {
       }
     )
   }
+
+
+  public deleteAllCartItems(cartId): void{
+    this._http.delete<IServerResponse>(this.baseUrl + '/by_cart_id/' + cartId)
+    .subscribe(serverResponse => {
+      console.log(serverResponse.msg);
+    },
+      error => {
+        console.log(error);
+        alert('delete all cart items failed');
+      }
+    )
+  }
 }
