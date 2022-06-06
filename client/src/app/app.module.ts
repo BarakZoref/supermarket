@@ -16,12 +16,14 @@ import { OrderComponent } from './components/order/order.component';
 import { InputTextModule } from "primeng/inputtext";
 import {ButtonModule} from 'primeng/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatButtonModule} from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon'
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatListModule} from '@angular/material/list';
-import { FlexLayoutModule } from '@angular/flex-layout';
+import {CardModule} from 'primeng/card';
+
+// import {MatToolbarModule} from '@angular/material/toolbar';
+// import {MatButtonModule} from '@angular/material/button';
+// import {MatIconModule} from '@angular/material/icon'
+// import {MatSidenavModule} from '@angular/material/sidenav';
+// import {MatListModule} from '@angular/material/list';
+// import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 // import {RippleModule} from 'primeng/ripple';
@@ -46,14 +48,15 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatSidenavModule,
-    MatListModule,
-    FlexLayoutModule,
-    MatIconModule,
+    // MatSidenavModule,
+    // MatListModule,
+    // FlexLayoutModule,
+    // MatIconModule,
+    // MatButtonModule,
+    // MatToolbarModule,
     InputTextModule,
-    MatButtonModule,
-    MatToolbarModule,
-    ButtonModule
+    ButtonModule,
+    CardModule
   ],
   providers: [    { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true }  ],
   bootstrap: [AppComponent]

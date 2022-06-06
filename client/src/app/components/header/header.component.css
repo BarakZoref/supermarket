@@ -1,5 +1,5 @@
 
-.menu-spacer {
+/* .menu-spacer {
   flex: 1 1 auto;
 }
 
@@ -10,6 +10,16 @@ input{
 .hello{
   margin: 0px 10px;
   font-size: 15px;
+} */
+
+
+.logo{
+  font-size: large;
+}
+.name{
+  margin-left: 20px;
 }
 
-
+/* .navbar{
+  background-color: wheat;
+} */

@@ -1,3 +1,25 @@
-<a routerLink="login">Login</a>
-<a routerLink="register">Register</a>
-<router-outlet></router-outlet>
+<!-- <a routerLink="login">Login</a>
+<a routerLink="register">Register</a> -->
+<!-- <div class="start-page-container">
+  <div class="left-div">
+    <router-outlet></router-outlet>
+  </div>
+  <div class="middle-div">
+    <p>middle div</p>
+  </div>
+  <div class="right-div">
+    <p>right div</p>
+  </div>
+</div> -->
+
+<div class="start-page-container">
+  <router-outlet></router-outlet>
+<p-card header="Simple Card" [style]="{'width': '25rem', 'height': '400px', 'margin-bottom': '2em'}">
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt
+      quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!</p>
+</p-card>
+<p-card header="Simple Card" [style]="{'width': '25rem', 'height': '400px', 'margin-bottom': '2em'}">
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt
+      quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!</p>
+</p-card>
+</div>
