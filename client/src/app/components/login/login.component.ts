@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this._ordersService.getAmountOfOrders();
+    // this._ordersService.getAmountOfOrders();
   }
 
   login() {

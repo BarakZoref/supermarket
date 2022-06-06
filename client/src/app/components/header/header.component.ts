@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import IUserRegisterData from 'src/app/models/iuser-register-data.model';
 import { CartService } from 'src/app/services/cart.service';
 import { ProductsService } from 'src/app/services/products.service';
 import { UsersService } from 'src/app/services/users.service';

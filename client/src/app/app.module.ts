@@ -10,6 +10,23 @@ import { StoreComponent } from './components/store/store.component';
 import { LoginComponent } from './components/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { AuthenticationInterceptor } from './interceptors/AuthenticationInterceptor';
+import { StartScreenComponent } from './components/start-screen/start-screen.component';
+import { RegisterComponent } from './components/register/register.component';
+import { OrderComponent } from './components/order/order.component';
+import { InputTextModule } from "primeng/inputtext";
+import {ButtonModule} from 'primeng/button';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon'
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
+
+// import {RippleModule} from 'primeng/ripple';
+
+
 
 
 @NgModule({
@@ -18,13 +35,25 @@ import { AuthenticationInterceptor } from './interceptors/AuthenticationIntercep
     HeaderComponent,
     FooterComponent,
     StoreComponent,
-    LoginComponent
+    LoginComponent,
+    StartScreenComponent,
+    RegisterComponent,
+    OrderComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MatSidenavModule,
+    MatListModule,
+    FlexLayoutModule,
+    MatIconModule,
+    InputTextModule,
+    MatButtonModule,
+    MatToolbarModule,
+    ButtonModule
   ],
   providers: [    { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true }  ],
   bootstrap: [AppComponent]

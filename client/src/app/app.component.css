@@ -1,6 +1,5 @@
-section {
+/* section {
   height: 100%;
-  border: 2px solid black;
   text-align: center;
   box-sizing: border-box;
   display: grid;
@@ -10,7 +9,6 @@ section {
 
 header {
   grid-column: span 12;
-  border: 2px solid black;
 }
 
 main {
@@ -25,5 +23,5 @@ footer {
 }
 *{
   border-width: 0px;
-}
+} */
 
