@@ -1,0 +1,65 @@
+
+<br>
+<form [formGroup]="userRegisterForm" (ngSubmit)="submit()">
+  <span class="p-float-label">
+    <input formControlName="id" id="float-input" type="text" pInputText name="id" />
+    <br>
+    <label for="float-input">ID</label>
+  </span>
+  <div class="errors-div" *ngIf="userRegisterForm.controls['id'].invalid && (userRegisterForm.controls['id'].dirty || userRegisterForm.controls['id'].touched)">
+    <div *ngIf="userRegisterForm.controls['id'].errors.required">
+    Please enter id
+    </div>
+    <div *ngIf="userRegisterForm.controls['id'].errors.maxlength">
+      Please enter maximum of 9 numbers
+    </div>
+    <div *ngIf="userRegisterForm.controls['id'].errors.pattern">
+      Please enter only numbers
+    </div>
+  </div>
+  <br>
+  <span class="p-float-label">
+    <input formControlName="userName" id="float-input" type="text" pInputText name="username" />
+    <br>
+    <label for="float-input">Username</label>
+  </span>
+  <div class="errors-div" *ngIf="userRegisterForm.controls['userName'].invalid && (userRegisterForm.controls['userName'].dirty || userRegisterForm.controls['userName'].touched)">
+    <div *ngIf="userRegisterForm.controls['userName'].errors.required">
+    Please enter username
+    </div>
+    <div *ngIf="userRegisterForm.controls['userName'].errors.email">
+      Please enter valid email
+    </div>
+    <div *ngIf="userRegisterForm.controls['userName'].errors.maxlength">
+      Maximum length is 50 characters
+    </div>
+  </div>
+  <br>
+  <span class="p-float-label">
+    <input formControlName="password" id="float-input" type="password" pInputText  name="password"/>
+    <label for="float-input">Password</label>
+  </span>
+  <div class="errors-div" *ngIf="userRegisterForm.controls['password'].invalid && (userRegisterForm.controls['password'].dirty || userRegisterForm.controls['password'].touched)">
+    <div *ngIf="userRegisterForm.controls['password'].errors.required">
+    Please enter password
+    </div>
+    <div *ngIf="userRegisterForm.controls['password'].errors.minlength">
+      Length should be at least 6 characters
+    </div>
+    <div *ngIf="userRegisterForm.controls['password'].errors.maxlength">
+      Maximum length is 10 characters
+    </div>
+  </div>
+  <br>
+  <span class="p-float-label">
+    <input formControlName="confirmPassword" id="float-input" type="password" pInputText  name="confirmPassword"/>
+    <label for="float-input">Confirm Password</label>
+  </span>
+  <div class="errors-div">
+     <div *ngIf="userRegisterForm.controls['password'].valid && userRegisterForm.controls['password'].value!=userRegisterForm.controls['confirmPassword'].value">
+        The password does not match
+    </div>
+  </div>
+  <br>
+  <p-button [disabled]="userRegisterForm.invalid">Submit</p-button>
+</form>

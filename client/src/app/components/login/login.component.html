@@ -15,7 +15,7 @@
 
 <p-card
   header="Log In"
-  [style]="{ width: '25rem', height: '400px', 'margin-bottom': '2em' }"
+  [style]="{ width: '25rem', height: '600px', 'margin-bottom': '2em' }"
   >
   <br>
 <form [formGroup]="userLoginForm" (ngSubmit)="login()">
@@ -30,6 +30,9 @@
     </div>
     <div *ngIf="userLoginForm.controls['userName'].errors.email">
       Please enter valid email
+    </div>
+    <div *ngIf="userLoginForm.controls['userName'].errors.maxlength">
+      Maximum length is 50 characters
     </div>
   </div>
   <!-- <span *ngIf="userLoginForm.controls['userName'].errors.required">Please enter user name</span> -->
@@ -52,5 +55,5 @@
   <br><br>
   <p-button [disabled]="userLoginForm.invalid">Submit</p-button>
 </form>
-<a routerLink="/start-screen/register">not registered? click here</a>
+<a routerLink="/start-screen/register/step-one">not registered? click here</a>
 </p-card>

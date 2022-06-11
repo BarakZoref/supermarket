@@ -17,6 +17,12 @@ import { InputTextModule } from "primeng/inputtext";
 import {ButtonModule} from 'primeng/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {CardModule} from 'primeng/card';
+import { RegisterStepOneComponent } from './components/register-step-one/register-step-one.component';
+import { RegisterStepTwoComponent } from './components/register-step-two/register-step-two.component';
+import {StepsModule} from 'primeng/steps';
+import {ToastModule} from 'primeng/toast';
+
+
 
 
 
@@ -34,7 +40,9 @@ import {CardModule} from 'primeng/card';
     LoginComponent,
     StartScreenComponent,
     RegisterComponent,
-    OrderComponent
+    OrderComponent,
+    RegisterStepOneComponent,
+    RegisterStepTwoComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,7 +53,9 @@ import {CardModule} from 'primeng/card';
     BrowserAnimationsModule,
     InputTextModule,
     ButtonModule,
-    CardModule
+    CardModule,
+    StepsModule,
+    ToastModule
   ],
   providers: [    { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true }  ],
   bootstrap: [AppComponent]
