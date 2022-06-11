@@ -1,22 +1,56 @@
-
-  <!-- User Name: <br>
+<!-- User Name: <br>
   <input type="text" [(ngModel)]="userName"> <br>
   Password: <br>
   <input type="password" [(ngModel)]="password" ><br>
   <button (click)="login()">Submit</button><br> -->
-  <!-- <button (click)="addNewOrder()">Add New Order</button> -->
-  <!-- <button (click)="getBusyDays()">get Busy days</button> -->
-  <!-- <button (click)="getLastOrderDate()">get last order date</button> -->
-  <!-- <button (click)="getAllCategories()">get all Categories</button> -->
-  <!-- <button (click)="addToCart()">Add To Cart</button> -->
-  <!-- <button (click)="deleteCartItem()">delete Cart Item</button> -->
-  <!-- <button (click)="updateCartItemQuantity()">update Cart Item Quantity</button> -->
-  <!-- <button (click)="deleteAllCartItems()">delete all cart items</button> -->
-  <!-- <button (click)="getCartItems()">get cart items</button> -->
+<!-- <button (click)="addNewOrder()">Add New Order</button> -->
+<!-- <button (click)="getBusyDays()">get Busy days</button> -->
+<!-- <button (click)="getLastOrderDate()">get last order date</button> -->
+<!-- <button (click)="getAllCategories()">get all Categories</button> -->
+<!-- <button (click)="addToCart()">Add To Cart</button> -->
+<!-- <button (click)="deleteCartItem()">delete Cart Item</button> -->
+<!-- <button (click)="updateCartItemQuantity()">update Cart Item Quantity</button> -->
+<!-- <button (click)="deleteAllCartItems()">delete all cart items</button> -->
+<!-- <button (click)="getCartItems()">get cart items</button> -->
 
-  <p-card header="Log In" [style]="{'width': '25rem', 'height': '400px', 'margin-bottom': '2em'}">
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt
-        quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!</p>
-  </p-card>
-
-
+<p-card
+  header="Log In"
+  [style]="{ width: '25rem', height: '400px', 'margin-bottom': '2em' }"
+  >
+  <br>
+<form [formGroup]="userLoginForm" (ngSubmit)="login()">
+  <span class="p-float-label">
+    <input formControlName="userName" id="float-input" type="text" pInputText name="username" />
+    <br>
+    <label for="float-input">Username</label>
+  </span>
+  <div class="errors-div" *ngIf="userLoginForm.controls['userName'].invalid && (userLoginForm.controls['userName'].dirty || userLoginForm.controls['userName'].touched)">
+    <div *ngIf="userLoginForm.controls['userName'].errors.required">
+    Please enter username
+    </div>
+    <div *ngIf="userLoginForm.controls['userName'].errors.email">
+      Please enter valid email
+    </div>
+  </div>
+  <!-- <span *ngIf="userLoginForm.controls['userName'].errors.required">Please enter user name</span> -->
+  <br><br>
+  <span class="p-float-label">
+    <input formControlName="password" id="float-input" type="password" pInputText  name="password"/>
+    <label for="float-input">Password</label>
+  </span>
+  <div class="errors-div" *ngIf="userLoginForm.controls['password'].invalid && (userLoginForm.controls['password'].dirty || userLoginForm.controls['password'].touched)">
+    <div *ngIf="userLoginForm.controls['password'].errors.required">
+    Please enter password
+    </div>
+    <div *ngIf="userLoginForm.controls['password'].errors.minlength">
+      Length should be at least 6 characters
+    </div>
+    <div *ngIf="userLoginForm.controls['password'].errors.maxlength">
+      Maximum length is 10 characters
+    </div>
+  </div>
+  <br><br>
+  <p-button [disabled]="userLoginForm.invalid">Submit</p-button>
+</form>
+<a routerLink="/start-screen/register">not registered? click here</a>
+</p-card>

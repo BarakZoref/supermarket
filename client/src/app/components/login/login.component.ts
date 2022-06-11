@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import IUserLoginData from 'src/app/models/iuser-login-data.model';
 import { CartItemsService } from 'src/app/services/cart-items.service';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { OrdersService } from 'src/app/services/orders.service';
@@ -10,27 +12,34 @@ import { UsersService } from 'src/app/services/users.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  loginUserData: IUserLoginData = {userName: "", password: ""};
 
-  userName: string;
-  password: string;
+  userLoginForm: FormGroup;
 
   constructor(
     public _usersService: UsersService,
-    public _ordersService: OrdersService,
-    public _categoriesService: CategoriesService,
-    public _cartItemsService: CartItemsService
+    private formBuilder: FormBuilder
+    // public _ordersService: OrdersService,
+    // public _categoriesService: CategoriesService,
+    // public _cartItemsService: CartItemsService
   ) { }
 
   ngOnInit(): void {
     // this._ordersService.getAmountOfOrders();
-  }
-
-  login() {
-    let loginDetails = { userName: this.userName, password: this.password }
-    this._usersService.login(loginDetails);
-
+    this.userLoginForm =this.formBuilder.group({
+      userName: [this.loginUserData.userName, [Validators.required, Validators.email]],
+      password: [this.loginUserData.password, [Validators.required, Validators.minLength(6), Validators.maxLength(10)]]
+    })
 
   }
+
+  login(): void {
+    this.loginUserData = this.userLoginForm.value;
+    console.log(this.loginUserData);
+    // let loginDetails = { userName: this.userName, password: this.password }
+    // this._usersService.login(loginDetails);
+  }
+}
   // addNewOrder() {
   //   let shippingDate = new Date();
   //   this._ordersService.addNewOrder({ cartId: 21, finalPrice: 100, city: "Jerusalem", street: "aluf sade", shippingDate, paymentLastDigits: 1234 })
@@ -76,4 +85,3 @@ export class LoginComponent implements OnInit {
   // getCartItems(){
   //   this._cartItemsService.getCartItems(21);
   // }
-}
