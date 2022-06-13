@@ -16,9 +16,19 @@ export class UsersService {
     private _http: HttpClient,
     public _cartService: CartService) { }
 
-  private baseUrl: string = "http://localhost:3001/users/"
+    private baseUrl: string = "http://localhost:3001/users/"
 
   currentUser: IUser;
+  userRegisterData: IUserRegisterData = {
+    id: "",
+    userName: "",
+    firstName: "",
+    lastName: "",
+    password: "",
+    city: "",
+    street: ""
+  }
+
 
   public login(userLoginData: IUserLoginData): void{
     this._http.post<ISuccessfulLoginServerResponse>(this.baseUrl + 'login', userLoginData)
@@ -60,4 +70,19 @@ export class UsersService {
       }
     )
   }
+
+  public async isUserExist(id: string, userName: string): Promise<boolean>{
+    let isExist: boolean;
+    let p = this._http.post<boolean>(this.baseUrl + 'is_exist', {id, userName}).toPromise();
+    await p.then(response => {
+      console.log("response", response)
+      isExist = response;
+    }).catch(error => {
+        console.log(error);
+        alert('Register failed');
+      }
+    )
+    return isExist;
+  }
+
 }

@@ -1,6 +1,6 @@
 
 <br>
-<form [formGroup]="userRegisterForm" (ngSubmit)="submit()">
+<form [formGroup]="userRegisterForm">
   <span class="p-float-label">
     <input formControlName="id" id="float-input" type="text" pInputText name="id" />
     <br>
@@ -10,8 +10,8 @@
     <div *ngIf="userRegisterForm.controls['id'].errors.required">
     Please enter id
     </div>
-    <div *ngIf="userRegisterForm.controls['id'].errors.maxlength">
-      Please enter maximum of 9 numbers
+    <div *ngIf="userRegisterForm.controls['id'].errors.maxlength || userRegisterForm.controls['id'].errors.minlength">
+      id must contain 9 digits
     </div>
     <div *ngIf="userRegisterForm.controls['id'].errors.pattern">
       Please enter only numbers
@@ -60,6 +60,9 @@
         The password does not match
     </div>
   </div>
+  <div class="errors-div" *ngIf="userRegisterForm.controls['isUserNotExist'].invalid">
+    ID or User Name are already registered
+  </div>
   <br>
-  <p-button [disabled]="userRegisterForm.invalid">Submit</p-button>
+  <p-button [disabled]="userRegisterForm.invalid" (click)="submit()">Submit</p-button>
 </form>

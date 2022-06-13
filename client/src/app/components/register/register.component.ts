@@ -14,7 +14,7 @@ export class RegisterComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    
+
     this.items = [{
       label: 'First Stage',
       routerLink: '/start-screen/register/step-one'

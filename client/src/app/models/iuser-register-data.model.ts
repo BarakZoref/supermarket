@@ -4,7 +4,6 @@ export default interface IUserRegisterData{
   firstName: string,
   lastName: string,
   password: string,
-  confirmPassword: string,
   city: string,
   street: string
 }

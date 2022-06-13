@@ -7,11 +7,3 @@
 }
 
 
-p{
-  display: absolute;
-  word-wrap: break-word;
-  line-height: 23px;
-  overflow-y: scroll;
-  white-space: pre-wrap;
-}
-
