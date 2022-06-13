@@ -34,6 +34,21 @@ const router = express.Router();
         }
     });
 
+    // IS USER EXIST
+    // POST http://localhost:4200/users/is_exist
+    router.post("/is_exist", async (request, response) => { 
+        let userData = request.body;
+        try{
+           let isExists = await usersLogic.isUserExist(userData);
+    
+            response.json(isExists);
+        }
+        catch(e){
+            console.error(e);
+            response.status(600).send(e.message);
+        }
+    });
+
 
 
 

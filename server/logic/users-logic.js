@@ -78,10 +78,15 @@ function encryptPassword(password) {
     let passwordWithSalt = saltLeft + password + saltRight;
     return crypto.createHash("md5").update(passwordWithSalt).digest("hex");
 }
+
+async function isUserExist(userData){
+    return await usersDal.isUserExist(userData.id, userData.userName);
+}
   
 
 
 module.exports = {
     addUser,
-    logIn
+    logIn,
+    isUserExist
 }
