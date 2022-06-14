@@ -14,8 +14,7 @@ import { CartService } from './cart.service';
 export class UsersService {
 
   constructor(
-    private _http: HttpClient,
-    public _cartService: CartService) { }
+    private _http: HttpClient) { }
 
     private baseUrl: string = "http://localhost:3001/users/"
 

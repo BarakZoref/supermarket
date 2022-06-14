@@ -65,6 +65,7 @@ export class LoginComponent implements OnInit {
       console.log("userDetails1" , userDetails1);
 
       this._cartService.currentCart = response.cart;
+      console.log(this._cartService.currentCart)
       console.log("login response", response);
       this.router.navigate(['/store']);
       // this.router.navigate(['/vacations']);

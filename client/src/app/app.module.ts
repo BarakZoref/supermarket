@@ -23,6 +23,7 @@ import {StepsModule} from 'primeng/steps';
 import {ToastModule} from 'primeng/toast';
 import {DropdownModule} from 'primeng/dropdown';
 import {DialogModule} from 'primeng/dialog';
+import { BeforeShoppingComponent } from './before-shopping/before-shopping.component';
 
 
 
@@ -45,6 +46,7 @@ import {DialogModule} from 'primeng/dialog';
     OrderComponent,
     RegisterStepOneComponent,
     RegisterStepTwoComponent,
+    BeforeShoppingComponent,
   ],
   imports: [
     BrowserModule,
