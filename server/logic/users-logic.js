@@ -69,6 +69,12 @@ function validateUserData(userRegistrationData) {
     if(userRegistrationData.lastName.length>12){
         throw new Error("last name is too long");
     }
+    if(userRegistrationData.city.length>40){
+        throw new Error("city length is too long");
+    }
+    if(userRegistrationData.street.length>40){
+        throw new Error("street length is too long");
+    }
 
 }
 
