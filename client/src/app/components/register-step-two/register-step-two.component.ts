@@ -13,7 +13,7 @@ export class RegisterStepTwoComponent implements OnInit {
   registerUserData: any = { city: "", street: "", firstName: "", lastName: "" };
   userRegisterForm: FormGroup;
   cities: string[];
-  displayModal: boolean = true;
+  displayModal: boolean = false;
 
   selectedCity: string;
   constructor(

@@ -6,7 +6,6 @@ import { RegisterStepTwoComponent } from './components/register-step-two/registe
 import { RegisterComponent } from './components/register/register.component';
 import { StartScreenComponent } from './components/start-screen/start-screen.component';
 import { StoreComponent } from './components/store/store.component';
-import { LoginUserGuard } from './guards/login-user.guard';
 
 const routes: Routes = [
 
