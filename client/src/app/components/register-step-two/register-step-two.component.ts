@@ -13,12 +13,13 @@ export class RegisterStepTwoComponent implements OnInit {
   registerUserData: any = { city: "", street: "", firstName: "", lastName: "" };
   userRegisterForm: FormGroup;
   cities: string[];
+  displayModal: boolean = true;
 
   selectedCity: string;
   constructor(
     private _usersService: UsersService,
     private formBuilder: FormBuilder,
-    private router: Router
+    public router: Router
   ) { }
 
   ngOnInit(): void {
@@ -55,7 +56,8 @@ export class RegisterStepTwoComponent implements OnInit {
     this._usersService.userRegisterData.lastName = this.registerUserData.lastName;
 
     this._usersService.register();
-    this.router.navigate(['']);
+    this.displayModal = true;
+    // this.router.navigate(['']);
     console.log(this._usersService.userRegisterData);
   }
 

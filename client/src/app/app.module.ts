@@ -22,6 +22,7 @@ import { RegisterStepTwoComponent } from './components/register-step-two/registe
 import {StepsModule} from 'primeng/steps';
 import {ToastModule} from 'primeng/toast';
 import {DropdownModule} from 'primeng/dropdown';
+import {DialogModule} from 'primeng/dialog';
 
 
 
@@ -57,7 +58,8 @@ import {DropdownModule} from 'primeng/dropdown';
     CardModule,
     StepsModule,
     ToastModule,
-    DropdownModule
+    DropdownModule,
+    DialogModule
   ],
   providers: [    { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true }  ],
   bootstrap: [AppComponent]
