@@ -21,6 +21,7 @@ import { RegisterStepOneComponent } from './components/register-step-one/registe
 import { RegisterStepTwoComponent } from './components/register-step-two/register-step-two.component';
 import {StepsModule} from 'primeng/steps';
 import {ToastModule} from 'primeng/toast';
+import {DropdownModule} from 'primeng/dropdown';
 
 
 
@@ -55,7 +56,8 @@ import {ToastModule} from 'primeng/toast';
     ButtonModule,
     CardModule,
     StepsModule,
-    ToastModule
+    ToastModule,
+    DropdownModule
   ],
   providers: [    { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true }  ],
   bootstrap: [AppComponent]

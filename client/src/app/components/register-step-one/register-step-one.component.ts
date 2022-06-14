@@ -18,7 +18,7 @@ export class RegisterStepOneComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private usersService: UsersService,
+    private _usersService: UsersService,
     private router: Router
   ) { }
 
@@ -39,16 +39,16 @@ export class RegisterStepOneComponent implements OnInit {
     this.registerUserConnectionData = this.userRegisterForm.value;
     let id = this.registerUserConnectionData.id;
     let userName = this.registerUserConnectionData.userName;
-    let isExist = await this.usersService.isUserExist(id, userName);
+    let isExist = await this._usersService.isUserExist(id, userName);
     if(isExist){
       this.userRegisterForm.get('isUserNotExist').setValue(false)
     }
     else{
-      this.usersService.userRegisterData.id = id;
-      this.usersService.userRegisterData.userName = userName;
-      this.usersService.userRegisterData.password = this.registerUserConnectionData.password;
+      this._usersService.userRegisterData.id = id;
+      this._usersService.userRegisterData.userName = userName;
+      this._usersService.userRegisterData.password = this.registerUserConnectionData.password;
       this.router.navigate(['/start-screen/register/step-two']);
-      console.log(this.usersService.userRegisterData);
+      console.log(this._usersService.userRegisterData);
     }
   }
 

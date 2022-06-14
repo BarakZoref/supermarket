@@ -18,7 +18,7 @@
   [style]="{ width: '25rem', height: '600px', 'margin-bottom': '2em' }"
   >
   <br>
-<form [formGroup]="userLoginForm" (ngSubmit)="login()">
+<form [formGroup]="userLoginForm">
   <span class="p-float-label">
     <input formControlName="userName" id="float-input" type="text" pInputText name="username" />
     <br>
@@ -35,7 +35,6 @@
       Maximum length is 50 characters
     </div>
   </div>
-  <!-- <span *ngIf="userLoginForm.controls['userName'].errors.required">Please enter user name</span> -->
   <br><br>
   <span class="p-float-label">
     <input formControlName="password" id="float-input" type="password" pInputText  name="password"/>
@@ -52,8 +51,12 @@
       Maximum length is 10 characters
     </div>
   </div>
+  <div class="errors-div" *ngIf="isLoginFail">
+    password is incorrect or user name doesn't exists
+  </div>
   <br><br>
-  <p-button [disabled]="userLoginForm.invalid">Submit</p-button>
+  <p-button [disabled]="userLoginForm.invalid || isLoginFail" (click)="login()">Submit</p-button>
 </form>
+<br>
 <a routerLink="/start-screen/register/step-one">not registered? click here</a>
 </p-card>

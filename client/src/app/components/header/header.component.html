@@ -50,7 +50,8 @@
 <nav class="navbar navbar-expand-sm navbar-light bg-light">
 
   <span class="logo">Giant Food</span>
-  <span class="name">Hello Alexander</span>
+  <span class="name" *ngIf="!_usersService.currentUser">Hello Guest</span>
+  <span class="name" *ngIf="_usersService.currentUser">Hello {{_usersService.currentUser.firstName}}</span>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>

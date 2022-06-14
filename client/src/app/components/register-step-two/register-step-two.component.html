@@ -1,3 +1,124 @@
-<div class="stepsdemo-content">
-  <p>register second step works!</p>
+<br>
+<form [formGroup]="userRegisterForm">
+  <div class="container">
+  <div>
+  <span class="p-float-label">
+  <p-dropdown [options]="cities" formControlName="city" placeholder="Select a City"
+    [showClear]="true"></p-dropdown>
+  </span>
+   <div class="errors-div" *ngIf="userRegisterForm.controls['city'].invalid && (userRegisterForm.controls['city'].dirty || userRegisterForm.controls['city'].touched)">
+    <div *ngIf="userRegisterForm.controls['city'].errors.required">
+    Please choose city
+    </div>
+  </div>
+  <br>
+  <span class="p-float-label">
+    <input formControlName="street" id="float-input" type="text" pInputText name="street" />
+    <br>
+    <label for="float-input">Street</label>
+  </span>
+  <div class="errors-div" *ngIf="userRegisterForm.controls['street'].invalid && (userRegisterForm.controls['street'].dirty || userRegisterForm.controls['street'].touched)">
+    <div *ngIf="userRegisterForm.controls['street'].errors.required">
+    Please enter street
+    </div>
+  </div>
+  <br>
+  <span class="p-float-label">
+    <input formControlName="firstName" id="float-input" type="text" pInputText name="firstName" />
+    <br>
+    <label for="float-input">First Name</label>
+  </span>
+  <div class="errors-div" *ngIf="userRegisterForm.controls['firstName'].invalid && (userRegisterForm.controls['firstName'].dirty || userRegisterForm.controls['firstName'].touched)">
+    <div *ngIf="userRegisterForm.controls['firstName'].errors.required">
+    Please enter first name
+    </div>
+  </div>
+  <br>
+  <span class="p-float-label">
+    <input formControlName="lastName" id="float-input" type="text" pInputText name="lastName" />
+    <br>
+    <label for="float-input">Last Name</label>
+  </span>
+  <div class="errors-div" *ngIf="userRegisterForm.controls['lastName'].invalid && (userRegisterForm.controls['lastName'].dirty || userRegisterForm.controls['lastName'].touched)">
+    <div *ngIf="userRegisterForm.controls['lastName'].errors.required">
+    Please enter last name
+    </div>
+  </div>
+
+  <br><br>
 </div>
+</div>
+  <div class="buttons">
+    <p-button (click)="goBackToStepOne()"> &lt; Go Back</p-button>
+    <p-button [disabled]="userRegisterForm.invalid" (click)="register()">Register</p-button>
+  </div>
+</form>
+
+<!-- <br>
+<form [formGroup]="userRegisterForm">
+  <span class="p-float-label">
+    <input formControlName="id" id="float-input" type="text" pInputText name="id" />
+    <br>
+    <label for="float-input">ID</label>
+  </span>
+  <div class="errors-div" *ngIf="userRegisterForm.controls['id'].invalid && (userRegisterForm.controls['id'].dirty || userRegisterForm.controls['id'].touched)">
+    <div *ngIf="userRegisterForm.controls['id'].errors.required">
+    Please enter id
+    </div>
+    <div *ngIf="userRegisterForm.controls['id'].errors.maxlength || userRegisterForm.controls['id'].errors.minlength">
+      id must contain 9 digits
+    </div>
+    <div *ngIf="userRegisterForm.controls['id'].errors.pattern">
+      Please enter only numbers
+    </div>
+  </div>
+  <br>
+  <span class="p-float-label">
+    <input formControlName="userName" id="float-input" type="text" pInputText name="username" />
+    <br>
+    <label for="float-input">Username</label>
+  </span>
+  <div class="errors-div" *ngIf="userRegisterForm.controls['userName'].invalid && (userRegisterForm.controls['userName'].dirty || userRegisterForm.controls['userName'].touched)">
+    <div *ngIf="userRegisterForm.controls['userName'].errors.required">
+    Please enter username
+    </div>
+    <div *ngIf="userRegisterForm.controls['userName'].errors.email">
+      Please enter valid email
+    </div>
+    <div *ngIf="userRegisterForm.controls['userName'].errors.maxlength">
+      Maximum length is 50 characters
+    </div>
+  </div>
+  <br>
+  <span class="p-float-label">
+    <input formControlName="password" id="float-input" type="password" pInputText  name="password"/>
+    <label for="float-input">Password</label>
+  </span>
+  <div class="errors-div" *ngIf="userRegisterForm.controls['password'].invalid && (userRegisterForm.controls['password'].dirty || userRegisterForm.controls['password'].touched)">
+    <div *ngIf="userRegisterForm.controls['password'].errors.required">
+    Please enter password
+    </div>
+    <div *ngIf="userRegisterForm.controls['password'].errors.minlength">
+      Length should be at least 6 characters
+    </div>
+    <div *ngIf="userRegisterForm.controls['password'].errors.maxlength">
+      Maximum length is 10 characters
+    </div>
+  </div>
+  <br>
+  <span class="p-float-label">
+    <input formControlName="confirmPassword" id="float-input" type="password" pInputText  name="confirmPassword"/>
+    <label for="float-input">Confirm Password</label>
+  </span>
+  <div class="errors-div">
+     <div *ngIf="userRegisterForm.controls['password'].valid && userRegisterForm.controls['password'].value!=userRegisterForm.controls['confirmPassword'].value">
+        The password does not match
+    </div>
+  </div>
+  <div class="errors-div" *ngIf="userRegisterForm.controls['isUserNotExist'].invalid">
+    ID or User Name are already registered
+  </div>
+  <br>
+  <p-button [disabled]="userRegisterForm.invalid" (click)="submit()">Submit</p-button>
+</form> -->
+

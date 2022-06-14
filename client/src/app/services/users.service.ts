@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import IServerResponse from '../models/iserver-response.model';
 import ISuccessfulLoginServerResponse from '../models/isuccessfull-login-server-response.model';
 import IUserLoginData from '../models/iuser-login-data.model';
@@ -30,37 +31,13 @@ export class UsersService {
   }
 
 
-  public login(userLoginData: IUserLoginData): void{
-    this._http.post<ISuccessfulLoginServerResponse>(this.baseUrl + 'login', userLoginData)
-    .subscribe(response => {
-      //Success function
-
-      this.currentUser = {
-        firstName: response.firstName,
-        lastName: response.lastName,
-        city: response.city,
-        street: response.street,
-        token: response.token
-      }
-      sessionStorage.setItem("userDetails", JSON.stringify(this.currentUser));
-
-      let userDetailsAsString = sessionStorage.getItem("userDetails");
-      let userDetails1 = JSON.parse(userDetailsAsString);
-      console.log("userDetails1" , userDetails1);
-
-      this._cartService.currentCart = response.cart;
-      console.log("login response", response);
-      // this.router.navigate(['/vacations']);
-    },
-      error => {
-        console.log(error)
-        alert('Login failed');
-      }
-    )
+  public login(userLoginData: IUserLoginData): Observable<ISuccessfulLoginServerResponse>{
+    return this._http.post<ISuccessfulLoginServerResponse>(this.baseUrl + 'login', userLoginData);
   }
 
-  public register(registerData: IUserRegisterData): void{
-    this._http.post<IServerResponse>(this.baseUrl, registerData)
+
+  public register(): void{
+    this._http.post<IServerResponse>(this.baseUrl, this.userRegisterData)
     .subscribe(response => {
       console.log(response.msg);
     },
