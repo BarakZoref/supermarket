@@ -21,6 +21,9 @@
     <div *ngIf="userRegisterForm.controls['street'].errors.required">
     Please enter street
     </div>
+    <div *ngIf="userRegisterForm.controls['street'].errors.maxlength">
+      Maximum length is 40 characters
+    </div>
   </div>
   <br>
   <span class="p-float-label">
@@ -32,6 +35,9 @@
     <div *ngIf="userRegisterForm.controls['firstName'].errors.required">
     Please enter first name
     </div>
+    <div *ngIf="userRegisterForm.controls['firstName'].errors.maxlength">
+      Maximum length is 12 characters
+    </div>
   </div>
   <br>
   <span class="p-float-label">
@@ -42,6 +48,9 @@
   <div class="errors-div" *ngIf="userRegisterForm.controls['lastName'].invalid && (userRegisterForm.controls['lastName'].dirty || userRegisterForm.controls['lastName'].touched)">
     <div *ngIf="userRegisterForm.controls['lastName'].errors.required">
     Please enter last name
+    </div>
+    <div *ngIf="userRegisterForm.controls['lastName'].errors.maxlength">
+      Maximum length is 12 characters
     </div>
   </div>
 

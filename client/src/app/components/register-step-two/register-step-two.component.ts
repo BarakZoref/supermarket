@@ -24,9 +24,9 @@ export class RegisterStepTwoComponent implements OnInit {
   ngOnInit(): void {
     this.userRegisterForm = this.formBuilder.group({
       city: [this.registerUserData.city, [Validators.required]],
-      street: [this.registerUserData.street,[Validators.required, Validators.maxLength(50)]],
-      firstName: [this.registerUserData.firstName,[Validators.required, Validators.maxLength(50)]],
-      lastName: [this.registerUserData.lastName,[Validators.required, Validators.maxLength(50)]]
+      street: [this.registerUserData.street,[Validators.required, Validators.maxLength(40)]],
+      firstName: [this.registerUserData.firstName,[Validators.required, Validators.maxLength(12)]],
+      lastName: [this.registerUserData.lastName,[Validators.required, Validators.maxLength(12)]]
     })
 
     this.cities=[
