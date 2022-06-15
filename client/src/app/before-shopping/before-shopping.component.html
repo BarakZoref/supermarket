@@ -1,5 +1,5 @@
 <p-card header="Simple Card" [style]="{'width': '25rem', 'height': '600px', 'margin-bottom': '2em'}">
-  <h1 *ngIf="_cartService.currentCart && _cartService.currentCart.isNewClient">Welcome to your first purchase</h1>
+  <h1 *ngIf="(!_ordersService.lastOrderDate && _cartItemsService.cartItems && !_cartItemsService.cartItems.length)">Welcome to your first purchase</h1>
   <div *ngIf="_ordersService.lastOrderDate">
     <h2>Your last order was at:</h2>
     <h2>{{ _ordersService.lastOrderDate | date:'medium' }}</h2>
