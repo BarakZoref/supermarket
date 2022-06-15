@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import IServerResponse from '../models/iserver-response.model';
 import ISuccessfulLoginServerResponse from '../models/isuccessfull-login-server-response.model';
@@ -11,11 +11,14 @@ import { CartService } from './cart.service';
 @Injectable({
   providedIn: 'root'
 })
-export class UsersService {
+export class UsersService implements OnInit{
 
   constructor(
-    private _http: HttpClient) { }
+    private _http: HttpClient
+    ) { }
 
+    ngOnInit(): void {
+    }
     private baseUrl: string = "http://localhost:3001/users/"
 
   currentUser: IUser;
