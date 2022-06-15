@@ -2,5 +2,5 @@ export default interface ICart {
    id: number,
    creationDate: Date,
    isOpen: boolean,
-   isFirstCart: boolean
+   isNewClient: boolean
 }

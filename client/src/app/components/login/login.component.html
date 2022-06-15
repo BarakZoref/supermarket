@@ -20,7 +20,7 @@
   <br>
 <form [formGroup]="userLoginForm">
   <span class="p-float-label">
-    <input formControlName="userName" id="float-input" type="text" pInputText name="username" />
+    <input formControlName="userName"  type="text" pInputText name="username" />
     <br>
     <label for="float-input">Username</label>
   </span>
@@ -37,7 +37,7 @@
   </div>
   <br><br>
   <span class="p-float-label">
-    <input formControlName="password" id="float-input" type="password" pInputText  name="password"/>
+    <input formControlName="password" type="password" pInputText  name="password"/>
     <label for="float-input">Password</label>
   </span>
   <div class="errors-div" *ngIf="userLoginForm.controls['password'].invalid && (userLoginForm.controls['password'].dirty || userLoginForm.controls['password'].touched)">

@@ -7,6 +7,7 @@ import IOrder from '../models/iorder.model';
 })
 export class OrdersService {
   amountOfOrders: number;
+  lastOrderDate: Date;
   private baseUrl: string = "http://localhost:3001/orders/"
   constructor(
     public _http: HttpClient
@@ -51,11 +52,10 @@ export class OrdersService {
   }
 
   public getLastOrderDate(): void{
-    this._http.get<any>(this.baseUrl)
-    .subscribe((lastOrderDate) => {
-      //TODO:
-      //do somthing with the busyDays
-      console.log("get last order date: ", lastOrderDate);
+    this._http.get<Date>(this.baseUrl)
+    .subscribe((lastOrderDate: Date) => {
+      console.log("last order date", lastOrderDate);
+      this.lastOrderDate = lastOrderDate;
     },
       err => {
         console.log(err);

@@ -25,10 +25,10 @@ export class LoginComponent implements OnInit {
     private router: Router,
     public _usersService: UsersService,
     private formBuilder: FormBuilder,
-    private _cartService: CartService
-    // public _ordersService: OrdersService,
+    private _cartService: CartService,
+    public _ordersService: OrdersService,
     // public _categoriesService: CategoriesService,
-    // public _cartItemsService: CartItemsService
+    public _cartItemsService: CartItemsService
   ) { }
 
   ngOnInit(): void {
@@ -59,15 +59,11 @@ export class LoginComponent implements OnInit {
         token: response.token
       }
       sessionStorage.setItem("userDetails", JSON.stringify(this._usersService.currentUser));
-
-      let userDetailsAsString = sessionStorage.getItem("userDetails");
-      let userDetails1 = JSON.parse(userDetailsAsString);
-      console.log("userDetails1" , userDetails1);
-
       this._cartService.currentCart = response.cart;
-      console.log(this._cartService.currentCart)
-      console.log("login response", response);
-      this.router.navigate(['/store']);
+      console.log( this._cartService.currentCart );
+      this._ordersService.getLastOrderDate();
+      this._cartItemsService.getCartItems(this._cartService.currentCart.id);
+      this.router.navigate(['/start-screen/before-shopping']);
       // this.router.navigate(['/vacations']);
     },
       error => {

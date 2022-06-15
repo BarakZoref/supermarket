@@ -1,3 +1,9 @@
 <p-card header="Simple Card" [style]="{'width': '25rem', 'height': '600px', 'margin-bottom': '2em'}">
-  <p-button>Start Shopping</p-button>
+  <h1 *ngIf="_cartService.currentCart && _cartService.currentCart.isNewClient">Welcome to your first purchase</h1>
+  <div *ngIf="_ordersService.lastOrderDate">
+    <h2>Your last order was at:</h2>
+    <h2>{{ _ordersService.lastOrderDate | date:'medium' }}</h2>
+  </div>
+  <p-button (click)="router.navigate(['/store'])" *ngIf="_cartItemsService.cartItems && _cartItemsService.cartItems.length">Resume Shopping</p-button>
+  <p-button (click)="router.navigate(['/store'])" *ngIf="_cartItemsService.cartItems && !_cartItemsService.cartItems.length">Start Shopping</p-button>
 </p-card>
