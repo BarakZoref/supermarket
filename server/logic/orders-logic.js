@@ -26,8 +26,8 @@ async function getLastOrderDate(tokenData){
         throw new Error("Error: the role is not a user");
     }
     let userId = tokenData.userId;
-    let orderDate = ordersDal.getLastOrderDate(userId);
-    return orderDate
+    let orderDateAsArrayOfObject = await ordersDal.getLastOrderDate(userId);
+    return orderDateAsArrayOfObject[0].orderDate;
 }
 
 async function getOrderDetails(cartId){

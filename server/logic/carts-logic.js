@@ -19,11 +19,15 @@ async function addCart(userId){
 }
 
 async function getLastCart(userId){
-    let cartDetails = await cartsDal.getLastCart(userId);
-    if(cartDetails.length){
-        cartDetails[0].isNewClient = false;
+    let cartDetailsAsArray = await cartsDal.getLastCart(userId);
+    let cartDetails = cartDetailsAsArray[0];
+    if(cartDetails){
+        if(cartDetails.isOpen==false){
+            cartDetails = await this.addCart(userId);
+        }
+        cartDetails.isNewClient = false;
     }
-    else {
+    else{
         cartDetails = await this.addCart(userId)
     }
     return cartDetails;
