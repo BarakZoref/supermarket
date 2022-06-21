@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BeforeShoppingComponent } from './before-shopping/before-shopping.component';
+import { BeforeShoppingComponent } from './components/before-shopping/before-shopping.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterStepOneComponent } from './components/register-step-one/register-step-one.component';
 import { RegisterStepTwoComponent } from './components/register-step-two/register-step-two.component';

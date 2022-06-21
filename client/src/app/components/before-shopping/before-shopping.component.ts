@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CartItemsService } from '../services/cart-items.service';
-import { CartService } from '../services/cart.service';
-import { OrdersService } from '../services/orders.service';
+import { CartItemsService } from '../../services/cart-items.service';
+import { CartService } from '../../services/cart.service';
+import { OrdersService } from '../../services/orders.service';
 
 @Component({
   selector: 'app-before-shopping',

@@ -23,7 +23,8 @@ import {StepsModule} from 'primeng/steps';
 import {ToastModule} from 'primeng/toast';
 import {DropdownModule} from 'primeng/dropdown';
 import {DialogModule} from 'primeng/dialog';
-import { BeforeShoppingComponent } from './before-shopping/before-shopping.component';
+import { BeforeShoppingComponent } from './components/before-shopping/before-shopping.component';
+import { CartComponent } from './components/cart/cart.component';
 
 
 
@@ -47,6 +48,7 @@ import { BeforeShoppingComponent } from './before-shopping/before-shopping.compo
     RegisterStepOneComponent,
     RegisterStepTwoComponent,
     BeforeShoppingComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,
