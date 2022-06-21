@@ -38,7 +38,8 @@ export class StoreComponent implements OnInit {
 
   onChooseAmountOfProductClicked(){
     this.displayModal = false;
-    
+    //TODO:
+    //Add item to cart or update quantity
   }
 
 }
