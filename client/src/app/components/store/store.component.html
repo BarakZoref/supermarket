@@ -1,1 +1,35 @@
-<p>store works!</p>
+<div class="store">
+  <div class="cart">
+    <h1>My Cart</h1>
+  </div>
+  <div class="products-and-categories">
+    <div>
+      <a class="category" (click)=" onAllProductsCategoryClicked()">All Products</a>
+      <a class="category" (click)=" onSpecificCategoryClicked(category.id)" *ngFor="let category of _categoriesService.categories">{{category.name}}</a>
+    </div>
+    <div class="products">
+      <div class="product" *ngFor="let product of _productsService.products">
+        <div>
+          <img src="{{product.imgUrl}}" alt="">
+        </div>
+          <h2>{{product.name}}</h2>
+          <h2>{{product.price | currency:"ILS"}}</h2>
+          <button class="add-to-cart-button" pButton (click)="onAddToCartClicked(product.id)">Add To Cart</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p-dialog  header="Please choose the amount" [(visible)]="displayModal" [breakpoints]="{'960px': '75vw'}" [modal]="true" [style]="{width: '30vw'}"
+    [draggable]="false" [resizable]="false">
+    <div class="amount-input-container">
+      <button class="plus-or-minus-button" pButton>-</button>
+      <input [] class="product-amount-input" type="number">
+      <button class="plus-or-minus-button" pButton>+</button>
+    </div>
+          <ng-template pTemplate="footer">
+        <p-button (click)="onChooseAmountOfProductClicked()" label="Ok" styleClass="p-button-text"></p-button>
+        </ng-template>
+</p-dialog>
+
+

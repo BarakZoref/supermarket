@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { combineLatest } from 'rxjs';
 import IUserLoginData from 'src/app/models/iuser-login-data.model';
@@ -17,14 +17,14 @@ import { UsersService } from 'src/app/services/users.service';
 export class LoginComponent implements OnInit {
   loginUserData: IUserLoginData = {userName: "", password: ""};
 
-  userLoginForm: FormGroup;
+  userLoginForm: UntypedFormGroup;
 
   isLoginFail: boolean = false;
 
   constructor(
     private router: Router,
     public _usersService: UsersService,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private _cartService: CartService,
     public _ordersService: OrdersService,
     // public _categoriesService: CategoriesService,

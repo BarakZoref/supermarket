@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { combineLatest } from 'rxjs';
 import { UsersService } from 'src/app/services/users.service';
@@ -12,12 +12,12 @@ import { UsersService } from 'src/app/services/users.service';
 export class RegisterStepOneComponent implements OnInit {
 
   registerUserConnectionData: any = { id: "", userName: "", password: "", confirmPassword: "" };
-  userRegisterForm: FormGroup;
+  userRegisterForm: UntypedFormGroup;
   isUserNotExist: boolean = true;
 
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private _usersService: UsersService,
     private router: Router
   ) { }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsersService } from 'src/app/services/users.service';
 
@@ -11,14 +11,14 @@ import { UsersService } from 'src/app/services/users.service';
 export class RegisterStepTwoComponent implements OnInit {
 
   registerUserData: any = { city: "", street: "", firstName: "", lastName: "" };
-  userRegisterForm: FormGroup;
+  userRegisterForm: UntypedFormGroup;
   cities: string[];
   displayModal: boolean = false;
 
   selectedCity: string;
   constructor(
     private _usersService: UsersService,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     public router: Router
   ) { }
 

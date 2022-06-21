@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import IProductAddDetails from '../models/iproduct-add-details.model';
 import IProductEditDetails from '../models/iproduct-edit-details.model';
-import IProduct from '../models/iproduct-model';
+import IProduct from '../models/iproduct.model';
 import IServerResponse from '../models/iserver-response.model';
 
 @Injectable({

@@ -29,5 +29,11 @@
         quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!</p> -->
     <p>Available products in out store: {{_productsService.amountOfProducts}}</p>
     <p>Number of orders submitted in our store: {{_ordersService.amountOfOrders}}</p>
+
+    <h2 *ngIf="(!_ordersService.lastOrderDate && _cartItemsService.cartItems && !_cartItemsService.cartItems.length)">Welcome to your first purchase</h2>
+    <div *ngIf="_ordersService.lastOrderDate">
+      <h2>Your last order was at:</h2>
+      <h2>{{ _ordersService.lastOrderDate | date:'medium' }}</h2>
+    </div>
   </p-card>
 </div>
