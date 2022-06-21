@@ -13,7 +13,6 @@ async function addCart(userId){
         id: cartId,
         creationDate,
         isOpen: true,
-        isNewClient: true
     }
     return newCart;
 }
@@ -25,7 +24,6 @@ async function getLastCart(userId){
         if(cartDetails.isOpen==false){
             cartDetails = await this.addCart(userId);
         }
-        cartDetails.isNewClient = false;
     }
     else{
         cartDetails = await this.addCart(userId)

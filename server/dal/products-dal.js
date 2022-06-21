@@ -9,14 +9,14 @@ async function getAmountOfProducts(){
 
 
 async function getAllProducts(){
-    let sql = `SELECT id, name, category_id as categoryId, price, img_url as imgUrl
+    let sql = `SELECT id, name, category_id as categoryId, ROUND(price,2) as price, img_url as imgUrl
                 FROM products`
     let allProducts = await connection.execute(sql);
     return allProducts;
 }
 
 async function getProductsByCategoryId(categoryId){
-    let sql = `SELECT id, name, category_id as categoryId, price, img_url as imgUrl
+    let sql = `SELECT id, name, category_id as categoryId, ROUND(price,2) as price, img_url as imgUrl
              FROM products
             WHERE category_id = ?`;
     let parameters = [categoryId]

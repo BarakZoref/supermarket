@@ -8,6 +8,9 @@ let whiteListUrls = new Set();
 whiteListUrls.add('/users');
 whiteListUrls.add('/users/login');
 whiteListUrls.add('/users/is_exist');
+whiteListUrls.add('/products/amount_of_products');
+whiteListUrls.add('/orders/amount_of_orders');
+
 
 
 
