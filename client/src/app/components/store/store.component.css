@@ -78,4 +78,9 @@ img{
   justify-content: center;
 }
 
+.amount-error{
+  color: red;
+  margin-top: 10px;
+}
+
 

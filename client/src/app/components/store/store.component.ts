@@ -11,6 +11,7 @@ export class StoreComponent implements OnInit {
   displayModal: boolean = false;
   amountOfProduct: number = 0;
   currentProductId: number;
+  amountOfProductError: boolean = false;
 
   constructor(
     public _categoriesService: CategoriesService,
@@ -36,10 +37,42 @@ export class StoreComponent implements OnInit {
     console.log(this.currentProductId);
   }
 
-  onChooseAmountOfProductClicked(){
-    this.displayModal = false;
-    //TODO:
-    //Add item to cart or update quantity
+  onMinusButtonClicked(){
+    if(this.amountOfProduct<=0){
+      this.amountOfProduct = 0;
+    }
+    else if(this.amountOfProduct>10){
+      this.amountOfProduct = 10;
+    }
+    else{
+      this.amountOfProduct--;
+    }
   }
+
+  onPlusButtonClicked(){
+    if(this.amountOfProduct<0){
+      this.amountOfProduct = 0;
+    }
+    else if(this.amountOfProduct>=10){
+      this.amountOfProduct = 10;
+    }
+    else{
+      this.amountOfProduct++;
+    }
+  }
+
+  onChooseAmountOfProductClicked(){
+    if(this.amountOfProduct == 0){
+      this.displayModal = false;
+      return;
+    }
+    else if(this.amountOfProduct>0 && this.amountOfProduct<=10){
+      //TODO:
+      //Add item to cart or update quantity
+      this.displayModal = false;
+    }
+    this.amountOfProduct = 0;
+  }
+
 
 }
