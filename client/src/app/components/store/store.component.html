@@ -1,6 +1,9 @@
 <div class="store">
   <div class="cart">
     <h1>My Cart</h1>
+    <div *ngFor="let cartItem of _cartItemsService.cartItems">
+        <img class="cart-item-img" src="{{cartItem.imgUrl}}" alt="">
+    </div>
   </div>
   <div class="products-and-categories">
     <div>
@@ -10,7 +13,7 @@
     <div class="products">
       <div class="product" *ngFor="let product of _productsService.products">
         <div>
-          <img src="{{product.imgUrl}}" alt="">
+          <img class="product-img" src="{{product.imgUrl}}" alt="">
         </div>
           <h2>{{product.name}}</h2>
           <h2>{{product.price | currency:"ILS"}}</h2>
