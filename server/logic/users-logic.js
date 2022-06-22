@@ -29,8 +29,7 @@ async function logIn(userLogInData){
     const token = jwt.sign({ userId: userData.userId, role: userData.role}, config.secret);
     let cart = await cartsLogic.getLastCart(userData.userId); 
     let successfulLoginResponse = {token, firstName: userData.firstName, lastName: userData.lastName, city: userData.city, street: userData.street, cart};
-    return successfulLoginResponse;
-    
+    return successfulLoginResponse;   
 }
 
 
