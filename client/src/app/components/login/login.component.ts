@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { combineLatest } from 'rxjs';
+import { combineLatest, last } from 'rxjs';
 import IUserLoginData from 'src/app/models/iuser-login-data.model';
 import { CartItemsService } from 'src/app/services/cart-items.service';
 import { CartService } from 'src/app/services/cart.service';
@@ -15,7 +15,7 @@ import { UsersService } from 'src/app/services/users.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  loginUserData: IUserLoginData = {userName: "", password: ""};
+  loginUserData: IUserLoginData = { userName: "", password: "" };
 
   userLoginForm: UntypedFormGroup;
 
@@ -33,13 +33,13 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     // this._ordersService.getAmountOfOrders();
-    this.userLoginForm =this.formBuilder.group({
+    this.userLoginForm = this.formBuilder.group({
       userName: [this.loginUserData.userName, [Validators.required, Validators.email, Validators.maxLength(50)]],
       password: [this.loginUserData.password, [Validators.required, Validators.minLength(6), Validators.maxLength(10)]]
     })
 
     combineLatest(this.userLoginForm.get('userName').valueChanges, this.userLoginForm.get('password').valueChanges)
-    .subscribe(p=>this.isLoginFail = false);
+      .subscribe(p => this.isLoginFail = false);
 
   }
 
@@ -59,12 +59,19 @@ export class LoginComponent implements OnInit {
         token: response.token
       }
       sessionStorage.setItem("userDetails", JSON.stringify(this._usersService.currentUser));
-      this._cartService.currentCart = response.cart;
-      console.log( this._cartService.currentCart );
-      this._ordersService.getLastOrderDate();
-      this._cartItemsService.getCartItems(this._cartService.currentCart.id);
+      let lastCart = response.cart;
+      console.log("lastCart", lastCart)
+      if (lastCart) {
+        if (lastCart.isOpen) {
+          this._cartService.currentCart = lastCart;
+          this._cartItemsService.getCartItems(this._cartService.currentCart.id);
+        }
+        else{
+          console.log("last cart is closed");
+          this._ordersService.getLastOrderDate();
+        }
+      }
       this.router.navigate(['/start-screen/before-shopping']);
-      // this.router.navigate(['/vacations']);
     },
       error => {
         console.log(error)

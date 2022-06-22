@@ -21,4 +21,12 @@ export class BeforeShoppingComponent implements OnInit {
 
   }
 
+  onResumeShoppingButtonClicked(): void{
+    this.router.navigate(['/store'])
+  }
+  onStartShoppingButtonClicked(): void{
+    this._cartService.openCart();
+    this.router.navigate(['/store'])
+  }
+
 }

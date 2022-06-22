@@ -26,16 +26,16 @@ export class CartService {
     // )
   }
 
-  // public openCart(): void{
-  //   this._http.post<ICart>(this.baseUrl, {})
-  //   .subscribe(cart => {
-  //     this.currentCart = cart;
-  //     console.log(this.currentCart);
-  //   },
-  //     error => {
-  //       console.log(error);
-  //       alert('open cart failed');
-  //     }
-  //   )
-  // }
+  public openCart(): void{
+    this._http.post<ICart>(this.baseUrl, {})
+    .subscribe(cart => {
+      this.currentCart = cart;
+      console.log(this.currentCart);
+    },
+      error => {
+        console.log(error);
+        alert('open cart failed');
+      }
+    )
+  }
 }

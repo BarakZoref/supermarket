@@ -4,6 +4,6 @@
     <h2>Your last order was at:</h2>
     <h2>{{ _ordersService.lastOrderDate | date:'medium' }}</h2>
   </div> -->
-  <p-button (click)="router.navigate(['/store'])" *ngIf="_cartItemsService.cartItems && _cartItemsService.cartItems.length">Resume Shopping</p-button>
-  <p-button (click)="router.navigate(['/store'])" *ngIf="_cartItemsService.cartItems && !_cartItemsService.cartItems.length">Start Shopping</p-button>
+  <p-button (click)="onResumeShoppingButtonClicked()" *ngIf="_cartService.currentCart">Resume Shopping</p-button>
+  <p-button (click)="onStartShoppingButtonClicked()" *ngIf="!_cartService.currentCart">Start Shopping</p-button>
 </p-card>
