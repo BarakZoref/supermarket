@@ -24,7 +24,7 @@ export class CartItemsService {
     },
       error => {
         console.log(error);
-        alert('get last cart failed');
+        alert('add cart failed');
       }
     )
   }
@@ -48,7 +48,7 @@ export class CartItemsService {
     },
       error => {
         console.log(error);
-        alert('get last cart failed');
+        alert('update cart quantity failed');
       }
     )
   }

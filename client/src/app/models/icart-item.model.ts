@@ -3,5 +3,6 @@ export default interface ICartItem{
   name: string,
   unitPrice: number,
   quantity: number,
-  imgUrl: string
+  imgUrl: string,
+  productId: number
 }
