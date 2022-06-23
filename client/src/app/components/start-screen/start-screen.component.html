@@ -30,10 +30,12 @@
     <p>Available products in out store: {{_productsService.amountOfProducts}}</p>
     <p>Number of orders submitted in our store: {{_ordersService.amountOfOrders}}</p>
 
-    <h2 *ngIf="(_usersService.currentUser && !_ordersService.lastOrderDate && !_cartService.currentCart)">Welcome to your first purchase</h2>
-    <h2 *ngIf="_cartService.currentCart && _cartService.currentCart.isOpen">You have open cart from:</h2>
-    <h2>{{ _cartService.currentCart?.creationDate | date:'medium' }}</h2>
-    <div *ngIf="_ordersService.lastOrderDate">
+    <h2 *ngIf="(currentUser && !_ordersService.lastOrderDate && !currentCart)">Welcome to your first purchase</h2>
+    <div  *ngIf="currentCart && currentCart.isOpen">
+      <h2>You have open cart from:</h2>
+      <h2>{{ currentCart?.creationDate | date:'medium' }}</h2>
+    </div>
+    <div *ngIf="!currentCart?.isOpen && _ordersService.lastOrderDate">
       <h2>Your last order was at:</h2>
       <h2>{{ _ordersService.lastOrderDate | date:'medium' }}</h2>
     </div>

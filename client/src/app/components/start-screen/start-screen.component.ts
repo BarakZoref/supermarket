@@ -4,6 +4,8 @@ import { OrdersService } from 'src/app/services/orders.service';
 import { CartItemsService } from 'src/app/services/cart-items.service';
 import { CartService } from 'src/app/services/cart.service';
 import { UsersService } from 'src/app/services/users.service';
+import IUser from 'src/app/models/iuser-model';
+import ICart from 'src/app/models/icart.model';
 
 @Component({
   selector: 'app-start-screen',
@@ -23,6 +25,15 @@ export class StartScreenComponent implements OnInit {
   ngOnInit(): void {
     this._productsService.getAmountOfProducts();
     this._ordersService.getAmountOfOrders();
+    this._usersService.followCurrentUser().subscribe(newUser=>{
+      this.currentUser = newUser;
+    });
+    this._cartService.followCurrentCart().subscribe(newCart=>{
+      this.currentCart = newCart
+    })
   }
+
+  currentUser: IUser;
+  currentCart: ICart;
 
 }

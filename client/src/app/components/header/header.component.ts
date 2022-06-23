@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import IUser from 'src/app/models/iuser-model';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
@@ -15,11 +16,16 @@ export class HeaderComponent implements OnInit {
      ) { }
 
   ngOnInit(): void {
-
+    this._usersService.followCurrentUser().subscribe(newUser=>{
+      this.currentUser = newUser;
+    })
   }
+
+  currentUser: IUser;
+
   onLogOutClicked(): void{
     sessionStorage.removeItem("userDetails");
-    this._usersService.currentUser = null;
+    this._usersService.setCurrentUser(null);
     this.router.navigate(['/']);
   }
 

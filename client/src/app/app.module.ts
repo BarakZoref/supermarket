@@ -25,6 +25,7 @@ import {DropdownModule} from 'primeng/dropdown';
 import {DialogModule} from 'primeng/dialog';
 import { BeforeShoppingComponent } from './components/before-shopping/before-shopping.component';
 import { CartComponent } from './components/cart/cart.component';
+import { ProductsComponent } from './components/products/products.component';
 
 
 
@@ -49,6 +50,7 @@ import { CartComponent } from './components/cart/cart.component';
     RegisterStepTwoComponent,
     BeforeShoppingComponent,
     CartComponent,
+    ProductsComponent,
   ],
   imports: [
     BrowserModule,

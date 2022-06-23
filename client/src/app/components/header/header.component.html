@@ -50,8 +50,8 @@
 <nav class="navbar navbar-expand-sm navbar-light bg-light">
 
   <span class="logo">Giant Food</span>
-  <span class="name" *ngIf="!_usersService.currentUser">Hello Guest</span>
-  <span class="name" *ngIf="_usersService.currentUser">Hello {{_usersService.currentUser.firstName}}</span>
+  <span class="name" *ngIf="!currentUser">Hello Guest</span>
+  <span class="name" *ngIf="currentUser">Hello {{currentUser.firstName}}</span>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -62,7 +62,7 @@
 
       </li> -->
     </ul>
-    <a (click)="onLogOutClicked()" *ngIf="_usersService.currentUser" class="nav-link" href="#">Log Out<span class="sr-only">(current)</span></a>
+    <a (click)="onLogOutClicked()" *ngIf="currentUser" class="nav-link" href="#">Log Out<span class="sr-only">(current)</span></a>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>

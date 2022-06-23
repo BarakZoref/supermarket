@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import IServerResponse from '../models/iserver-response.model';
 import ISuccessfulLoginServerResponse from '../models/isuccessfull-login-server-response.model';
 import IUserLoginData from '../models/iuser-login-data.model';
@@ -11,17 +11,32 @@ import { CartService } from './cart.service';
 @Injectable({
   providedIn: 'root'
 })
-export class UsersService implements OnInit{
+export class UsersService{
 
   constructor(
     private _http: HttpClient
-    ) { }
-
-    ngOnInit(): void {
+  ) {
+    let userDetails: string = sessionStorage.getItem("userDetails");
+    if (userDetails) {
+      let user: IUser = JSON.parse(userDetails);
+      this.setCurrentUser(user);
     }
-    private baseUrl: string = "http://localhost:3001/users/"
+  }
+  private baseUrl: string = "http://localhost:3001/users/"
 
-  currentUser: IUser;
+  private currentUser: IUser;
+
+  private currentUserSubject = new BehaviorSubject<IUser>(null);
+
+  followCurrentUser(): Observable<IUser> {
+    return this.currentUserSubject.asObservable();
+  }
+
+  setCurrentUser(newUser: IUser): void {
+    this.currentUser = newUser;
+    this.currentUserSubject.next(newUser);
+  }
+
   userRegisterData: IUserRegisterData = {
     id: "",
     userName: "",
@@ -33,33 +48,33 @@ export class UsersService implements OnInit{
   }
 
 
-  public login(userLoginData: IUserLoginData): Observable<ISuccessfulLoginServerResponse>{
+  public login(userLoginData: IUserLoginData): Observable<ISuccessfulLoginServerResponse> {
     return this._http.post<ISuccessfulLoginServerResponse>(this.baseUrl + 'login', userLoginData);
   }
 
 
-  public register(): void{
+  public register(): void {
     this._http.post<IServerResponse>(this.baseUrl, this.userRegisterData)
-    .subscribe(response => {
-      console.log(response.msg);
-    },
-      error => {
-        console.log(error);
-        alert('Register failed');
-      }
-    )
+      .subscribe(response => {
+        console.log(response.msg);
+      },
+        error => {
+          console.log(error);
+          alert('Register failed');
+        }
+      )
   }
 
-  public async isUserExist(id: string, userName: string): Promise<boolean>{
+  public async isUserExist(id: string, userName: string): Promise<boolean> {
     let isExist: boolean;
-    let p = this._http.post<boolean>(this.baseUrl + 'is_exist', {id, userName}).toPromise();
+    let p = this._http.post<boolean>(this.baseUrl + 'is_exist', { id, userName }).toPromise();
     await p.then(response => {
       console.log("response", response)
       isExist = response;
     }).catch(error => {
-        console.log(error);
-        alert('Register failed');
-      }
+      console.log(error);
+      alert('Register failed');
+    }
     )
     return isExist;
   }

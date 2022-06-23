@@ -3,6 +3,7 @@ import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms
 import { Router } from '@angular/router';
 import { combineLatest, last } from 'rxjs';
 import IUserLoginData from 'src/app/models/iuser-login-data.model';
+import IUser from 'src/app/models/iuser-model';
 import { CartItemsService } from 'src/app/services/cart-items.service';
 import { CartService } from 'src/app/services/cart.service';
 import { CategoriesService } from 'src/app/services/categories.service';
@@ -51,26 +52,27 @@ export class LoginComponent implements OnInit {
     observable.subscribe(response => {
       //Success function
 
-      this._usersService.currentUser = {
+      let newUser: IUser = {
         firstName: response.firstName,
         lastName: response.lastName,
         city: response.city,
         street: response.street,
         token: response.token
       }
-      sessionStorage.setItem("userDetails", JSON.stringify(this._usersService.currentUser));
-      let lastCart = response.cart;
-      console.log("lastCart", lastCart)
-      if (lastCart) {
-        if (lastCart.isOpen) {
-          this._cartService.currentCart = lastCart;
-          this._cartItemsService.getCartItems(this._cartService.currentCart.id);
-        }
-        else{
-          console.log("last cart is closed");
-          this._ordersService.getLastOrderDate();
-        }
-      }
+      sessionStorage.setItem("userDetails", JSON.stringify(newUser));
+      this._usersService.setCurrentUser(newUser);
+      this._cartService.setCurrentCart(response.cart);
+      // let lastCart = response.cart;
+      // if (lastCart) {
+      //   if (lastCart.isOpen) {
+      //     this._cartService.setCurrentCart(lastCart);
+      //     // this._cartItemsService.getCartItems(this._cartService.currentCart.id);
+      //   }
+      //   else{
+      //     console.log("last cart is closed");
+      //     this._ordersService.getLastOrderDate();
+      //   }
+      // }
       this.router.navigate(['/start-screen/before-shopping']);
     },
       error => {
