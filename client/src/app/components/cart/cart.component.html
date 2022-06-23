@@ -1,1 +1,10 @@
-<p>cart works!</p>
+<h1>My Cart</h1>
+<div class="cart-items">
+  <div class="cart-item" *ngFor="let cartItem of _cartItemsService.cartItems">
+      <img class="cart-item-img" src="{{cartItem.imgUrl}}" alt="">
+      <div>
+        {{cartItem.name}} X  {{cartItem.quantity}}<br>
+        {{cartItem.unitPrice * cartItem.quantity | currency: "ILS"}}
+      </div>
+  </div>
+</div>

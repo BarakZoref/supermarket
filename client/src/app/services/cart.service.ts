@@ -28,7 +28,7 @@ export class CartService {
   getLastCart(): void{
     this._http.get<ICart>(this.baseUrl, {})
     .subscribe(cart => {
-      this.currentCart = cart;
+      this.currentCartSubject.next(cart);
       console.log(this.currentCart);
     },
       error => {
