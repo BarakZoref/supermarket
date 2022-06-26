@@ -72,4 +72,16 @@ export class ProductsService {
         alert("Cannot get products")
       })
   }
+
+  public getProductsBySearchInput(input): void {
+    this._http.get<IProduct[]>(this.baseUrl)
+      .subscribe((products) => {
+        this.products = products.filter(product=>product.name.toUpperCase().startsWith(input.toUpperCase()));
+        console.log(this.products)
+      },
+        err => {
+          console.log(err);
+          alert("Cannot get products")
+        })
+  }
 }
