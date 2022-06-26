@@ -11,9 +11,17 @@ h1{
 
 .cart-item{
   display: flex;
-  border: 2px solid;
+  /* border: 2px solid; */
   margin: 5px;
   padding: 5px;
+}
+
+button{
+  font-size: 10px;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
 }
 
 

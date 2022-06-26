@@ -4,5 +4,6 @@ export default interface ICartItem{
   unitPrice: number,
   quantity: number,
   imgUrl: string,
-  productId: number
+  productId: number,
+  cartId: number
 }
