@@ -5,7 +5,7 @@ const config = require('../config.json');
 let { secret } = config;
 
 let whiteListUrls = new Set();
-whiteListUrls.add('/users');
+whiteListUrls.add('/users/');
 whiteListUrls.add('/users/login');
 whiteListUrls.add('/users/is_exist');
 whiteListUrls.add('/products/amount_of_products');
