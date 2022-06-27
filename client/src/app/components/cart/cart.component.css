@@ -14,7 +14,6 @@ h1{
   /* border: 2px solid; */
   margin: 5px;
   padding: 5px;
-  overflow: auto;
 }
 
 .delete-item-button{
@@ -32,6 +31,7 @@ h1{
   bottom: 0;
   display: flex;
   flex-wrap: wrap;
+  margin-top: auto
 }
 
 .delete-all-items-button, .order-button{
@@ -50,6 +50,12 @@ h4{
   font-size: 15px;
   align-self: center;
   color: white;
+}
+
+.cart-container{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 
