@@ -1,6 +1,10 @@
 
-h1{
+h1, .no-cart-items{
   text-align: center;
+}
+
+.no-cart-items{
+  color: red;
 }
 
 .cart-item-img{
