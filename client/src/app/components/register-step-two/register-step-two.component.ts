@@ -48,17 +48,16 @@ export class RegisterStepTwoComponent implements OnInit {
 
   register(): void{
     this.registerUserData = this.userRegisterForm.value;
-    console.log(this.registerUserData);
 
     this._usersService.userRegisterData.city = this.registerUserData.city;
     this._usersService.userRegisterData.street = this.registerUserData.street;
     this._usersService.userRegisterData.firstName = this.registerUserData.firstName;
     this._usersService.userRegisterData.lastName = this.registerUserData.lastName;
+    console.log(this._usersService.userRegisterData);
 
     this._usersService.register();
     this.displayModal = true;
     // this.router.navigate(['']);
-    console.log(this._usersService.userRegisterData);
   }
 
 
