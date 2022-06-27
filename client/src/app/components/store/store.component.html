@@ -1,10 +1,7 @@
 <div class="store">
-  <div *ngIf="showCart" class="cart">
-    <app-cart></app-cart>
-  </div>
-  <div [ngStyle]="{'width': showCart ? '70%' : '100%'}" class="products-and-categories">
-    <button *ngIf="showCart" pButton type="button" icon="pi pi-angle-double-left" class="p-button-rounded" (click)="showCart=false"></button>
-    <button *ngIf="!showCart" pButton type="button" icon="pi pi-angle-double-right" class="p-button-rounded" (click)="showCart=true"></button>
-    <app-products></app-products>
+  <app-cart *ngIf="showCart"></app-cart>
+  <button *ngIf="showCart" pButton type="button" icon="pi pi-angle-double-left" class="p-button-rounded" (click)="showCart=false"></button>
+  <button *ngIf="!showCart" pButton type="button" icon="pi pi-angle-double-right" class="p-button-rounded" (click)="showCart=true"></button>
+  <app-products [ngStyle]="{'width': showCart ? '70%' : '100%'}" ></app-products>
 </div>
 

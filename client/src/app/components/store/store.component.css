@@ -2,16 +2,16 @@
   display: flex;
 }
 
-.cart{
-  margin-top: 60px;
+
+app-cart{
   width:30%;
-  height: 100vh;
+  height: 87vh;
+  overflow: auto;
 }
 
-.products-and-categories{
-  margin-top: 10px;
-  /* width:70%; */
+app-products{
+  height: 87vh;
+  overflow: auto;
 }
-
 
 

@@ -1,11 +1,17 @@
-<h1>My Cart</h1>
-<div class="cart-items">
+<div>
+  <h1>My Cart</h1>
   <div class="cart-item" *ngFor="let cartItem of _cartItemsService.cartItems">
-      <img class="cart-item-img" src="{{cartItem.imgUrl}}" alt="">
-      <div>
-        {{cartItem.name}} X  {{cartItem.quantity}}<br>
-        {{cartItem.unitPrice * cartItem.quantity | currency: "ILS"}}
-      </div>
-      <button (click)="deleteCartItem(cartItem.id, cartItem.cartId)">❌</button>
-      <!-- <button pButton pRipple type="button" icon="pi pi-times" class="delete-button p-button-rounded p-button-danger p-button-text"></button>  </div> -->
+    <img class="cart-item-img" src="{{ cartItem.imgUrl }}" alt="" />
+    <div>
+      {{ cartItem.name }} X {{ cartItem.quantity }}<br />
+      {{ cartItem.unitPrice * cartItem.quantity | currency: "ILS" }}
+    </div>
+    <button class="delete-item-button" (click)="deleteCartItem(cartItem.id)">❌</button>
+    <!-- <button pButton pRipple type="button" icon="pi pi-times" class="delete-button p-button-rounded p-button-danger p-button-text"></button>  </div> -->
+  </div>
+  <div class="bottom-div">
+    <h4>Total: {{_cartItemsService.totalPrice | currency: "ILS"}}</h4>
+    <button class="delete-all-items-button" (click)="deleteAllCartItems()" pButton type="button" label="Delete all items"></button>
+    <button class="order-button" pButton type="button" label="Order"></button>
+  </div>
 </div>

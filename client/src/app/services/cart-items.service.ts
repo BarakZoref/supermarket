@@ -9,6 +9,7 @@ import IServerResponse from '../models/iserver-response.model';
 export class CartItemsService {
 
   cartItems: ICartItem[];
+  totalPrice: number;
 
   private baseUrl = 'http://localhost:3001/cart_items/'
   constructor(
@@ -70,6 +71,10 @@ export class CartItemsService {
     this._http.get<ICartItem[]>(this.baseUrl + cartId)
     .subscribe(cartItems => {
       this.cartItems = cartItems
+      this.totalPrice = 0;
+      for(let cartItem of cartItems){
+        this.totalPrice+=cartItem.quantity*cartItem.unitPrice;
+      }
       console.log("cart items: ", this.cartItems)
     },
       error => {

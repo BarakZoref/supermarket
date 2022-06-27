@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import ICart from 'src/app/models/icart.model';
 import { CartItemsService } from 'src/app/services/cart-items.service';
 import { CartService } from 'src/app/services/cart.service';
 
@@ -15,11 +16,20 @@ export class CartComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this._cartService.followCurrentCart().subscribe(newCart=>{
+      this.currentCart = newCart;
+    })
+  }
+  currentCart: ICart;
+
+  deleteCartItem(cartItemId,): void{
+    this._cartItemsService.deleteCartItem(cartItemId);
+    this._cartItemsService.getCartItems(this.currentCart.id);
   }
 
-  deleteCartItem(cartItemId, cartId): void{
-    this._cartItemsService.deleteCartItem(cartItemId);
-    this._cartItemsService.getCartItems(cartId);
+  deleteAllCartItems(): void{
+    this._cartItemsService.deleteAllCartItems(this.currentCart.id);
+    this._cartItemsService.getCartItems(this.currentCart.id);
   }
 
 }
