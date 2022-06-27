@@ -1,5 +1,5 @@
 <br>
-<form [formGroup]="userRegisterForm">
+<form [formGroup]="userRegisterForm" (ngSubmit)="register()">
   <div class="container">
   <div>
   <span class="p-float-label">
@@ -59,7 +59,7 @@
 </div>
   <div class="buttons">
     <p-button (click)="goBackToStepOne()"> &lt; Go Back</p-button>
-    <p-button [disabled]="userRegisterForm.invalid" (click)="register()">Register</p-button>
+    <p-button [disabled]="userRegisterForm.invalid" type="submit">Register</p-button>
   </div>
 </form>
 

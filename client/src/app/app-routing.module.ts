@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BeforeShoppingComponent } from './components/before-shopping/before-shopping.component';
 import { LoginComponent } from './components/login/login.component';
+import { OrderComponent } from './components/order/order.component';
 import { RegisterStepOneComponent } from './components/register-step-one/register-step-one.component';
 import { RegisterStepTwoComponent } from './components/register-step-two/register-step-two.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -26,6 +27,7 @@ const routes: Routes = [
     ],
   },
   { path: 'store', canActivate: [LoginGuard], component: StoreComponent },
+  {path: 'order', component: OrderComponent},
   { path: "", redirectTo: "/start-screen/login", pathMatch: "full" }
       // { path: "**", component: Page404Component } // Page not Found (Must be the last one!!!)
 

@@ -14,7 +14,7 @@
 
 <div class="start-page-container">
   <router-outlet></router-outlet>
-  <p-card header="Simple Card" [style]="{'width': '25rem', 'height': '600px', 'margin-bottom': '2em'}">
+  <div class="card">
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt
         quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt
@@ -23,8 +23,8 @@
         quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt
   </p>
-  </p-card>
-  <p-card header="Simple Card" [style]="{'width': '25rem', 'height': '600px', 'margin-bottom': '2em'}">
+  </div>
+  <div class="card">
     <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt
         quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!</p> -->
     <p>Available products in out store: {{_productsService.amountOfProducts}}</p>
@@ -39,5 +39,5 @@
       <h2>Your last order was at:</h2>
       <h2>{{ _ordersService.lastOrderDate | date:'medium' }}</h2>
     </div>
-  </p-card>
+  </div>
 </div>

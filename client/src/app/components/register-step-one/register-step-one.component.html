@@ -1,6 +1,6 @@
 
 <br>
-<form [formGroup]="userRegisterForm">
+<form class="register-form" [formGroup]="userRegisterForm" (ngSubmit)="submit()">
 <div class="container">
   <div>
     <span class="p-float-label">
@@ -58,7 +58,7 @@
       <label for="float-input">Confirm Password *</label>
     </span>
     <div class="errors-div">
-       <div *ngIf="userRegisterForm.controls['password'].valid && userRegisterForm.controls['password'].value!=userRegisterForm.controls['confirmPassword'].value">
+       <div *ngIf="userRegisterForm.hasError('passwordMatchValidator')">
           The password does not match
       </div>
     </div>
@@ -68,5 +68,5 @@
     <br>
   </div>
 </div>
-    <p-button class="next-button" [disabled]="userRegisterForm.invalid" (click)="submit()">Next &gt;</p-button>
+    <p-button class="next-button" [disabled]="userRegisterForm.invalid" type="submit">Next &gt;</p-button>
   </form>

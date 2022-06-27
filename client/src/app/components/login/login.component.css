@@ -1,3 +1,11 @@
 .errors-div{
   color: red;
 }
+
+h1{
+  text-align: center;
+}
+.card{
+  width: 300px;
+  height: 100%;
+}

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { AbstractControl, UntypedFormBuilder, UntypedFormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { combineLatest } from 'rxjs';
 import { UsersService } from 'src/app/services/users.service';
@@ -29,6 +29,9 @@ export class RegisterStepOneComponent implements OnInit {
       password: [this.registerUserConnectionData.password,  [Validators.required, Validators.minLength(6), Validators.maxLength(10)]],
       confirmPassword: [this.registerUserConnectionData.confirmPassword],
       isUserNotExist: [this.isUserNotExist, [Validators.requiredTrue]]
+    },
+    {
+    validator: Validators.compose([this.passwordMatchValidator])
     })
 
     combineLatest(this.userRegisterForm.get('id').valueChanges, this.userRegisterForm.get('userName').valueChanges)
@@ -50,6 +53,19 @@ export class RegisterStepOneComponent implements OnInit {
       this.router.navigate(['/start-screen/register/step-two']);
       console.log(this._usersService.userRegisterData);
     }
+  }
+
+  passwordMatchValidator = (registerForm: AbstractControl): ValidationErrors | null => {
+    let passwordControl = registerForm.get('password');
+    let password = passwordControl.value;
+    let confirmPasswordControl = registerForm.get('confirmPassword');
+    let confirmPassword = confirmPasswordControl.value;
+    if (password != confirmPassword) {
+      return {
+        'passwordMatchValidator': true
+      };
+    }
+    return null
   }
 
 }

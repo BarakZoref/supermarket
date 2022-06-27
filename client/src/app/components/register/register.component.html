@@ -1,8 +1,7 @@
 
-<p-card
-header="Register"
-[style]="{ width: '25rem', height: '600px', 'margin-bottom': '2em' }"
->
+<div class="card">
   <p-steps [model]="items" [readonly]="true"></p-steps>
-  <router-outlet></router-outlet>
-</p-card>
+  <div class="register-step">
+    <router-outlet></router-outlet>
+  </div>
+</div>

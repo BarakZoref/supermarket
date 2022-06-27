@@ -13,12 +13,10 @@
 <!-- <button (click)="deleteAllCartItems()">delete all cart items</button> -->
 <!-- <button (click)="getCartItems()">get cart items</button> -->
 
-<p-card
-  header="Log In"
-  [style]="{ width: '25rem', height: '600px', 'margin-bottom': '2em' }"
-  >
+<div class="card">
+  <h1>Login</h1>
   <br>
-<form [formGroup]="userLoginForm">
+<form [formGroup]="userLoginForm" (ngSubmit)="login()">
   <span class="p-float-label">
     <input formControlName="userName"  type="text" pInputText name="username" />
     <br>
@@ -55,8 +53,8 @@
     password is incorrect or user name doesn't exists
   </div>
   <br><br>
-  <p-button [disabled]="userLoginForm.invalid || isLoginFail" (click)="login()">Submit</p-button>
+  <p-button [disabled]="userLoginForm.invalid || isLoginFail" type="submit">Submit</p-button>
 </form>
 <br>
 <a routerLink="/start-screen/register/step-one">not registered? click here</a>
-</p-card>
+</div>

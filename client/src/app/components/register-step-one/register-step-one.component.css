@@ -4,10 +4,17 @@
 
 .next-button{
   float: right;
+  position: sticky;
+  bottom: 0;
+  margin-top: auto;
 }
 
 
 .container{
   display: flex;
   justify-content: center;
+}
+
+.register-form{
+  height: 100%;
 }

@@ -35,7 +35,7 @@ h1, .no-cart-items{
   bottom: 0;
   display: flex;
   flex-wrap: wrap;
-  margin-top: auto
+  margin-top: auto;
 }
 
 .delete-all-items-button, .order-button{
