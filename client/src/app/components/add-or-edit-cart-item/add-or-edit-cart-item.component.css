@@ -1,0 +1,24 @@
+.plus-or-minus-button{
+  width: 20px;
+  margin: 0 2px;
+  padding: 0;
+  display: inline-block;
+  text-align: center;
+}
+.product-amount-input{
+  width: 50px;
+}
+.amount-input-container{
+  display: flex;
+  justify-content: center;
+}
+
+.amount-error{
+  color: red;
+  margin-top: 10px;
+}
+
+.no-products{
+  margin-top: 25px;
+  color: red
+}

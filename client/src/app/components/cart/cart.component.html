@@ -8,7 +8,7 @@
     </div>
     <button class="delete-item-button" (click)="deleteCartItem(cartItem.id)">❌</button>
   </div>
-  <h2 class="no-cart-items" *ngIf="!_cartItemsService.cartItems.length">there are no cart items</h2>
+  <h2 class="no-cart-items" *ngIf="!_cartItemsService.cartItems?.length">there are no cart items</h2>
   <div class="bottom-div">
     <h4>Total: {{_cartItemsService.totalPrice | currency: "ILS"}}</h4>
     <button class="delete-all-items-button" (click)="deleteAllCartItems()" pButton type="button" label="Delete all items"></button>

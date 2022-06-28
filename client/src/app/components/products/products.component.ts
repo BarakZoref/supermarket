@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import ICart from 'src/app/models/icart.model';
+import IProduct from 'src/app/models/iproduct.model';
 import { CartItemsService } from 'src/app/services/cart-items.service';
 import { CartService } from 'src/app/services/cart.service';
 import { CategoriesService } from 'src/app/services/categories.service';
@@ -14,23 +15,23 @@ export class ProductsComponent implements OnInit {
 
   displayModal: boolean = false;
   amountOfProduct: number = 0;
-  currentProductId: number;
+  productToAdd: IProduct;
   amountOfProductError: boolean = false;
-  private currentCart: ICart;
+  // private currentCart: ICart;
 
   constructor(
     public _categoriesService: CategoriesService,
     public _productsService: ProductsService,
     public _cartItemsService: CartItemsService,
-    public _cartService: CartService
+    // public _cartService: CartService
   ) { }
 
   ngOnInit(): void {
     this._categoriesService.getAllCategories();
     this._productsService.getAllProducts();
-    this._cartService.followCurrentCart().subscribe(newCart=>{
-      this.currentCart = newCart
-    })
+    // this._cartService.followCurrentCart().subscribe(newCart=>{
+    //   this.currentCart = newCart
+    // })
   }
 
   onSpecificCategoryClicked(categoryId){
@@ -41,64 +42,63 @@ export class ProductsComponent implements OnInit {
     this._productsService.getAllProducts();
   }
 
-  onAddToCartClicked(productid){
-    this.currentProductId = productid;
+  onAddToCartClicked(productToAdd){
+    this.productToAdd = productToAdd;
     this.displayModal = true;
-    console.log(this.currentProductId);
   }
-
-  onMinusButtonClicked(){
-    if(this.amountOfProduct<=0){
-      this.amountOfProduct = 0;
-    }
-    else if(this.amountOfProduct>10){
-      this.amountOfProduct = 10;
-    }
-    else{
-      this.amountOfProduct--;
-    }
-  }
-
-  onPlusButtonClicked(){
-    if(this.amountOfProduct<0){
-      this.amountOfProduct = 0;
-    }
-    else if(this.amountOfProduct>=10){
-      this.amountOfProduct = 10;
-    }
-    else{
-      this.amountOfProduct++;
-    }
-  }
-
-  onChooseAmountOfProductClicked(){
-    if(this.amountOfProduct == 0){
-      this.displayModal = false;
-      return;
-    }
-    else if(this.amountOfProduct>0 && this.amountOfProduct<=10){
-      //TODO:
-      const cartItem= this._cartItemsService.cartItems.find((cartItem) => cartItem.productId==this.currentProductId);
-      if(!cartItem){
-        this._cartItemsService.addToCart(
-          {
-            productId: this.currentProductId,
-            quantity: this.amountOfProduct,
-            cartId: this.currentCart.id
-          });
-      }
-      else{
-        this._cartItemsService.updateCartItemQuantity(
-          {
-            quantity: cartItem.quantity + this.amountOfProduct,
-            cartItemId: cartItem.id
-          }
-        )
-      }
-      this.displayModal = false;
-    }
-    this._cartItemsService.getCartItems(this.currentCart.id);
-    this.amountOfProduct = 0;
-  }
-
 }
+//   onMinusButtonClicked(){
+//     if(this.amountOfProduct<=0){
+//       this.amountOfProduct = 0;
+//     }
+//     else if(this.amountOfProduct>10){
+//       this.amountOfProduct = 10;
+//     }
+//     else{
+//       this.amountOfProduct--;
+//     }
+//   }
+
+//   onPlusButtonClicked(){
+//     if(this.amountOfProduct<0){
+//       this.amountOfProduct = 0;
+//     }
+//     else if(this.amountOfProduct>=10){
+//       this.amountOfProduct = 10;
+//     }
+//     else{
+//       this.amountOfProduct++;
+//     }
+//   }
+
+//   onChooseAmountOfProductClicked(){
+//     if(this.amountOfProduct == 0){
+//       this.displayModal = false;
+//       return;
+//     }
+//     else if(this.amountOfProduct>0 && this.amountOfProduct<=10){
+//       //TODO:
+//       const cartItem= this._cartItemsService.cartItems.find((cartItem) => cartItem.productId==this.currentProductId);
+//       if(!cartItem){
+//         this._cartItemsService.addToCart(
+//           {
+//             productId: this.currentProductId,
+//             quantity: this.amountOfProduct,
+//             cartId: this.currentCart.id
+//           });
+//       }
+//       else{
+//         this._cartItemsService.updateCartItemQuantity(
+//           {
+//             quantity: cartItem.quantity + this.amountOfProduct,
+//             cartItemId: cartItem.id
+//           }
+//         )
+//       }
+//       this.displayModal = false;
+//     }
+//     this._cartItemsService.getCartItems(this.currentCart.id);
+//     this.amountOfProduct = 0;
+//   }
+
+// }

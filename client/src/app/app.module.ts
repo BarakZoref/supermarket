@@ -26,6 +26,7 @@ import {DialogModule} from 'primeng/dialog';
 import { BeforeShoppingComponent } from './components/before-shopping/before-shopping.component';
 import { CartComponent } from './components/cart/cart.component';
 import { ProductsComponent } from './components/products/products.component';
+import { AddOrEditCartItemComponent } from './components/add-or-edit-cart-item/add-or-edit-cart-item.component';
 
 
 
@@ -51,6 +52,7 @@ import { ProductsComponent } from './components/products/products.component';
     BeforeShoppingComponent,
     CartComponent,
     ProductsComponent,
+    AddOrEditCartItemComponent,
   ],
   imports: [
     BrowserModule,

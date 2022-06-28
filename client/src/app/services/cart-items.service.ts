@@ -19,9 +19,8 @@ export class CartItemsService {
    public addToCart(newCartItem): void{
     this._http.post<any>(this.baseUrl, newCartItem)
     .subscribe(cartItemId => {
-      //TODO:
-      //do something with cartItemId
       console.log(cartItemId);
+      this.getCartItems(newCartItem.cartId)
     },
       error => {
         console.log(error);
@@ -30,10 +29,11 @@ export class CartItemsService {
     )
   }
 
-  public deleteCartItem(cartItemId): void{
+  public deleteCartItem(cartItemId, cartId): void{
     this._http.delete<IServerResponse>(this.baseUrl + cartItemId)
     .subscribe(serverResponse => {
       console.log(serverResponse.msg);
+      this.getCartItems(cartId);
     },
       error => {
         console.log(error);
@@ -46,6 +46,7 @@ export class CartItemsService {
     this._http.put<IServerResponse>(this.baseUrl, cartItemDetails)
     .subscribe(serverResponse => {
       console.log(serverResponse.msg);
+      this.getCartItems(cartItemDetails.cartId);
     },
       error => {
         console.log(error);
@@ -59,6 +60,7 @@ export class CartItemsService {
     this._http.delete<IServerResponse>(this.baseUrl + '/by_cart_id/' + cartId)
     .subscribe(serverResponse => {
       console.log(serverResponse.msg);
+      this.getCartItems(cartId);
     },
       error => {
         console.log(error);
