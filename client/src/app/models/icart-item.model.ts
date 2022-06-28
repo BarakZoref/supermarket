@@ -1,5 +1,5 @@
 export default interface ICartItem{
-  id: number,
+  id?: number,
   name: string,
   unitPrice: number,
   quantity: number,

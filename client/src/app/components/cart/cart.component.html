@@ -6,6 +6,7 @@
       {{ cartItem.name }} X {{ cartItem.quantity }}<br />
       {{ cartItem.unitPrice * cartItem.quantity | currency: "ILS" }}
     </div>
+    <button class="edit-item-button" (click)="editItemQuantity(cartItem)">✍</button>
     <button class="delete-item-button" (click)="deleteCartItem(cartItem.id)">❌</button>
   </div>
   <h2 class="no-cart-items" *ngIf="!_cartItemsService.cartItems?.length">there are no cart items</h2>
@@ -15,3 +16,6 @@
     <button class="order-button" pButton type="button" label="Order" (click)="this.router.navigate(['/order'])"></button>
   </div>
 </div>
+
+<app-add-or-edit-cart-item *ngIf="displayModal" [cartItem]="currentCartItem" [(displayModal)]="displayModal"></app-add-or-edit-cart-item>>
+

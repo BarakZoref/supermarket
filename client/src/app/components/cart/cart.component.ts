@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import ICartItem from 'src/app/models/icart-item.model';
 import ICart from 'src/app/models/icart.model';
 import { CartItemsService } from 'src/app/services/cart-items.service';
 import { CartService } from 'src/app/services/cart.service';
@@ -10,6 +11,9 @@ import { CartService } from 'src/app/services/cart.service';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
+
+  currentCartItem: ICartItem;
+  displayModal: boolean = false;
 
   constructor(
     public _cartItemsService: CartItemsService,
@@ -32,6 +36,11 @@ export class CartComponent implements OnInit {
   deleteAllCartItems(): void{
     this._cartItemsService.deleteAllCartItems(this.currentCart.id);
     // this._cartItemsService.getCartItems(this.currentCart.id);
+  }
+
+  editItemQuantity(cartItem): void{
+    this.currentCartItem = cartItem;
+    this.displayModal = true;
   }
 
 }

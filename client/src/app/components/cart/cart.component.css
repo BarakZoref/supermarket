@@ -20,14 +20,13 @@ h1, .no-cart-items{
   padding: 5px;
 }
 
-.delete-item-button{
+.delete-item-button, .edit-item-button{
   font-size: 10px;
   background: transparent;
   border: none;
   outline: none;
   cursor: pointer;
   height: 20px;
-  margin-left: 5px;
 }
 
 .bottom-div{

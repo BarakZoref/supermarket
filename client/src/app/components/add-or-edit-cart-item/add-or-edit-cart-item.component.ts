@@ -16,6 +16,9 @@ export class AddOrEditCartItemComponent implements OnInit {
   product: IProduct;
 
   @Input()
+  cartItem: ICartItem;
+
+  @Input()
   displayModal: boolean = false;
 
   @Output()
@@ -23,7 +26,6 @@ export class AddOrEditCartItemComponent implements OnInit {
 
   amountOfProduct: number;
   amountOfProductError: boolean = false;
-  cartItem: ICartItem;
   private currentCart: ICart;
 
   constructor(
@@ -32,15 +34,29 @@ export class AddOrEditCartItemComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    const cartItem= this._cartItemsService.cartItems?.find((cartItem) => cartItem.productId==this.product.id);
-    console.log("cart item!", cartItem);
+    if(this.product){// if the input is from the add item
+      const cartItem= this._cartItemsService.cartItems?.find((cartItem) => cartItem.productId==this.product.id);
+      console.log("cart item!", cartItem);
 
-    if(cartItem){
-      this.cartItem = cartItem;
-      this.amountOfProduct = cartItem.quantity;
+      if(cartItem){
+        this.cartItem = cartItem;
+        this.amountOfProduct = cartItem.quantity;
+      }
+      else{
+        this.cartItem =
+        {
+          name: this.product.name,
+          unitPrice: this.product.price,
+          quantity: 0,
+          imgUrl: this.product.imgUrl,
+          productId: this.product.id,
+          cartId: this._cartService.getCurrentCart().id
+        }
+        this.amountOfProduct = 0;
+      }
     }
-    else{
-      this.amountOfProduct = 0;
+    else{//if the input is from the edit
+      this.amountOfProduct = this.cartItem.quantity;
     }
     this._cartService.followCurrentCart().subscribe(newCart=>{
       this.currentCart = newCart;
@@ -78,7 +94,7 @@ export class AddOrEditCartItemComponent implements OnInit {
       return;
     }
     else if(this.amountOfProduct>0 && this.amountOfProduct<=10){
-      if(!this.cartItem){
+      if(!this.cartItem.id){
         this._cartItemsService.addToCart(
           {
             productId: this.product.id,

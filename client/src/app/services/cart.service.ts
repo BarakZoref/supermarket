@@ -25,6 +25,10 @@ export class CartService {
     this.currentCartSubject.next(newCart);
   }
 
+  getCurrentCart(): ICart{
+    return this.currentCartSubject.value;
+  }
+
   getLastCart(): void{
     this._http.get<ICart>(this.baseUrl, {})
     .subscribe(cart => {
