@@ -1,5 +1,10 @@
 <p-dialog  header="Please choose the amount" [(visible)]="displayModal" [breakpoints]="{'960px': '75vw'}" [modal]="true" [style]="{width: '30vw'}"
     [draggable]="false" [resizable]="false">
+    <div>
+      <img class="product-img" src="{{product.imgUrl}}" alt="">
+    </div>
+    <h2>{{product.name}}</h2>
+    <h2>{{product.price * amountOfProduct | currency:"ILS"}}</h2>
     <div class="amount-input-container">
       <button class="plus-or-minus-button" pButton (click)="onMinusButtonClicked()">-</button>
       <input class="product-amount-input" [(ngModel)]="amountOfProduct" type="number" min="0" max="10">
