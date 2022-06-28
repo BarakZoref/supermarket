@@ -7,12 +7,11 @@
       {{ cartItem.unitPrice * cartItem.quantity | currency: "ILS" }}
     </div>
     <button class="delete-item-button" (click)="deleteCartItem(cartItem.id)">❌</button>
-    <!-- <button pButton pRipple type="button" icon="pi pi-times" class="delete-button p-button-rounded p-button-danger p-button-text"></button>  </div> -->
   </div>
   <h2 class="no-cart-items" *ngIf="!_cartItemsService.cartItems.length">there are no cart items</h2>
   <div class="bottom-div">
     <h4>Total: {{_cartItemsService.totalPrice | currency: "ILS"}}</h4>
     <button class="delete-all-items-button" (click)="deleteAllCartItems()" pButton type="button" label="Delete all items"></button>
-    <button class="order-button" pButton type="button" label="Order"></button>
+    <button class="order-button" pButton type="button" label="Order" (click)="this.router.navigate(['/order'])"></button>
   </div>
 </div>

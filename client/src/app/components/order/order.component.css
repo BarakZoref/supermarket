@@ -1,10 +1,58 @@
-.order-page-container{
+.order-container{
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
 }
 
 .card{
-  width: 500px;
-  min-height: 100%;
+  width: 400px;
+  height: 87vh;
 }
+
+.cart-item-img{
+  margin: 5px;
+  width:  50px;
+  height: 50px;
+}
+
+.cart-item{
+  display: flex;
+  margin: 5px;
+  padding: 5px;
+}
+
+h4{
+  background-color: #3B82F6;
+  padding: 10px;
+  border-radius: 3px;
+  font-size: 15px;
+  align-self: center;
+  color: white;
+}
+
+.order-page-container{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-items{
+  overflow: auto;
+}
+
+.bottom-div{
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  margin-top: auto;
+  justify-content: space-around;
+}
+
+.back-button{
+  font-size: 10px;
+  margin-left: 2px;
+  margin-bottom: 1px;
+  height: 45px;
+}
+
+

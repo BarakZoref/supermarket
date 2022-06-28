@@ -1,6 +1,18 @@
-<div class="order-page-container">
+<div class="order-container">
   <div class="card">
-    <h1>Hello World</h1>
+    <div class="cart-items">
+      <div class="cart-item" *ngFor="let cartItem of _cartItemsService.cartItems">
+        <img class="cart-item-img" src="{{ cartItem.imgUrl }}" alt="" />
+        <div>
+          {{ cartItem.name }} X {{ cartItem.quantity }}<br />
+          {{ cartItem.unitPrice * cartItem.quantity | currency: "ILS" }}
+        </div>
+      </div>
+    </div>
+    <div class="bottom-div">
+      <h4>Total: {{ _cartItemsService.totalPrice | currency: "ILS" }}</h4>
+      <button class="back-button" pButton type="button" label="&lt; Back to store" (click)="this.router.navigate(['/store'])"></button>
+    </div>
   </div>
   <div class="card">
     <h1>Hello World2</h1>

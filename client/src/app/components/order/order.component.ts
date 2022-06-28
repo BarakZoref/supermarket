@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { CartItemsService } from 'src/app/services/cart-items.service';
 
 @Component({
   selector: 'app-order',
@@ -7,7 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrderComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public _cartItemsService: CartItemsService,
+    public router: Router
+  ) { }
 
   ngOnInit(): void {
   }
