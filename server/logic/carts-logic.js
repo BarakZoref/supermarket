@@ -23,7 +23,12 @@ async function getLastCart(userId){
     return cartDetails;
 }
 
+async function closeCart(cartId){
+    await cartsDal.closeCart(cartId);
+}
+
 module.exports = {
     addCart,
-    getLastCart
+    getLastCart,
+    closeCart
 }

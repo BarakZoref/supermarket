@@ -16,7 +16,14 @@ async function getLastCart(userId){
     return cartDetails;
 }
 
+async function closeCart(cartId){
+    let sql = `UPDATE carts SET is_open = 0 WHERE id = ?`;
+    let parameters = [cartId];
+    await connection.executeWithParameters(sql, parameters);
+}
+
 module.exports = {
     addCart,
-    getLastCart
+    getLastCart,
+    closeCart
 }

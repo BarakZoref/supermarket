@@ -1,4 +1,5 @@
 const ordersDal = require('../dal/orders-dal');
+const cartsLogic = require('../logic/carts-logic');
 
 async function getAmountOfOrders(){
     let amountOfOrders = await ordersDal.getAmountOfOrders();
@@ -13,6 +14,7 @@ async function addNewOrder(orderDetails, tokenData){
     }
     orderDetails.userId = tokenData.userId;
     let orderId = await ordersDal.addNewOrder(orderDetails);
+    await cartsLogic.closeCart(orderDetails.cartId);
     return orderId
 }
 
