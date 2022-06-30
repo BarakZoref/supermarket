@@ -61,23 +61,19 @@ export class OrderComponent implements OnInit {
     this.invalidDates = this._ordersService.busyDays;
   }
 
-  // order(): void{
-  //   this.orderUserData = this.userOrderForm.value;
-  //   let orderDetailsToBeSent = {
-  //     cartId: this._cartItemsService.cartItems[0].cartId,
-  //     finalPrice: this._cartItemsService.totalPrice,
-  //     city: this.orderUserData.city,
-  //     street: this.orderUserData.street,
-  //     shippingDate: this.orderUserData.shippingDate,
-  //     paymentLastDigits: this.orderUserData.creditCardNumber.substring(9)
-  //   }
-
-  //   this._ordersService.addNewOrder(orderDetailsToBeSent);
-  //   this.displayModal = true;
-  // }
-
   order(): void{
-    console.log("new order was added");
+    this.orderUserData = this.userOrderForm.value;
+    let orderDetailsToBeSent = {
+      cartId: this._cartItemsService.cartItems[0].cartId,
+      finalPrice: this._cartItemsService.totalPrice,
+      city: this.orderUserData.city,
+      street: this.orderUserData.street,
+      shippingDate: this.orderUserData.shippingDate,
+      paymentLastDigits: this.orderUserData.creditCardNumber.substring(15)
+    }
+
+    this._ordersService.addNewOrder(orderDetailsToBeSent);
+    this.displayModal = true;
   }
 
   onStreetDoubleClick(): void{
