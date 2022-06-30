@@ -8,7 +8,6 @@ import ICart from '../models/icart.model';
 })
 export class CartService {
 
-  private currentCart: ICart;
   private baseUrl: string = "http://localhost:3001/carts/"
   constructor(
     public _http: HttpClient
@@ -21,7 +20,6 @@ export class CartService {
   }
 
   setCurrentCart(newCart: ICart): void{
-    this.currentCart = newCart;
     this.currentCartSubject.next(newCart);
   }
 
@@ -32,8 +30,9 @@ export class CartService {
   getLastCart(): void{
     this._http.get<ICart>(this.baseUrl, {})
     .subscribe(cart => {
-      this.currentCartSubject.next(cart);
-      console.log(this.currentCart);
+      if(cart.isOpen){
+        this.currentCartSubject.next(cart);
+      }
     },
       error => {
         console.log(error);
@@ -45,8 +44,7 @@ export class CartService {
   public openCart(): void{
     this._http.post<ICart>(this.baseUrl, {})
     .subscribe(cart => {
-      this.currentCart = cart;
-      console.log(this.currentCart);
+      this.currentCartSubject.next(cart);
     },
       error => {
         console.log(error);

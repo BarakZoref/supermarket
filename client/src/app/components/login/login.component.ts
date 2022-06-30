@@ -61,7 +61,11 @@ export class LoginComponent implements OnInit {
       }
       sessionStorage.setItem("userDetails", JSON.stringify(newUser));
       this._usersService.setCurrentUser(newUser);
-      this._cartService.setCurrentCart(response.cart);
+      let cartFromServer = response.cart;
+      if(cartFromServer.isOpen){
+        console.log("cart is open");
+        this._cartService.setCurrentCart(cartFromServer);
+      }
       // let lastCart = response.cart;
       // if (lastCart) {
       //   if (lastCart.isOpen) {

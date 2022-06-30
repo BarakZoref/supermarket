@@ -3,6 +3,7 @@ import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms
 import { Router } from '@angular/router';
 import IUser from 'src/app/models/iuser-model';
 import { CartItemsService } from 'src/app/services/cart-items.service';
+import { CartService } from 'src/app/services/cart.service';
 import { OrdersService } from 'src/app/services/orders.service';
 import { UsersService } from 'src/app/services/users.service';
 
@@ -27,6 +28,7 @@ export class OrderComponent implements OnInit {
     public _cartItemsService: CartItemsService,
     public _ordersService: OrdersService,
     public _usersService: UsersService,
+    public _cartService: CartService,
     private formBuilder: UntypedFormBuilder,
     public router: Router
   ) { }
@@ -73,6 +75,8 @@ export class OrderComponent implements OnInit {
     }
 
     this._ordersService.addNewOrder(orderDetailsToBeSent);
+    this._cartService.setCurrentCart(null);
+    this._ordersService.getLastOrderDate();
     this.displayModal = true;
   }
 
