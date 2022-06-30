@@ -15,7 +15,62 @@
       <button class="back-button" pButton type="button" label="&lt; Back to store" (click)="this.router.navigate(['/store'])"></button>
     </div>
   </div>
+
+
   <div class="card">
-    <h1>Hello World2</h1>
+    <form [formGroup]="userOrderForm" (ngSubmit)="order()">
+        <span class="p-float-label">
+        <p-dropdown [options]="cities" formControlName="city" placeholder="Select a City *"
+          [showClear]="true"></p-dropdown>
+        </span>
+        <div class="errors-div" *ngIf="userOrderForm.controls['city'].invalid && (userOrderForm.controls['city'].dirty || userOrderForm.controls['city'].touched)">
+          <div *ngIf="userOrderForm.controls['city'].errors.required">
+          Please choose city
+          </div>
+        </div>
+        <br>
+        <span class="p-float-label">
+          <input (dblclick)="onStreetDoubleClick()" formControlName="street" type="text" pInputText name="street" />
+          <br>
+          <label for="float-input">Street *</label>
+        </span>
+        <div class="errors-div" *ngIf="userOrderForm.controls['street'].invalid && (userOrderForm.controls['street'].dirty || userOrderForm.controls['street'].touched)">
+          <div *ngIf="userOrderForm.controls['street'].errors.required">
+          Please enter street
+          </div>
+          <div *ngIf="userOrderForm.controls['street'].errors.maxlength">
+            Maximum length is 40 characters
+          </div>
+        </div>
+        <br>
+        <label for="Choose Shipping Date">Choose Shipping Date *:</label>
+        <br>
+        <span class="p-float-label">
+        <p-calendar dateFormat="dd-mm-yy" [minDate]="minDate" formControlName="shippingDate" [disabledDates]="invalidDates" [readonlyInput]="true"></p-calendar>
+        </span>
+        <div class="errors-div" *ngIf="userOrderForm.controls['shippingDate'].invalid && (userOrderForm.controls['shippingDate'].dirty || userOrderForm.controls['shippingDate'].touched)">
+          <div *ngIf="userOrderForm.controls['shippingDate'].errors.required">
+          Please choose shipping date
+          </div>
+        </div>
+        <br>
+        <label for="Enter credit card number">Enter credit card number *:</label>
+        <br>
+        <span class="p-float-label">
+          <p-inputMask mask="9999-9999-9999-9999" formControlName="creditCardNumber" placeholder="1111-1111-1111-1111"></p-inputMask>
+        </span>
+        <div class="errors-div" *ngIf="userOrderForm.controls['creditCardNumber'].invalid && (userOrderForm.controls['creditCardNumber'].dirty || userOrderForm.controls['creditCardNumber'].touched)">
+          <div *ngIf="userOrderForm.controls['creditCardNumber'].errors.required">
+          Please enter 16 digits credit card number
+          </div>
+          <div *ngIf="userOrderForm.controls['creditCardNumber'].errors.pattern">
+            Please enter only numbers
+          </div>
+        </div>
+        <br>
+      <div class="buttons">
+        <p-button [disabled]="userOrderForm.invalid" type="submit">Order</p-button>
+      </div>
+    </form>
   </div>
 </div>

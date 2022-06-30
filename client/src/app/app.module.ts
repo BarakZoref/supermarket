@@ -27,13 +27,8 @@ import { BeforeShoppingComponent } from './components/before-shopping/before-sho
 import { CartComponent } from './components/cart/cart.component';
 import { ProductsComponent } from './components/products/products.component';
 import { AddOrEditCartItemComponent } from './components/add-or-edit-cart-item/add-or-edit-cart-item.component';
-
-
-
-
-
-// import {RippleModule} from 'primeng/ripple';
-
+import {CalendarModule} from 'primeng/calendar';
+import {InputMaskModule} from 'primeng/inputmask';
 
 
 
@@ -67,7 +62,9 @@ import { AddOrEditCartItemComponent } from './components/add-or-edit-cart-item/a
     StepsModule,
     ToastModule,
     DropdownModule,
-    DialogModule
+    DialogModule,
+    CalendarModule,
+    InputMaskModule
   ],
   providers: [    { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true }  ],
   bootstrap: [AppComponent]

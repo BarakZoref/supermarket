@@ -15,7 +15,7 @@ export class RegisterStepTwoComponent implements OnInit {
   cities: string[];
   displayModal: boolean = false;
 
-  selectedCity: string;
+  // selectedCity: string;
   constructor(
     private _usersService: UsersService,
     private formBuilder: UntypedFormBuilder,

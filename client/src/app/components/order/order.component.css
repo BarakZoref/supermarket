@@ -59,4 +59,13 @@ h4{
   width: 200px;
 }
 
+.errors-div{
+  color: red;
+}
+
+.buttons{
+  display: flex;
+  justify-content: space-between;
+}
+
 

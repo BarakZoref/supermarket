@@ -8,6 +8,7 @@ import IOrder from '../models/iorder.model';
 export class OrdersService {
   amountOfOrders: number;
   lastOrderDate: Date;
+  busyDays: Array<Date> = new Array<Date>();
   private baseUrl: string = "http://localhost:3001/orders/"
   constructor(
     public _http: HttpClient
@@ -41,9 +42,11 @@ export class OrdersService {
   public getBusyDays(): void{
     this._http.get<any>(this.baseUrl + "busy_days")
       .subscribe((busyDays) => {
-        //TODO:
-        //do somthing with the busyDays
-        console.log("get Busy Days: ", busyDays);
+        for(let busyDayAsString of busyDays){
+          let busyDay = new Date(busyDayAsString.shippingDate);
+          this.busyDays.push(busyDay);
+        }
+        console.log("get Busy Days: ", this.busyDays);
       },
         err => {
           console.log(err);
