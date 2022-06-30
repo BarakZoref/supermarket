@@ -20,7 +20,7 @@ export class OrderComponent implements OnInit {
   invalidDates: Array<Date>;
   minDate: Date;
 
-  displayModal: boolean = false;
+  displayModal: boolean = true;
 
   currentUser: IUser;
 

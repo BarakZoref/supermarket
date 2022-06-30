@@ -76,8 +76,9 @@
 </div>
 
 
-<p-dialog (onHide)="router.navigate(['/start-screen/before-shopping'])" header="You registered successfuly!" [(visible)]="displayModal" [breakpoints]="{'960px': '75vw'}" [modal]="true" [style]="{width: '30vw'}"
+<p-dialog (onHide)="router.navigate(['/start-screen/before-shopping'])" header="You purchased successfuly!" [(visible)]="displayModal" [breakpoints]="{'960px': '75vw'}" [modal]="true" [style]="{width: '30vw'}"
     [draggable]="false" [resizable]="false">
+        <h5>to download the reciept click <a class="receipt">here</a></h5>
         <ng-template pTemplate="footer">
         <p-button (click)="displayModal=false" label="Ok" styleClass="p-button-text"></p-button>
         </ng-template>

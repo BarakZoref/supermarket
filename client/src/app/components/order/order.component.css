@@ -68,4 +68,9 @@ h4{
   justify-content: space-between;
 }
 
+.receipt{
+  color: blue !important;
+  cursor: pointer;
+}
+
 
