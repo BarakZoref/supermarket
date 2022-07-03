@@ -1,5 +1,7 @@
 const ordersDal = require('../dal/orders-dal');
 const cartsLogic = require('../logic/carts-logic');
+const fs = require('fs/promises');
+
 
 async function getAmountOfOrders(){
     let amountOfOrders = await ordersDal.getAmountOfOrders();
@@ -15,7 +17,8 @@ async function addNewOrder(orderDetails, tokenData){
     orderDetails.userId = tokenData.userId;
     let orderId = await ordersDal.addNewOrder(orderDetails);
     await cartsLogic.closeCart(orderDetails.cartId);
-    return orderId
+    await createReceipt(orderDetails.cartItemsArray, orderDetails.cartId, orderDetails.finalPrice);
+    return orderId;
 }
 
 async function getBusyDays(){
@@ -35,6 +38,24 @@ async function getLastOrderDate(tokenData){
 async function getOrderDetails(cartId){
     let orderDetails = await ordersDal.getOrderDetails(cartId);
     return orderDetails;
+}
+
+async function createReceipt(cartItemsArray, cartId, finalPrice){ 
+    let str = 'Receipt No. ' + cartId
+    for (const cartItem of cartItemsArray) {
+        str += `
+        ${cartItem.name} X ${cartItem.quantity} = ₪${cartItem.quantity*cartItem.unitPrice}
+        _______________________________`
+    }
+    str+=`
+    Final Price: ₪${finalPrice}`;
+
+    try {
+        await fs.writeFile('./receipts/'+cartId+'.txt', str)
+        console.log('File created');
+    } catch (err) {
+        console.log(err);
+    }
 }
 
 module.exports = {

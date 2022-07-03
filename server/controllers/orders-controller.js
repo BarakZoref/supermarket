@@ -2,6 +2,8 @@ const tokenDecoder = require("../utils/token-decoder");
 const ordersLogic = require('../logic/orders-logic');
 const express = require("express");
 const router = express.Router();
+const path = require("path");
+
 
 //GET AMOUNT OF ORDERS
 //GET http://localhost:4200/orders/amount_of_orders
@@ -65,6 +67,16 @@ router.get('/order_details/:id', async (request, response) =>{
         console.error(e);
         response.status(600).send(e.message);
     }
+});
+
+router.get('/receipt/:id', async (request, response)=>{
+    try {
+        response.sendFile(path.resolve(__dirname,'../receipts/', request.params.id+'.txt'))
+    } catch (e) {
+        console.error(e);
+        response.status(600).send(e.message);
+    }
+   
 });
 
 
