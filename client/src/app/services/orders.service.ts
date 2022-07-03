@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import IOrder from '../models/iorder.model';
 
 @Injectable({
@@ -29,9 +30,6 @@ export class OrdersService {
   public addNewOrder(newOrder: IOrder): void {
     this._http.post<any>(this.baseUrl, newOrder)
       .subscribe((orderId) => {
-        //TODO:
-        //do somthing with the order id
-        console.log("orderId", orderId);
       },
         err => {
           console.log(err);
@@ -65,4 +63,17 @@ export class OrdersService {
         alert("cannot add new order");
       })
   }
+
+  public getReceipt(cartId){
+   return this._http.get(this.baseUrl + 'receipt/' +cartId, {responseType: "blob"});
+    // .subscribe((file: any)=>{
+    //   console.log(file);
+    // },
+    // err=>{
+    //   console.log(err);
+    //   alert("couldn't get receipt");
+    // })
+
+   }
+
 }

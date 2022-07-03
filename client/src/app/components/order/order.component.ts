@@ -6,6 +6,8 @@ import { CartItemsService } from 'src/app/services/cart-items.service';
 import { CartService } from 'src/app/services/cart.service';
 import { OrdersService } from 'src/app/services/orders.service';
 import { UsersService } from 'src/app/services/users.service';
+import { saveAs } from 'file-saver';
+
 
 @Component({
   selector: 'app-order',
@@ -19,9 +21,7 @@ export class OrderComponent implements OnInit {
 
   invalidDates: Array<Date>;
   minDate: Date;
-
-  displayModal: boolean = true;
-
+  displayModal: boolean = false;
   currentUser: IUser;
 
   constructor(
@@ -65,9 +65,11 @@ export class OrderComponent implements OnInit {
 
   order(): void{
     this.orderUserData = this.userOrderForm.value;
+    const cartId = this._cartItemsService.cartItems[0].cartId;
     let orderDetailsToBeSent = {
-      cartId: this._cartItemsService.cartItems[0].cartId,
+      cartId,
       finalPrice: this._cartItemsService.totalPrice,
+      cartItemsArray: this._cartItemsService.cartItems,
       city: this.orderUserData.city,
       street: this.orderUserData.street,
       shippingDate: this.orderUserData.shippingDate,
@@ -75,15 +77,26 @@ export class OrderComponent implements OnInit {
     }
 
     this._ordersService.addNewOrder(orderDetailsToBeSent);
-    this._cartService.setCurrentCart(null);
     this._ordersService.getLastOrderDate();
     this.displayModal = true;
+  }
+
+  onHideModal(): void{
+    this.router.navigate(['/start-screen/before-shopping']);
+    this._cartService.setCurrentCart(null);
   }
 
   onStreetDoubleClick(): void{
     console.log(this.currentUser.street);
 
     this.userOrderForm.controls.street.setValue(this.currentUser.street);
+  }
+
+  onDownloadReceiptClicked(){
+    const cartId = this._cartService.getCurrentCart().id;
+    this._ordersService.getReceipt(cartId).subscribe((blob)=>{
+      saveAs(blob, cartId + '.txt');
+    })
   }
 
 }

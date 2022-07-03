@@ -14,7 +14,7 @@
     <h2 class="no-products" *ngIf="!_productsService.products.length">Sorry, there are no products to be displayed</h2>
   </div>
 
-  <app-add-or-edit-cart-item *ngIf="displayModal" [product]="productToAdd" [(displayModal)]="displayModal"></app-add-or-edit-cart-item>>
+  <app-add-or-edit-cart-item *ngIf="displayModal" [product]="productToAdd" [(displayModal)]="displayModal"></app-add-or-edit-cart-item>
 
 <!-- <p-dialog  header="Please choose the amount" [(visible)]="displayModal" [breakpoints]="{'960px': '75vw'}" [modal]="true" [style]="{width: '30vw'}"
     [draggable]="false" [resizable]="false">
