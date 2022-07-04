@@ -37,6 +37,10 @@ export class UsersService{
     this.currentUserSubject.next(newUser);
   }
 
+  // getCurrentUser(): IUser{
+  //   return this.currentUserSubject.value;
+  // }
+
   userRegisterData: IUserRegisterData = {
     id: "",
     userName: "",

@@ -3,5 +3,6 @@ export default interface IUser{
   lastName: string,
   city: string,
   street: string,
-  token: string
+  token: string,
+  role: string
 }

@@ -9,6 +9,7 @@ import { CartService } from 'src/app/services/cart.service';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { OrdersService } from 'src/app/services/orders.service';
 import { UsersService } from 'src/app/services/users.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-login',
@@ -50,33 +51,23 @@ export class LoginComponent implements OnInit {
 
     let observable = this._usersService.login(this.loginUserData);
     observable.subscribe(response => {
-      //Success function
-
+      let helper = new JwtHelperService();
+      let decoded = helper.decodeToken(response.token);
       let newUser: IUser = {
         firstName: response.firstName,
         lastName: response.lastName,
         city: response.city,
         street: response.street,
-        token: response.token
+        token: response.token,
+        role: decoded.role
       }
+      console.log("The user details is: ", newUser);
       sessionStorage.setItem("userDetails", JSON.stringify(newUser));
       this._usersService.setCurrentUser(newUser);
       let cartFromServer = response.cart;
       if(cartFromServer.isOpen){
-        console.log("cart is open");
         this._cartService.setCurrentCart(cartFromServer);
       }
-      // let lastCart = response.cart;
-      // if (lastCart) {
-      //   if (lastCart.isOpen) {
-      //     this._cartService.setCurrentCart(lastCart);
-      //     // this._cartItemsService.getCartItems(this._cartService.currentCart.id);
-      //   }
-      //   else{
-      //     console.log("last cart is closed");
-      //     this._ordersService.getLastOrderDate();
-      //   }
-      // }
       this.router.navigate(['/start-screen/before-shopping']);
     },
       error => {

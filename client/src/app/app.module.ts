@@ -29,6 +29,7 @@ import { ProductsComponent } from './components/products/products.component';
 import { AddOrEditCartItemComponent } from './components/add-or-edit-cart-item/add-or-edit-cart-item.component';
 import {CalendarModule} from 'primeng/calendar';
 import {InputMaskModule} from 'primeng/inputmask';
+import { AddOrEditProductComponent } from './components/add-or-edit-product/add-or-edit-product.component';
 
 
 
@@ -48,6 +49,7 @@ import {InputMaskModule} from 'primeng/inputmask';
     CartComponent,
     ProductsComponent,
     AddOrEditCartItemComponent,
+    AddOrEditProductComponent,
   ],
   imports: [
     BrowserModule,
