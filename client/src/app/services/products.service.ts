@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 import IProductAddDetails from '../models/iproduct-add-details.model';
 import IProductEditDetails from '../models/iproduct-edit-details.model';
 import IProduct from '../models/iproduct.model';
@@ -11,10 +12,21 @@ import IServerResponse from '../models/iserver-response.model';
 export class ProductsService {
   products: IProduct[] = [];
   amountOfProducts: number;
+  private productSubject = new BehaviorSubject<IProduct>(null);
+
   private baseUrl: string = "http://localhost:3001/products/"
   constructor(
     public _http: HttpClient
   ) { }
+
+
+  followProduct(): Observable<IProduct> {
+    return this.productSubject.asObservable();
+  }
+
+  setProduct(newProduct: IProduct): void {
+    this.productSubject.next(newProduct);
+  }
 
   public getAllProducts(): void {
     this._http.get<IProduct[]>(this.baseUrl)
@@ -51,14 +63,14 @@ export class ProductsService {
       })
   }
 
-  public editProductPrice(productDetails: IProductEditDetails): void{
+  public editProduct(productDetails: IProductEditDetails): void{
     this._http.put<IServerResponse>(this.baseUrl, productDetails)
     .subscribe((serverResponse) => {
       console.log(serverResponse.msg);
     },
       err => {
         console.log(err);
-        alert("Cannot edit products")
+        alert("Cannot edit product")
       })
   }
 

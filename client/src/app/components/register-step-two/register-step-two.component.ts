@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { StateService } from 'src/app/services/state.service';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
@@ -18,6 +19,7 @@ export class RegisterStepTwoComponent implements OnInit {
   // selectedCity: string;
   constructor(
     private _usersService: UsersService,
+    private _stateService: StateService,
     private formBuilder: UntypedFormBuilder,
     public router: Router
   ) { }
@@ -30,19 +32,7 @@ export class RegisterStepTwoComponent implements OnInit {
       lastName: [this.registerUserData.lastName,[Validators.required, Validators.maxLength(12)]]
     })
 
-    this.cities=[
-      'Jerusalem',
-      'Tel-Aviv',
-      'Haifa',
-      'Petah Tikva',
-      'Ashdod',
-      'Netanya',
-      'Rishon LeZiyyon',
-      'Bnei Brak',
-      'Beersheba',
-      'Ramat Gan',
-      'Ashqelon'
-    ]
+    this.cities = this._stateService.cities;
 
   }
 

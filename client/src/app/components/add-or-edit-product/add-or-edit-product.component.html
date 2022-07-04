@@ -1,4 +1,78 @@
 <div class="add-or-edit-container">
-  <button pButton label="edit product"></button>
-  <button pButton label="add product"></button>
+  <br><br><br>
+<form [formGroup]="productForm" (ngSubmit)="addNewProductDetailsToServer()">
+  <div class="container">
+    <div>
+        <span class="p-float-label">
+          <input formControlName="productName" type="text" pInputText name="productName" />
+          <br>
+          <label for="float-input">Product Name *</label>
+        </span>
+        <div class="errors-div" *ngIf="productForm.controls['productName'].invalid && (productForm.controls['productName'].dirty || productForm.controls['productName'].touched)">
+          <div *ngIf="productForm.controls['productName'].errors.required">
+          Please enter product name
+          </div>
+          <div *ngIf="productForm.controls['productName'].errors.maxlength">
+            The product name can be maximum 30 characters
+          </div>
+        </div>
+        <br>
+        <span class="p-float-label">
+        <p-dropdown *ngIf="categories" [options]="categories" optionLabel="name" optionValue="id" formControlName="category" placeholder="Select a category"
+          [showClear]="true"></p-dropdown>
+        </span>
+        <div class="errors-div" *ngIf="productForm.controls['category'].invalid && (productForm.controls['category'].dirty || productForm.controls['category'].touched)">
+          <div *ngIf="productForm.controls['category'].errors.required">
+             Please choose category
+          </div>
+        </div>
+        <br>
+        <span class="p-float-label">
+          <input formControlName="price" type="number" pInputText name="price" />
+          <br>
+          <label for="float-input">Price *</label>
+        </span>
+        <div class="errors-div" *ngIf="productForm.controls['price'].invalid && (productForm.controls['price'].dirty || productForm.controls['price'].touched)">
+          <div *ngIf="productForm.controls['price'].errors.required">
+          Please enter price
+          </div>
+          <div *ngIf="productForm.controls['price'].errors.min">
+            the minimum price is ₪1
+          </div>
+          <div *ngIf="productForm.controls['price'].errors.max">
+              the maximum price is ₪200
+          </div>
+        </div>
+        <br>
+        <span class="p-float-label">
+          <input formControlName="imgUrl" type="text" pInputText name="imgUrl" />
+          <br>
+          <label for="float-input">Img Url *</label>
+        </span>
+        <div class="errors-div" *ngIf="productForm.controls['imgUrl'].invalid && (productForm.controls['imgUrl'].dirty || productForm.controls['imgUrl'].touched)">
+          <div *ngIf="productForm.controls['imgUrl'].errors.required">
+          Please enter Image Url
+          </div>
+          <div *ngIf="productForm.controls['imgUrl'].errors.maxlength">
+            The image url can be maximum 100 characters
+          </div>
+        </div>
+        <br>
+          <br><br>
+      </div>
+    </div>
+  <div class="buttons">
+    <button pButton (click)="goBackStartScreen()"> &lt; Go Back</button>
+    <button pButton type="submit" [disabled]="productForm.invalid || productForm.pristine" [label]="isEdit ? 'Edit Product' : 'Add Product'"></button>
+    <button pButton (click)="clear()" label="clear"></button>
+
+    <!-- <button pButton label="add product"></button> -->
+  </div>
+</form>
+
+
+
+
+
+
 </div>

@@ -3,9 +3,12 @@
 }
 
 
-app-cart{
+app-cart, app-add-or-edit-product{
   width:30%;
   height: 87vh;
+}
+
+app-cart{
   overflow: auto;
 }
 

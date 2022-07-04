@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import IUser from 'src/app/models/iuser-model';
+import IUser from 'src/app/models/iuser.model';
 import { CartItemsService } from 'src/app/services/cart-items.service';
 import { CartService } from 'src/app/services/cart.service';
 import { OrdersService } from 'src/app/services/orders.service';
 import { UsersService } from 'src/app/services/users.service';
 import { saveAs } from 'file-saver';
+import { StateService } from 'src/app/services/state.service';
 
 
 @Component({
@@ -29,6 +30,7 @@ export class OrderComponent implements OnInit {
     public _ordersService: OrdersService,
     public _usersService: UsersService,
     public _cartService: CartService,
+    public _stateService: StateService,
     private formBuilder: UntypedFormBuilder,
     public router: Router
   ) { }
@@ -45,19 +47,7 @@ export class OrderComponent implements OnInit {
     });
     this.userOrderForm.controls.city.setValue(this.currentUser.city);
 
-    this.cities=[
-      'Jerusalem',
-      'Tel-Aviv',
-      'Haifa',
-      'Petah Tikva',
-      'Ashdod',
-      'Netanya',
-      'Rishon LeZiyyon',
-      'Bnei Brak',
-      'Beersheba',
-      'Ramat Gan',
-      'Ashqelon'
-    ];
+    this.cities = this._stateService.cities;
     this.minDate = new Date();
     this._ordersService.getBusyDays();
     this.invalidDates = this._ordersService.busyDays;

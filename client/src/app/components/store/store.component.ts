@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import IUser from 'src/app/models/iuser-model';
+import IUser from 'src/app/models/iuser.model';
 import { CartItemsService } from 'src/app/services/cart-items.service';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { ProductsService } from 'src/app/services/products.service';
@@ -14,13 +14,15 @@ export class StoreComponent implements OnInit {
   showCart: boolean = true;
   currentUser: IUser;
   constructor(
-    public _usersService: UsersService
+    public _usersService: UsersService,
+    // public _categoriesService: CategoriesService
   ) { }
 
   ngOnInit(): void {
     this._usersService.followCurrentUser().subscribe(newUser=>
       this.currentUser = newUser);
-    }
-  
+    // this._categoriesService.getAllCategories();
+  }
+
 }
 

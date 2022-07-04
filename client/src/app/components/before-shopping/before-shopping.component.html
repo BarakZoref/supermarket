@@ -4,6 +4,7 @@
     <h2>Your last order was at:</h2>
     <h2>{{ _ordersService.lastOrderDate | date:'medium' }}</h2>
   </div> -->
-  <p-button (click)="onResumeShoppingButtonClicked()" *ngIf="currentCart">Resume Shopping</p-button>
-  <p-button (click)="onStartShoppingButtonClicked()" *ngIf="!currentCart">Start Shopping</p-button>
+  <p-button (click)="onResumeShoppingButtonClicked()" *ngIf="currentUser.role == 'user' && currentCart">Resume Shopping</p-button>
+  <p-button (click)="onStartShoppingButtonClicked()" *ngIf="currentUser.role == 'user' &&  !currentCart">Start Shopping</p-button>
+  <p-button (click)="onEditStoreButtonClicked()" *ngIf="currentUser.role == 'admin'">Edit Store</p-button>
 </div>

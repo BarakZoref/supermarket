@@ -1,6 +1,6 @@
   <div>
     <a class="category" (click)=" onAllProductsCategoryClicked()">All Products</a>
-    <a class="category" (click)=" onSpecificCategoryClicked(category.id)" *ngFor="let category of _categoriesService.categories">{{category.name}}</a>
+    <a class="category" (click)=" onSpecificCategoryClicked(category.id)" *ngFor="let category of categories">{{category.name}}</a>
   </div>
   <div class="products">
     <div class="product" *ngFor="let product of _productsService.products">
@@ -9,7 +9,8 @@
       </div>
       <h2>{{product.name}}</h2>
       <h2>{{product.price | currency:"ILS"}}</h2>
-      <button class="add-to-cart-button" pButton (click)="onAddToCartClicked(product)">Add To Cart</button>
+      <button *ngIf="currentUser.role == 'admin'" class="button" pButton (click)="onEditProductClicked(product)">Edit Product</button>
+      <button *ngIf="currentUser.role == 'user'" class="button" pButton (click)="onAddToCartClicked(product)">Add To Cart</button>
     </div>
     <h2 class="no-products" *ngIf="!_productsService.products.length">Sorry, there are no products to be displayed</h2>
   </div>

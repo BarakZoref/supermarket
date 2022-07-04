@@ -3,7 +3,7 @@ import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms
 import { Router } from '@angular/router';
 import { combineLatest, last } from 'rxjs';
 import IUserLoginData from 'src/app/models/iuser-login-data.model';
-import IUser from 'src/app/models/iuser-model';
+import IUser from 'src/app/models/iuser.model';
 import { CartItemsService } from 'src/app/services/cart-items.service';
 import { CartService } from 'src/app/services/cart.service';
 import { CategoriesService } from 'src/app/services/categories.service';
@@ -61,12 +61,13 @@ export class LoginComponent implements OnInit {
         token: response.token,
         role: decoded.role
       }
-      console.log("The user details is: ", newUser);
       sessionStorage.setItem("userDetails", JSON.stringify(newUser));
       this._usersService.setCurrentUser(newUser);
-      let cartFromServer = response.cart;
-      if(cartFromServer.isOpen){
-        this._cartService.setCurrentCart(cartFromServer);
+      if(newUser.role == 'user'){
+        let cartFromServer = response.cart;
+        if(cartFromServer.isOpen){
+          this._cartService.setCurrentCart(cartFromServer);
+        }
       }
       this.router.navigate(['/start-screen/before-shopping']);
     },

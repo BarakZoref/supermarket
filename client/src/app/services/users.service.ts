@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import IServerResponse from '../models/iserver-response.model';
 import ISuccessfulLoginServerResponse from '../models/isuccessfull-login-server-response.model';
 import IUserLoginData from '../models/iuser-login-data.model';
-import IUser from '../models/iuser-model';
+import IUser from '../models/iuser.model';
 import IUserRegisterData from '../models/iuser-register-data.model';
 import { CartService } from './cart.service';
 
@@ -24,8 +24,6 @@ export class UsersService{
   }
   private baseUrl: string = "http://localhost:3001/users/"
 
-  private currentUser: IUser;
-
   private currentUserSubject = new BehaviorSubject<IUser>(null);
 
   followCurrentUser(): Observable<IUser> {
@@ -33,7 +31,6 @@ export class UsersService{
   }
 
   setCurrentUser(newUser: IUser): void {
-    this.currentUser = newUser;
     this.currentUserSubject.next(newUser);
   }
 

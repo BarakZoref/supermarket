@@ -4,7 +4,7 @@ import { OrdersService } from 'src/app/services/orders.service';
 import { CartItemsService } from 'src/app/services/cart-items.service';
 import { CartService } from 'src/app/services/cart.service';
 import { UsersService } from 'src/app/services/users.service';
-import IUser from 'src/app/models/iuser-model';
+import IUser from 'src/app/models/iuser.model';
 import ICart from 'src/app/models/icart.model';
 
 @Component({
