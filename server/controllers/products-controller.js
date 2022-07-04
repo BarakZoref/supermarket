@@ -52,12 +52,12 @@ router.post('/', async (request, response) =>{
     }
 });
 
-//EDIT PRODUCT PRICE
+//EDIT PRODUCT
 //PUT http://localhost:4200/products
 router.put('/', async (request, response) =>{
     let productDetails = request.body;
     try {
-        await productsLogic.editProductPrice(productDetails);
+        await productsLogic.editProduct(productDetails);
         response.json({err: false, msg: "product was edited successfuly"});
     } catch (e) {
         console.error(e);

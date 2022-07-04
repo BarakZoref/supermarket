@@ -15,11 +15,18 @@ async function getProductsByCategoryId(categoryId){
     return products;
 }
 
-async function editProductPrice(productDetails){
+async function editProduct(productDetails){
+
+    if(productDetails.name.length > 30){
+        throw new Error("The name length can't be larger than 30");
+    }
     if(productDetails.price>200){
         throw new Error("The price can't be larger than 200");
     }
-    await productsDal.editProductPrice(productDetails);
+    if(productDetails.imgUrl.length > 100){
+        throw new Error("The img url length can't be larger than 100");
+    }
+    await productsDal.editProduct(productDetails);
 }
 
 async function addProduct(productDetails){
@@ -39,6 +46,6 @@ module.exports = {
     getAmountOfProducts,
     getAllProducts,
     getProductsByCategoryId,
-    editProductPrice,
+    editProduct,
     addProduct
 }

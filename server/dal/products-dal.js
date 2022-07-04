@@ -24,9 +24,9 @@ async function getProductsByCategoryId(categoryId){
     return products;
 }
 
-async function editProductPrice(productDetails){
-    let sql = `UPDATE products SET price = ? WHERE id = ?`;
-    let parameters = [productDetails.price, productDetails.id];
+async function editProduct(productDetails){
+    let sql = `UPDATE products SET name = ?, category_id = ?, price = ?, img_url = ? WHERE id = ?`;
+    let parameters = [productDetails.name, productDetails.categoryId, productDetails.price, productDetails.imgUrl, productDetails.id];
     await connection.executeWithParameters(sql, parameters);
 }
 
@@ -40,6 +40,6 @@ module.exports={
     getAmountOfProducts,
     getAllProducts,
     getProductsByCategoryId,
-    editProductPrice,
+    editProduct,
     addProduct
 }
