@@ -66,6 +66,7 @@ export class ProductsService {
     this._http.put<IServerResponse>(this.baseUrl, productDetails)
     .subscribe((serverResponse) => {
       console.log(serverResponse.msg);
+      this._messageService.add({ key: 'appToast', severity: 'success', summary: 'Success', detail: 'The product was edited successfully' });
     },
       err => {
         console.log(err);
@@ -77,6 +78,7 @@ export class ProductsService {
     this._http.post<IServerResponse>(this.baseUrl, productDetails)
     .subscribe((serverResponse) => {
       console.log(serverResponse.msg);
+      this._messageService.add({ key: 'appToast', severity: 'success', summary: 'Success', detail: 'The product was added successfully' });
     },
       err => {
         console.log(err);

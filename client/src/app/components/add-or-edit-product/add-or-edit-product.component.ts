@@ -89,6 +89,7 @@ export class AddOrEditProductComponent implements OnInit {
     else{
       this._productsService.addProduct(productDetailsToBeSent);
     }
+    this.clear();
   }
 
   ngOnDestroy(): void{
