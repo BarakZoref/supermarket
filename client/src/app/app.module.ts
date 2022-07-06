@@ -34,6 +34,7 @@ import { MessagesModule } from 'primeng/messages';
 import { MessageService } from 'primeng/api';
 import {TabMenuModule} from 'primeng/tabmenu';
 import { TabViewModule } from 'primeng/tabview';
+import { Page404Component } from './components/page404/page404.component';
 
 
 
@@ -54,6 +55,7 @@ import { TabViewModule } from 'primeng/tabview';
     ProductsComponent,
     AddOrEditCartItemComponent,
     AddOrEditProductComponent,
+    Page404Component,
   ],
   imports: [
     BrowserModule,
