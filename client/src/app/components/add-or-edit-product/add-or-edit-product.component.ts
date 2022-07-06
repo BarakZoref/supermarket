@@ -17,7 +17,7 @@ export class AddOrEditProductComponent implements OnInit {
   productData: any = { productName: "", category: "", price: "", imgUrl: "" };
   productForm: UntypedFormGroup;
   categories: ICategory[];
-  productToEdit: IProduct;
+  productToEditId: number;
   isEdit: boolean = false;
   constructor(
     private formBuilder: UntypedFormBuilder,
@@ -33,9 +33,10 @@ export class AddOrEditProductComponent implements OnInit {
     });
 
     this._productsService.followProduct().subscribe(product =>{
+      console.log("product was changed: ", product);
       if(product){
-        this.productToEdit = product;
-        this.editProduct(product);
+        this.productToEditId = product.id;
+        this.initForm(product);
       }
     })
 
@@ -48,11 +49,12 @@ export class AddOrEditProductComponent implements OnInit {
   }
 
   goBackStartScreen(): void{
+    this._productsService.setProduct(null);
     this.router.navigate(['/start-screen/before-shopping']);
   }
 
 
-  editProduct(product): void{
+  initForm(product): void{
     this.productForm.setValue({
       productName: product.name,
       category: product.categoryId,
@@ -65,6 +67,7 @@ export class AddOrEditProductComponent implements OnInit {
   clear(): void{
     this.productForm.reset();
     this.isEdit = false;
+    this._productsService.setProduct(null);
   }
 
   addNewProductDetailsToServer(): void{
@@ -77,7 +80,7 @@ export class AddOrEditProductComponent implements OnInit {
       imgUrl: this.productData.imgUrl
     }
     if(this.isEdit){
-      productDetailsToBeSent.id = this.productToEdit.id;
+      productDetailsToBeSent.id = this.productToEditId;
       this._productsService.editProduct(productDetailsToBeSent);
     }
     else{

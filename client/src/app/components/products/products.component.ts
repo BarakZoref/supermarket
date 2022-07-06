@@ -22,28 +22,22 @@ export class ProductsComponent implements OnInit {
   amountOfProductError: boolean = false;
   currentUser: IUser;
   categories: ICategory[];
-  // private currentCart: ICart;
 
   constructor(
     public _categoriesService: CategoriesService,
     public _productsService: ProductsService,
     public _cartItemsService: CartItemsService,
     public _usersService: UsersService
-    // public _cartService: CartService
   ) { }
 
   ngOnInit(): void {
     this._categoriesService.followCategories().subscribe(categories=>{
       this.categories = categories;
     });
-    // this._categoriesService.getAllCategories();
     this._productsService.getAllProducts();
     this._usersService.followCurrentUser().subscribe(newUser=>{
       this.currentUser = newUser;
     });
-    // this._cartService.followCurrentCart().subscribe(newCart=>{
-    //   this.currentCart = newCart
-    // })
   }
 
   onSpecificCategoryClicked(categoryId){
@@ -63,58 +57,3 @@ export class ProductsComponent implements OnInit {
     this._productsService.setProduct(product);
   }
 }
-//   onMinusButtonClicked(){
-//     if(this.amountOfProduct<=0){
-//       this.amountOfProduct = 0;
-//     }
-//     else if(this.amountOfProduct>10){
-//       this.amountOfProduct = 10;
-//     }
-//     else{
-//       this.amountOfProduct--;
-//     }
-//   }
-
-//   onPlusButtonClicked(){
-//     if(this.amountOfProduct<0){
-//       this.amountOfProduct = 0;
-//     }
-//     else if(this.amountOfProduct>=10){
-//       this.amountOfProduct = 10;
-//     }
-//     else{
-//       this.amountOfProduct++;
-//     }
-//   }
-
-//   onChooseAmountOfProductClicked(){
-//     if(this.amountOfProduct == 0){
-//       this.displayModal = false;
-//       return;
-//     }
-//     else if(this.amountOfProduct>0 && this.amountOfProduct<=10){
-//       //TODO:
-//       const cartItem= this._cartItemsService.cartItems.find((cartItem) => cartItem.productId==this.currentProductId);
-//       if(!cartItem){
-//         this._cartItemsService.addToCart(
-//           {
-//             productId: this.currentProductId,
-//             quantity: this.amountOfProduct,
-//             cartId: this.currentCart.id
-//           });
-//       }
-//       else{
-//         this._cartItemsService.updateCartItemQuantity(
-//           {
-//             quantity: cartItem.quantity + this.amountOfProduct,
-//             cartItemId: cartItem.id
-//           }
-//         )
-//       }
-//       this.displayModal = false;
-//     }
-//     this._cartItemsService.getCartItems(this.currentCart.id);
-//     this.amountOfProduct = 0;
-//   }
-
-// }

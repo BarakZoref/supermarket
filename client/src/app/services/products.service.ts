@@ -32,7 +32,6 @@ export class ProductsService {
     this._http.get<IProduct[]>(this.baseUrl)
       .subscribe((products) => {
         this.products = products
-        console.log(this.products)
       },
         err => {
           console.log(err);
@@ -44,7 +43,6 @@ export class ProductsService {
     this._http.get<any>(this.baseUrl + 'amount_of_products')
       .subscribe((serverResponse) => {
         this.amountOfProducts = serverResponse[0].amountOfProducts;
-        console.log(this.amountOfProducts)
       },
         err => {
           console.log(err);
@@ -55,7 +53,6 @@ export class ProductsService {
     this._http.get<IProduct[]>(this.baseUrl+categoryId)
     .subscribe((products) => {
       this.products = products
-      console.log(this.products)
     },
       err => {
         console.log(err);
@@ -89,7 +86,6 @@ export class ProductsService {
     this._http.get<IProduct[]>(this.baseUrl)
       .subscribe((products) => {
         this.products = products.filter(product=>product.name.toUpperCase().startsWith(input.toUpperCase()));
-        console.log(this.products)
       },
         err => {
           console.log(err);
