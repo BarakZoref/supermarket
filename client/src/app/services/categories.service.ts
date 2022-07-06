@@ -9,6 +9,8 @@ import ICategory from '../models/icategory.model';
 })
 export class CategoriesService {
   private categoriesSubject = new BehaviorSubject<ICategory[]>(null);
+  selectedCategory: number = 0;
+
   constructor(
     public _http: HttpClient,
     private _messageService: MessageService

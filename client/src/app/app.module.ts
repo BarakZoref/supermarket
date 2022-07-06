@@ -32,6 +32,8 @@ import {InputMaskModule} from 'primeng/inputmask';
 import { AddOrEditProductComponent } from './components/add-or-edit-product/add-or-edit-product.component';
 import { MessagesModule } from 'primeng/messages';
 import { MessageService } from 'primeng/api';
+import {TabMenuModule} from 'primeng/tabmenu';
+import { TabViewModule } from 'primeng/tabview';
 
 
 
@@ -69,7 +71,9 @@ import { MessageService } from 'primeng/api';
     DialogModule,
     CalendarModule,
     InputMaskModule,
-    MessagesModule
+    MessagesModule,
+    TabMenuModule,
+    TabViewModule
   ],
   providers: [    { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true }, MessageService  ],
   bootstrap: [AppComponent]

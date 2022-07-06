@@ -1,6 +1,16 @@
-  <div>
+  <!-- <div>
     <a class="category" (click)=" onAllProductsCategoryClicked()">All Products</a>
     <a class="category" (click)=" onSpecificCategoryClicked(category.id)" *ngFor="let category of categories">{{category.name}}</a>
+  </div> -->
+
+
+  <div class="navbar">
+    <p-tabView
+      class="nav-bar" [scrollable]="true" [(activeIndex)]="_categoriesService.selectedCategory"
+      (onChange)="onSelectedCategoryClicked($event)" *ngIf="categories.length != 0" >
+      <p-tabPanel *ngFor="let category of categories" [header]="category?.name">
+      </p-tabPanel>
+    </p-tabView>
   </div>
   <div class="products">
     <div class="product" *ngFor="let product of _productsService.products">

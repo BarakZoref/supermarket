@@ -21,7 +21,7 @@ export class ProductsComponent implements OnInit {
   productToAdd: IProduct;
   amountOfProductError: boolean = false;
   currentUser: IUser;
-  categories: ICategory[];
+  categories: ICategory[] = [{id:0, name: 'All'}]
 
   constructor(
     public _categoriesService: CategoriesService,
@@ -32,21 +32,21 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit(): void {
     this._categoriesService.followCategories().subscribe(categories=>{
-      this.categories = categories;
-    });
+        for (const category of categories) {this.categories.push(category)}
+      });
     this._productsService.getAllProducts();
     this._usersService.followCurrentUser().subscribe(newUser=>{
       this.currentUser = newUser;
     });
   }
 
-  onSpecificCategoryClicked(categoryId){
-    this._productsService.getProductsByCategoryId(categoryId)
-  }
+  // onSpecificCategoryClicked(categoryId){
+  //   this._productsService.getProductsByCategoryId(categoryId)
+  // }
 
-  onAllProductsCategoryClicked(){
-    this._productsService.getAllProducts();
-  }
+  // onAllProductsCategoryClicked(){
+  //   this._productsService.getAllProducts();
+  // }
 
   onAddToCartClicked(productToAdd){
     this.productToAdd = productToAdd;
@@ -55,5 +55,20 @@ export class ProductsComponent implements OnInit {
 
   onEditProductClicked(product){
     this._productsService.setProduct(product);
+  }
+
+
+  onSelectedCategoryClicked = (event: any) => {
+    let selectedCategoryValue = event.originalEvent.target.innerText;
+    let selectedCategory = this.categories.find((category)=> {
+      return category.name == selectedCategoryValue
+    })
+    if(selectedCategory.name =="All"){
+      this._productsService.getAllProducts();
+    }
+    else{
+      this._productsService.getProductsByCategoryId(selectedCategory.id)
+    }
+
   }
 }

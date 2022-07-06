@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import IUser from 'src/app/models/iuser.model';
+import { CategoriesService } from 'src/app/services/categories.service';
 import { ProductsService } from 'src/app/services/products.service';
 import { UsersService } from 'src/app/services/users.service';
 
@@ -16,7 +17,8 @@ export class HeaderComponent implements OnInit {
   constructor(
     public router: Router,
     public _usersService: UsersService,
-    public _productsService: ProductsService
+    public _productsService: ProductsService,
+    private _categoriesService: CategoriesService
      ) { }
 
   ngOnInit(): void {
@@ -35,6 +37,7 @@ export class HeaderComponent implements OnInit {
 
   onSearchChanged(input): void{
     this._productsService.getProductsBySearchInput(input);
+    this._categoriesService.selectedCategory = 0;
     // this._productsService.products = this._productsService.products.filter((product)=>product.name.startsWith(input))
   }
 
