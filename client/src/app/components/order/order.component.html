@@ -3,7 +3,7 @@
     <input class="cart-item-search form-control mr-sm-2" type="search" placeholder="Search product" aria-label="Search">
     <div class="cart-items">
       <div class="cart-item" *ngFor="let cartItem of _cartItemsService.cartItems">
-        <img class="cart-item-img" src="{{ cartItem.imgUrl }}" alt="" />
+        <img class="cart-item-img" src="{{'/assets/images/' +  cartItem.imgUrl }}" alt="" />
         <div>
           {{ cartItem.name }} X {{ cartItem.quantity }}<br />
           {{ cartItem.unitPrice * cartItem.quantity | currency: "ILS" }}
