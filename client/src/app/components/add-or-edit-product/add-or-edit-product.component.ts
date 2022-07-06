@@ -5,6 +5,7 @@ import { CategoriesService } from 'src/app/services/categories.service';
 import ICategory from 'src/app/models/icategory.model';
 import IProduct from 'src/app/models/iproduct.model';
 import { ProductsService } from 'src/app/services/products.service';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -19,6 +20,9 @@ export class AddOrEditProductComponent implements OnInit {
   categories: ICategory[];
   productToEditId: number;
   isEdit: boolean = false;
+
+  categoriesSubscription: Subscription;
+  productsSubscription: Subscription;
   constructor(
     private formBuilder: UntypedFormBuilder,
     private _categoriesService: CategoriesService,
@@ -28,12 +32,11 @@ export class AddOrEditProductComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this._categoriesService.followCategories().subscribe(categories=>{
+    this.categoriesSubscription = this._categoriesService.followCategories().subscribe(categories=>{
       this.categories = categories;
     });
 
-    this._productsService.followProduct().subscribe(product =>{
-      console.log("product was changed: ", product);
+    this.productsSubscription = this._productsService.followProduct().subscribe(product =>{
       if(product){
         this.productToEditId = product.id;
         this.initForm(product);
@@ -86,6 +89,11 @@ export class AddOrEditProductComponent implements OnInit {
     else{
       this._productsService.addProduct(productDetailsToBeSent);
     }
+  }
+
+  ngOnDestroy(): void{
+    this.categoriesSubscription.unsubscribe();
+    this.productsSubscription.unsubscribe();
   }
 
 }
