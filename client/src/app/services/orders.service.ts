@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { MessageService } from 'primeng/api';
 import { Observable } from 'rxjs';
 import IOrder from '../models/iorder.model';
 
@@ -12,7 +13,8 @@ export class OrdersService {
   busyDays: Array<Date> = new Array<Date>();
   private baseUrl: string = "http://localhost:3001/orders/"
   constructor(
-    public _http: HttpClient
+    public _http: HttpClient,
+    private _messageService: MessageService
   ) { }
 
   public getAmountOfOrders(): void {
@@ -23,7 +25,7 @@ export class OrdersService {
       },
         err => {
           console.log(err);
-          alert("cannot get amount of orders");
+          this._messageService.add({ key: 'appToast', severity: 'error', summary: 'Error', detail: 'cannot get amount of orders' });
         })
   }
 
@@ -33,7 +35,7 @@ export class OrdersService {
       },
         err => {
           console.log(err);
-          alert("cannot add new order");
+          this._messageService.add({ key: 'appToast', severity: 'error', summary: 'Error', detail: 'cannot add new order' });
         })
   }
 
@@ -48,7 +50,7 @@ export class OrdersService {
       },
         err => {
           console.log(err);
-          alert("cannot add new order");
+          this._messageService.add({ key: 'appToast', severity: 'error', summary: 'Error', detail: 'cannot get busy days' });
         })
   }
 
@@ -60,7 +62,7 @@ export class OrdersService {
     },
       err => {
         console.log(err);
-        alert("cannot add new order");
+        this._messageService.add({ key: 'appToast', severity: 'error', summary: 'Error', detail: 'cannot get last order date' });
       })
   }
 

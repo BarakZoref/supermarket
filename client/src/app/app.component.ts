@@ -1,4 +1,5 @@
 import { Component, OnInit} from '@angular/core';
+import { MessageService } from 'primeng/api';
 import { CartItemsService } from './services/cart-items.service';
 import { CartService } from './services/cart.service';
 import { OrdersService } from './services/orders.service';
@@ -19,6 +20,7 @@ export class AppComponent {
     // private _cartItemsService: CartItemsService,
     // private _cartService: CartService
     private _stateService: StateService,
+    private _messageService: MessageService
     ) {}
 
 

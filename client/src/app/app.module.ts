@@ -30,6 +30,8 @@ import { AddOrEditCartItemComponent } from './components/add-or-edit-cart-item/a
 import {CalendarModule} from 'primeng/calendar';
 import {InputMaskModule} from 'primeng/inputmask';
 import { AddOrEditProductComponent } from './components/add-or-edit-product/add-or-edit-product.component';
+import { MessagesModule } from 'primeng/messages';
+import { MessageService } from 'primeng/api';
 
 
 
@@ -66,9 +68,10 @@ import { AddOrEditProductComponent } from './components/add-or-edit-product/add-
     DropdownModule,
     DialogModule,
     CalendarModule,
-    InputMaskModule
+    InputMaskModule,
+    MessagesModule
   ],
-  providers: [    { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true }  ],
+  providers: [    { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true }, MessageService  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

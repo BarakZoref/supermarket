@@ -14,7 +14,7 @@ export class RegisterStepTwoComponent implements OnInit {
   registerUserData: any = { city: "", street: "", firstName: "", lastName: "" };
   userRegisterForm: UntypedFormGroup;
   cities: string[];
-  displayModal: boolean = false;
+  // displayModal: boolean = false;
 
   // selectedCity: string;
   constructor(
@@ -46,7 +46,7 @@ export class RegisterStepTwoComponent implements OnInit {
     console.log(this._usersService.userRegisterData);
 
     this._usersService.register();
-    this.displayModal = true;
+    // this.displayModal = true;
     // this.router.navigate(['']);
   }
 

@@ -10,6 +10,7 @@ import { CategoriesService } from 'src/app/services/categories.service';
 import { OrdersService } from 'src/app/services/orders.service';
 import { UsersService } from 'src/app/services/users.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,7 @@ export class LoginComponent implements OnInit {
 
   userLoginForm: UntypedFormGroup;
 
-  isLoginFail: boolean = false;
+  // isLoginFail: boolean = false;
 
   constructor(
     private router: Router,
@@ -30,7 +31,8 @@ export class LoginComponent implements OnInit {
     private _cartService: CartService,
     public _ordersService: OrdersService,
     // public _categoriesService: CategoriesService,
-    public _cartItemsService: CartItemsService
+    public _cartItemsService: CartItemsService,
+    private _messageService: MessageService
   ) { }
 
   ngOnInit(): void {
@@ -40,8 +42,8 @@ export class LoginComponent implements OnInit {
       password: [this.loginUserData.password, [Validators.required, Validators.minLength(6), Validators.maxLength(10)]]
     })
 
-    combineLatest(this.userLoginForm.get('userName').valueChanges, this.userLoginForm.get('password').valueChanges)
-      .subscribe(p => this.isLoginFail = false);
+    // combineLatest(this.userLoginForm.get('userName').valueChanges, this.userLoginForm.get('password').valueChanges)
+    //   .subscribe(p => this.isLoginFail = false);
 
   }
 
@@ -69,11 +71,13 @@ export class LoginComponent implements OnInit {
           this._cartService.setCurrentCart(cartFromServer);
         }
       }
+      this._messageService.add({ key: 'appToast', severity: 'success', summary: 'Login Success', detail: 'You logged in successfuly!' });
       this.router.navigate(['/start-screen/before-shopping']);
     },
       error => {
-        console.log(error)
-        this.isLoginFail = true;
+        console.log(error);
+        this._messageService.add({ key: 'appToast', severity: 'error', summary: 'Login Failed', detail: 'password is incorrect or user name doesn\'t exists' });
+        // this.isLoginFail = true;
       }
     )
   }

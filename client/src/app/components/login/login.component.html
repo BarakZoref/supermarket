@@ -49,11 +49,11 @@
       Maximum length is 10 characters
     </div>
   </div>
-  <div class="errors-div" *ngIf="isLoginFail">
+  <!-- <div class="errors-div" *ngIf="isLoginFail">
     password is incorrect or user name doesn't exists
-  </div>
+  </div> -->
   <br><br>
-  <p-button [disabled]="userLoginForm.invalid || isLoginFail" type="submit">Submit</p-button>
+  <p-button [disabled]="userLoginForm.invalid" type="submit">Submit</p-button>
 </form>
 <br>
 <a routerLink="/start-screen/register/step-one">not registered? click here</a>

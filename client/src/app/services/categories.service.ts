@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { MessageService } from 'primeng/api';
 import { BehaviorSubject, Observable } from 'rxjs';
 import ICategory from '../models/icategory.model';
 
@@ -9,7 +10,8 @@ import ICategory from '../models/icategory.model';
 export class CategoriesService {
   private categoriesSubject = new BehaviorSubject<ICategory[]>(null);
   constructor(
-    public _http: HttpClient
+    public _http: HttpClient,
+    private _messageService: MessageService
   ) { }
 
 
@@ -25,7 +27,7 @@ export class CategoriesService {
       },
         err => {
           console.log(err);
-          alert("cannot get categories");
+          this._messageService.add({ key: 'appToast', severity: 'error', summary: 'Error', detail: 'cannot get categories' });
         })
   }
 }

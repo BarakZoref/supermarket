@@ -7,6 +7,8 @@ import IUserLoginData from '../models/iuser-login-data.model';
 import IUser from '../models/iuser.model';
 import IUserRegisterData from '../models/iuser-register-data.model';
 import { CartService } from './cart.service';
+import { MessageService } from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +16,9 @@ import { CartService } from './cart.service';
 export class UsersService{
 
   constructor(
-    private _http: HttpClient
+    private _http: HttpClient,
+    private _messageService: MessageService,
+    private router: Router,
   ) {
     let userDetails: string = sessionStorage.getItem("userDetails");
     if (userDetails) {
@@ -58,10 +62,12 @@ export class UsersService{
     this._http.post<IServerResponse>(this.baseUrl, this.userRegisterData)
       .subscribe(response => {
         console.log(response.msg);
+        this._messageService.add({ key: 'appToast', severity: 'success', summary: 'Registration Success', detail: 'Your Registration has been successfully completed.' });
+        this.router.navigate(['']);
       },
         error => {
           console.log(error);
-          alert('Register failed');
+          this._messageService.add({ key: 'appToast', severity: 'error', summary: 'Error', detail: 'User already registered.' });
         }
       )
   }

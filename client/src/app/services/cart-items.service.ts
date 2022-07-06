@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { MessageService } from 'primeng/api';
 import ICartItem from '../models/icart-item.model';
 import IServerResponse from '../models/iserver-response.model';
 
@@ -13,7 +14,8 @@ export class CartItemsService {
 
   private baseUrl = 'http://localhost:3001/cart_items/'
   constructor(
-    public _http: HttpClient
+    public _http: HttpClient,
+    private _messageService: MessageService
   ) { }
 
    public addToCart(newCartItem): void{
@@ -24,7 +26,7 @@ export class CartItemsService {
     },
       error => {
         console.log(error);
-        alert('add cart failed');
+        this._messageService.add({ key: 'appToast', severity: 'error', summary: 'Error', detail: 'Add cart item failed.' });
       }
     )
   }
@@ -37,8 +39,7 @@ export class CartItemsService {
     },
       error => {
         console.log(error);
-        alert('deleting cart item failed');
-      }
+        this._messageService.add({ key: 'appToast', severity: 'error', summary: 'Error', detail: 'Deleting cart item failed' });      }
     )
   }
 
@@ -50,7 +51,7 @@ export class CartItemsService {
     },
       error => {
         console.log(error);
-        alert('update cart quantity failed');
+        this._messageService.add({ key: 'appToast', severity: 'error', summary: 'Error', detail: 'update cart quantity failed' });
       }
     )
   }
@@ -64,7 +65,7 @@ export class CartItemsService {
     },
       error => {
         console.log(error);
-        alert('delete all cart items failed');
+        this._messageService.add({ key: 'appToast', severity: 'error', summary: 'Error', detail: 'delete all cart items failed' });
       }
     )
   }
@@ -77,11 +78,10 @@ export class CartItemsService {
       for(let cartItem of cartItems){
         this.totalPrice+=cartItem.quantity*cartItem.unitPrice;
       }
-      console.log("cart items: ", this.cartItems)
     },
       error => {
         console.log(error);
-        alert('delete all cart items failed');
+        this._messageService.add({ key: 'appToast', severity: 'error', summary: 'Error', detail: 'get cart items failed' });
       }
     )
   }

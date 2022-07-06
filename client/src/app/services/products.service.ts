@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { MessageService } from 'primeng/api';
 import { BehaviorSubject, Observable } from 'rxjs';
 import IProductAddDetails from '../models/iproduct-add-details.model';
 import IProductEditDetails from '../models/iproduct-edit-details.model';
@@ -16,7 +17,8 @@ export class ProductsService {
 
   private baseUrl: string = "http://localhost:3001/products/"
   constructor(
-    public _http: HttpClient
+    public _http: HttpClient,
+    private _messageService: MessageService
   ) { }
 
 
@@ -35,7 +37,7 @@ export class ProductsService {
       },
         err => {
           console.log(err);
-          alert("Cannot get products")
+          this._messageService.add({ key: 'appToast', severity: 'error', summary: 'Error', detail: 'Cannot get products' });
         })
   }
 
@@ -46,7 +48,7 @@ export class ProductsService {
       },
         err => {
           console.log(err);
-          alert("Cannot get products")
+          this._messageService.add({ key: 'appToast', severity: 'error', summary: 'Error', detail: 'Cannot get amount of products' });
         })
   }
   public getProductsByCategoryId(categoryId: number): void{
@@ -56,7 +58,7 @@ export class ProductsService {
     },
       err => {
         console.log(err);
-        alert("Cannot get products")
+        this._messageService.add({ key: 'appToast', severity: 'error', summary: 'Error', detail: 'Cannot get products' });
       })
   }
 
@@ -67,7 +69,7 @@ export class ProductsService {
     },
       err => {
         console.log(err);
-        alert("Cannot edit product")
+        this._messageService.add({ key: 'appToast', severity: 'error', summary: 'Error', detail: 'Cannot edit product' });
       })
   }
 
@@ -78,7 +80,7 @@ export class ProductsService {
     },
       err => {
         console.log(err);
-        alert("Cannot get products")
+        this._messageService.add({ key: 'appToast', severity: 'error', summary: 'Error', detail: 'Cannot add product' });
       })
   }
 
@@ -89,7 +91,7 @@ export class ProductsService {
       },
         err => {
           console.log(err);
-          alert("Cannot get products")
+          this._messageService.add({ key: 'appToast', severity: 'error', summary: 'Error', detail: 'Cannot get products' });
         })
   }
 }
