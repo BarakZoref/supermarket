@@ -22,9 +22,12 @@ const routes: Routes = [
         children: [
           {path: 'step-one', component: RegisterStepOneComponent},
           {path: 'step-two', component: RegisterStepTwoComponent},
+          { path: "", redirectTo: "step-one", pathMatch: "full" },
         ]
       },
-      {path: 'before-shopping', component: BeforeShoppingComponent}
+      {path: 'before-shopping', canActivate: [LoginGuard],  component: BeforeShoppingComponent},
+      {path: "", redirectTo: "login", pathMatch: "full" },
+
     ],
   },
   { path: 'store', canActivate: [LoginGuard], component: StoreComponent },
