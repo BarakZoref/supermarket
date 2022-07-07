@@ -34,6 +34,9 @@ export class RegisterStepTwoComponent implements OnInit {
 
     this.cities = this._stateService.cities;
 
+    let registrationDetailsAsString: string = sessionStorage.getItem("registrationDetails");
+    this._usersService.userRegisterData = JSON.parse(registrationDetailsAsString);
+
   }
 
   register(): void{
@@ -43,8 +46,6 @@ export class RegisterStepTwoComponent implements OnInit {
     this._usersService.userRegisterData.street = this.registerUserData.street;
     this._usersService.userRegisterData.firstName = this.registerUserData.firstName;
     this._usersService.userRegisterData.lastName = this.registerUserData.lastName;
-    console.log(this._usersService.userRegisterData);
-
     this._usersService.register();
     // this.displayModal = true;
     // this.router.navigate(['']);

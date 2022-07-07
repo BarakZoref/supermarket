@@ -62,6 +62,7 @@ export class UsersService{
     this._http.post<IServerResponse>(this.baseUrl, this.userRegisterData)
       .subscribe(response => {
         console.log(response.msg);
+        sessionStorage.removeItem("registrationDetails");
         this._messageService.add({ key: 'appToast', severity: 'success', summary: 'Registration Success', detail: 'Your Registration has been successfully completed.' });
         this.router.navigate(['']);
       },
