@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Subscription } from 'rxjs';
 import ICartItem from 'src/app/models/icart-item.model';
 import ICart from 'src/app/models/icart.model';
 import IProduct from 'src/app/models/iproduct.model';
@@ -27,6 +28,7 @@ export class AddOrEditCartItemComponent implements OnInit {
   amountOfProduct: number;
   amountOfProductError: boolean = false;
   private currentCart: ICart;
+  cartsSubscription: Subscription;
 
   constructor(
     public _cartItemsService: CartItemsService,
@@ -58,9 +60,13 @@ export class AddOrEditCartItemComponent implements OnInit {
     else{//if the input is from the edit
       this.amountOfProduct = this.cartItem.quantity;
     }
-    this._cartService.followCurrentCart().subscribe(newCart=>{
+    this.cartsSubscription = this._cartService.followCurrentCart().subscribe(newCart=>{
       this.currentCart = newCart;
     })
+  }
+
+  ngOnDestroy(): void{
+    this.cartsSubscription.unsubscribe();
   }
 
   onMinusButtonClicked(){

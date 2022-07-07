@@ -8,6 +8,7 @@ import { OrdersService } from 'src/app/services/orders.service';
 import { UsersService } from 'src/app/services/users.service';
 import { saveAs } from 'file-saver';
 import { StateService } from 'src/app/services/state.service';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -25,6 +26,8 @@ export class OrderComponent implements OnInit {
   displayModal: boolean = false;
   currentUser: IUser;
 
+  usersSubscription: Subscription;
+
   constructor(
     public _cartItemsService: CartItemsService,
     public _ordersService: OrdersService,
@@ -36,7 +39,7 @@ export class OrderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this._usersService.followCurrentUser().subscribe(newUser=>{
+    this. usersSubscription =this._usersService.followCurrentUser().subscribe(newUser=>{
       this.currentUser = newUser;
     });
     this.userOrderForm = this.formBuilder.group({
@@ -51,6 +54,10 @@ export class OrderComponent implements OnInit {
     this.minDate = new Date();
     this._ordersService.getBusyDays();
     this.invalidDates = this._ordersService.busyDays;
+  }
+
+  ngOnDestroy(): void{
+    this.usersSubscription.unsubscribe();
   }
 
   order(): void{

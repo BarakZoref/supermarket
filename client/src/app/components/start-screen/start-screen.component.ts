@@ -6,6 +6,7 @@ import { CartService } from 'src/app/services/cart.service';
 import { UsersService } from 'src/app/services/users.service';
 import IUser from 'src/app/models/iuser.model';
 import ICart from 'src/app/models/icart.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-start-screen',
@@ -22,15 +23,25 @@ export class StartScreenComponent implements OnInit {
     public _usersService: UsersService
   ) { }
 
+  subscriptions: Subscription[] = [];
+
+
   ngOnInit(): void {
     this._productsService.getAmountOfProducts();
     this._ordersService.getAmountOfOrders();
-    this._usersService.followCurrentUser().subscribe(newUser=>{
+    let usersSubscription = this._usersService.followCurrentUser().subscribe(newUser=>{
       this.currentUser = newUser;
     });
-    this._cartService.followCurrentCart().subscribe(newCart=>{
+    let cartsSubscription = this._cartService.followCurrentCart().subscribe(newCart=>{
       this.currentCart = newCart
     })
+    this.subscriptions.push(usersSubscription, cartsSubscription);
+  }
+
+  ngOnDestroy(): void{
+    for(let sub of this.subscriptions){
+      sub.unsubscribe();
+    }
   }
 
   currentUser: IUser;

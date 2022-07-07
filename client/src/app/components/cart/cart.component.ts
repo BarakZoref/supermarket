@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { Subscription } from 'rxjs';
 import ICartItem from 'src/app/models/icart-item.model';
 import ICart from 'src/app/models/icart.model';
 import { CartItemsService } from 'src/app/services/cart-items.service';
@@ -15,6 +16,8 @@ export class CartComponent implements OnInit {
 
   currentCartItem: ICartItem;
   displayModal: boolean = false;
+  currentCart: ICart;
+  cartsSubscription: Subscription;
 
   constructor(
     public _cartItemsService: CartItemsService,
@@ -24,11 +27,14 @@ export class CartComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this._cartService.followCurrentCart().subscribe(newCart=>{
+    this.cartsSubscription = this._cartService.followCurrentCart().subscribe(newCart=>{
       this.currentCart = newCart;
     })
   }
-  currentCart: ICart;
+
+  ngOnDestroy(): void{
+    this.cartsSubscription.unsubscribe();
+  }
 
   deleteCartItem(cartItemId): void{
     this._cartItemsService.deleteCartItem(cartItemId, this.currentCart.id);

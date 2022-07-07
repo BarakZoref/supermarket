@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import IUser from 'src/app/models/iuser.model';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { ProductsService } from 'src/app/services/products.service';
@@ -13,6 +14,8 @@ import { UsersService } from 'src/app/services/users.service';
 export class HeaderComponent implements OnInit {
 
   productInput: string;
+  usersSubscription: Subscription;
+  currentUser: IUser;
 
   constructor(
     public router: Router,
@@ -22,12 +25,15 @@ export class HeaderComponent implements OnInit {
      ) { }
 
   ngOnInit(): void {
-    this._usersService.followCurrentUser().subscribe(newUser=>{
+    this.usersSubscription = this._usersService.followCurrentUser().subscribe(newUser=>{
       this.currentUser = newUser;
     })
   }
 
-  currentUser: IUser;
+  ngOnDestroy(): void{
+    this.usersSubscription.unsubscribe();
+  }
+
 
   onLogOutClicked(): void{
     sessionStorage.removeItem("userDetails");

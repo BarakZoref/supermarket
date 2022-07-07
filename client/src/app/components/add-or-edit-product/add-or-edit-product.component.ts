@@ -20,9 +20,8 @@ export class AddOrEditProductComponent implements OnInit {
   categories: ICategory[];
   productToEditId: number;
   isEdit: boolean = false;
+  subscriptions: Subscription[] = []
 
-  categoriesSubscription: Subscription;
-  productsSubscription: Subscription;
   constructor(
     private formBuilder: UntypedFormBuilder,
     private _categoriesService: CategoriesService,
@@ -32,16 +31,18 @@ export class AddOrEditProductComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.categoriesSubscription = this._categoriesService.followCategories().subscribe(categories=>{
+    let categoriesSubscription = this._categoriesService.followCategories().subscribe(categories=>{
       this.categories = categories;
     });
 
-    this.productsSubscription = this._productsService.followProduct().subscribe(product =>{
+    let productsSubscription = this._productsService.followProduct().subscribe(product =>{
       if(product){
         this.productToEditId = product.id;
         this.initForm(product);
       }
     })
+
+    this.subscriptions.push(categoriesSubscription, productsSubscription);
 
     this.productForm = this.formBuilder.group({
       productName: [this.productData.productName, [Validators.required, Validators.maxLength(30)]],
@@ -50,6 +51,13 @@ export class AddOrEditProductComponent implements OnInit {
       imgUrl: [this.productData.imgUrl,[Validators.required, Validators.maxLength(100)]]
     })
   }
+
+  ngOnDestroy(): void{
+    for(let sub of this.subscriptions){
+      sub.unsubscribe();
+    }
+  }
+
 
   goBackStartScreen(): void{
     this._productsService.setProduct(null);
@@ -92,9 +100,5 @@ export class AddOrEditProductComponent implements OnInit {
     this.clear();
   }
 
-  ngOnDestroy(): void{
-    this.categoriesSubscription.unsubscribe();
-    this.productsSubscription.unsubscribe();
-  }
 
 }

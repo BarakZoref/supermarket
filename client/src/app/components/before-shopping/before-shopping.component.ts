@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import ICart from 'src/app/models/icart.model';
 import IUser from 'src/app/models/iuser.model';
 import { UsersService } from 'src/app/services/users.service';
@@ -15,6 +16,7 @@ import { OrdersService } from '../../services/orders.service';
 export class BeforeShoppingComponent implements OnInit {
   currentUser: IUser;
   currentCart: ICart;
+  subscriptions: Subscription[] = [];
   constructor(
     public _cartService: CartService,
     public _ordersService: OrdersService,
@@ -24,12 +26,20 @@ export class BeforeShoppingComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this._cartService.followCurrentCart().subscribe(newCart=>{
+   let cartsSubscription = this._cartService.followCurrentCart().subscribe(newCart=>{
       this.currentCart = newCart;
     });
-    this._usersService.followCurrentUser().subscribe(newUser=>{
+    let usersSubscription = this._usersService.followCurrentUser().subscribe(newUser=>{
       this.currentUser = newUser;
     })
+
+    this.subscriptions.push(cartsSubscription, usersSubscription);
+  }
+
+  ngOnDestroy(): void{
+    for(let sub of this.subscriptions){
+      sub.unsubscribe();
+    }
   }
 
   onResumeShoppingButtonClicked(): void{

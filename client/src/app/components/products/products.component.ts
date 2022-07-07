@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import ICart from 'src/app/models/icart.model';
 import ICategory from 'src/app/models/icategory.model';
 import IProduct from 'src/app/models/iproduct.model';
@@ -22,6 +23,7 @@ export class ProductsComponent implements OnInit {
   amountOfProductError: boolean = false;
   currentUser: IUser;
   categories: ICategory[] = [{id:0, name: 'All'}]
+  subscriptions: Subscription[] = [];
 
   constructor(
     public _categoriesService: CategoriesService,
@@ -31,13 +33,21 @@ export class ProductsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this._categoriesService.followCategories().subscribe(categories=>{
+    let categoriesSubscription = this._categoriesService.followCategories().subscribe(categories=>{
         for (const category of categories) {this.categories.push(category)}
       });
     this._productsService.getAllProducts();
-    this._usersService.followCurrentUser().subscribe(newUser=>{
+    let usersSubscription = this._usersService.followCurrentUser().subscribe(newUser=>{
       this.currentUser = newUser;
     });
+
+    this.subscriptions.push(categoriesSubscription, usersSubscription);
+  }
+
+  ngOnDestroy(): void{
+    for(let sub of this.subscriptions){
+      sub.unsubscribe();
+    }
   }
 
   // onSpecificCategoryClicked(categoryId){
