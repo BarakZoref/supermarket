@@ -13,7 +13,7 @@
   <div class="bottom-div">
     <h4>Total: {{_cartItemsService.totalPrice | currency: "ILS"}}</h4>
     <button class="delete-all-items-button" (click)="deleteAllCartItems()" pButton type="button" label="Delete all items"></button>
-    <button class="order-button" pButton type="button" label="Order" (click)="this.router.navigate(['/order'])"></button>
+    <button class="order-button" pButton type="button" label="Order" (click)="onOrderButtonClicked()"></button>
   </div>
 </div>
 
