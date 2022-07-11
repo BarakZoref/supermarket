@@ -28,6 +28,8 @@ export class OrderComponent implements OnInit {
 
   usersSubscription: Subscription;
 
+  searchInput: string;
+
   constructor(
     public _cartItemsService: CartItemsService,
     public _ordersService: OrdersService,
