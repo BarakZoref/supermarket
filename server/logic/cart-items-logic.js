@@ -1,9 +1,14 @@
 const cartItemsDal = require('../dal/cart-items-dal');
 
 async function addToCart(cartItemDetails){
+    const isCartItemExistsInCart = await cartItemsDal.isCartItemExistsInCart(cartItemDetails);
+    if(isCartItemExistsInCart){
+        throw new Error("Error: cart item already exists in the cart")
+    }
     const cartItemId = await cartItemsDal.addToCart(cartItemDetails);
     return cartItemId;
 }
+
 
 async function deleteCartItem(cartItemId){
     await cartItemsDal.deleteCartItem(cartItemId);
