@@ -9,13 +9,16 @@ const cartItemsController = require('./controllers/cart-items-controller');
 const ordersController = require('./controllers/orders-controller');
 const loginFilter = require('./middleware/login-filter');
 
+const swaggerUi = require('swagger-ui-express');
+const swaggerFile = require('./swagger_output.json');
 
 
 server.use(cors({ origin: "http://localhost:4200"})); 
 // Extract the JSON from the body and create request.body object containing it: 
-server.use(loginFilter());
+// server.use(loginFilter());
 
 server.use(express.json());
+server.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 server.use("/users", usersController);
 server.use("/categories", categoriesController);
 server.use("/products", productsController);
@@ -24,3 +27,4 @@ server.use("/cart_items", cartItemsController);
 server.use("/orders", ordersController);
 
 server.listen(3001, () => console.log("Listening on http://localhost:3001"));
+
