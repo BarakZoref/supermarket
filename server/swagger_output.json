@@ -158,10 +158,10 @@
 				}
 			}
 		},
-		"/cart_item/{id}": {
+		"/cart_items/{id}": {
 			"delete": {
 				"tags": ["cart items"],
-				"summary": "Empty the cart",
+				"summary": "Delete cart item",
 				"parameters": [
 					{
 						"name": "id",
@@ -179,107 +179,10 @@
 						"schema": { "$ref": "#/definitions/40X Error" }
 					}
 				}
-			}
-		},
-		"/lists/cities": {
+			},
 			"get": {
-				"tags": ["lists"],
-				"description": "Returns a string[] of cities available in Israel.",
-				"responses": {
-					"200": {
-						"schema": { "type": "array", "items": { "type": "string", "example": "Jerusalem" } }
-					},
-					"500": {
-						"description": "Internal Server Error",
-						"schema": { "$ref": "#/definitions/Internal Server Error" }
-					}
-				}
-			}
-		},
-		"/lists/products-categories": {
-			"get": {
-				"tags": ["lists"],
-				"description": "Returns Product[] of all available products in database",
-				"responses": {
-					"200": {
-						"schema": { "type": "array", "items": { "$ref": "#/definitions/Product" } }
-					},
-					"500": {
-						"description": "Internal Server Error",
-						"schema": { "$ref": "#/definitions/Internal Server Error" }
-					}
-				}
-			}
-		},
-		"/lists/categories": {
-			"get": {
-				"tags": ["lists"],
-				"description": "Returns a string[] of categories available in the database.",
-				"responses": {
-					"200": {
-						"schema": { "type": "array", "items": { "type": "string", "example": "Dairy & Eggs" } }
-					},
-					"500": {
-						"description": "Internal Server Error",
-						"schema": { "$ref": "#/definitions/Internal Server Error" }
-					}
-				}
-			}
-		},
-		"/lists/product-search": {
-			"get": {
-				"tags": ["lists"],
-				"description": "Returns an array of all available products in database that match the query (case insensitive)",
-				"parameters": [
-					{
-						"name": "query",
-						"in": "query",
-						"type": "string"
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "Searching for milk ",
-						"schema": { "type": "array", "items": { "$ref": "#/definitions/Product" } }
-					},
-					"500": {
-						"description": "Internal Server Error",
-						"schema": { "$ref": "#/definitions/Internal Server Error" }
-					}
-				}
-			}
-		},
-		"/lists/order": {
-			"get": {
-				"tags": ["lists"],
-				"description": "Checks how many orders were placed for queried date. Accepts both *date* or *date-time*",
-				"parameters": [
-					{
-						"name": "date",
-						"in": "query",
-						"type": "date-time"
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "Valid request, returns integer of orders",
-						"schema": { "type": "object", "properties": { "orders": { "type": "integer", "enum": [0, 1, 2, 3] } } }
-					},
-					"400": {
-						"description": "Invalid date received",
-						"schema": { "$ref": "#/definitions/40X Error" }
-					},
-					"500": {
-						"description": "Internal Server Error",
-						"schema": { "$ref": "#/definitions/Internal Server Error" }
-					}
-				}
-			}
-		},
-		"/cart/{id}": {
-			"get": {
-				"tags": ["cart"],
-				"summary": "Tries to find a cart based on the id provided",
+				"tags": ["cart items"],
+				"summary": "Get all cart items",
 				"parameters": [
 					{
 						"name": "id",
@@ -290,104 +193,19 @@
 				],
 				"responses": {
 					"200": {
-						"schema": { "$ref": "#/definitions/Cart" }
+						"schema": { "type":"array", "items": { "$ref": "#/definitions/cart_item"} }
 					},
-					"401": {
-						"description": "Not logged in or not a user",
+					"600": {
+						"description": "Error",
 						"schema": { "$ref": "#/definitions/40X Error" }
-					},
-					"403": {
-						"description": "Logged user not allowed to receive other user's cart",
-						"schema": { "$ref": "#/definitions/40X Error" }
-					},
-					"404": {
-						"description": "Cart not found",
-						"schema": { "$ref": "#/definitions/40X Error" }
-					},
-					"500": {
-						"description": "Internal Server Error",
-						"schema": { "$ref": "#/definitions/Internal Server Error" }
-					}
-				},
-				"deprecated": true
-			}
-		},
-		"/cart/new": {
-			"put": {
-				"tags": ["cart"],
-				"responses": {
-					"200": {
-						"schema": { "$ref": "#/definitions/User WithoutItems" }
-					},
-					"400": {
-						"description": "Can't open a new cart since user already has an open one",
-						"schema": { "$ref": "#/definitions/40X Error" }
-					},
-					"401": {
-						"description": "Not logged in or not a user",
-						"schema": { "$ref": "#/definitions/40X Error" }
-					},
-					"500": {
-						"description": "Internal Server Error",
-						"schema": { "$ref": "#/definitions/Internal Server Error" }
 					}
 				}
 			}
 		},
-		"/cart/product/{productID}": {
+		"/cart_items/": {
 			"put": {
-				"tags": ["cart"],
-				"summary": "Change cart item",
-				"description": "Checks whether the item is already in the cart. If quantity is 0, proceeds to remove it. Otherwise, adds or updates accordingly.",
-				"parameters": [
-					{
-						"name": "productID",
-						"in": "path",
-						"required": true,
-						"type": "string"
-					},
-					{
-						"name": "quantity",
-						"in": "query",
-						"type": "integer",
-						"maximum": 50,
-						"minimum": 0,
-						"format": "int8",
-						"description": "Accepts if item is already in cart, otherwise can't be 0. min 0 max 50"
-					}
-				],
-				"responses": {
-					"200": {
-						"schema": { "$ref": "#/definitions/User WithoutOrderID" }
-					},
-					"400": {
-						"description": "Illegal quantity, or couldn't find item/cart",
-						"schema": { "$ref": "#/definitions/40X Error" }
-					},
-					"401": {
-						"description": "Not logged in or not a user",
-						"schema": { "$ref": "#/definitions/40X Error" }
-					},
-					"403": {
-						"description": "Can't change other user's cart",
-						"schema": { "$ref": "#/definitions/40X Error" }
-					},
-					"404": {
-						"description": "Cart doesn't exist",
-						"schema": { "$ref": "#/definitions/40X Error" }
-					},
-					"500": {
-						"description": "Internal Server Error",
-						"schema": { "$ref": "#/definitions/Internal Server Error" }
-					}
-				}
-			}
-		},
-		"/cart/pay": {
-			"post": {
-				"tags": ["cart"],
-				"summary": "Complete an open order",
-				"description": "",
+				"tags": ["cart items"],
+				"summary": "update cart item quantity",
 				"parameters": [
 					{
 						"name": "body",
@@ -395,18 +213,11 @@
 						"schema": {
 							"type": "object",
 							"properties": {
-								"lastFourCardDigits": {
-									"example": "1234"
+								"cartItemId": {
+									"example": 81
 								},
-								"city": {
-									"example": "Queens, New York City, New York"
-								},
-								"street": {
-									"example": "It's a secret 😶"
-								},
-								"date": {
-									"type": "string",
-									"format": "date-time"
+								"quantity": {
+									"example": 6
 								}
 							}
 						}
@@ -414,169 +225,107 @@
 				],
 				"responses": {
 					"200": {
-						"schema": {
-							"$ref": "#/definitions/User"
-						}
+						"description": "cart item quantity was updated successfuly"
 					},
-					"400": {
-						"description": "Missing or invalid parameters",
+					"600": {
+						"description": "Error",
 						"schema": { "$ref": "#/definitions/40X Error" }
-					},
-					"401": {
-						"description": "Not logged in or not a user",
-						"schema": { "$ref": "#/definitions/40X Error" }
-					},
-					"403": {
-						"description": "Can't change other user's cart",
-						"schema": { "$ref": "#/definitions/40X Error" }
-					},
-					"404": {
-						"description": "Cart doesn't exist",
-						"schema": { "$ref": "#/definitions/40X Error" }
-					},
-					"500": {
-						"description": "Internal Server Error",
-						"schema": { "$ref": "#/definitions/Internal Server Error" }
 					}
 				}
 			}
 		},
-		"/cart/receipt": {
-			"get": {
-				"tags": ["cart"],
-				"summary": "Get receipt for last purchase",
-				"produces": ["application/json", "text/plain; charset=utf-8"],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"example": "Your receipt is:\n1 X Milk\nCosting a total of: 8.9"
-					},
-					"401": {
-						"description": "Not logged in or not a user",
-						"schema": { "$ref": "#/definitions/40X Error" }
-					},
-					"403": {
-						"description": "Can't view receipt for incomplete order",
-						"schema": { "$ref": "#/definitions/40X Error" }
-					},
-					"500": {
-						"description": "Internal Server Error",
-						"schema": { "$ref": "#/definitions/Internal Server Error" }
-					}
-				}
-			}
-		},
-		"/admin/changeProduct/{id}": {
-			"put": {
-				"tags": ["admin"],
-				"description": "Permanently change an existing product's properties.",
-				"parameters": [
-					{
-						"name": "id",
-						"in": "path",
-						"required": true,
-						"type": "string"
-					},
-					{
-						"name": "body",
-						"in": "body",
-						"schema": {
-							"type": "object",
-							"properties": {
-								"payload": {
-									"$ref": "#/definitions/ProductWithoutID"
-								}
-							}
-						}
-					}
-				],
-				"responses": {
-					"200": {
-						"schema": { "type": "array", "items": { "$ref": "#/definitions/Product" } }
-					},
-					"401": {
-						"description": "Not logged in or not an admin",
-						"schema": { "$ref": "#/definitions/40X Error" }
-					},
-					"500": {
-						"description": "Internal Server Error",
-						"schema": { "$ref": "#/definitions/Internal Server Error" }
-					}
-				}
-			}
-		},
-		"/admin/newProduct": {
-			"post": {
-				"tags": ["admin"],
-				"description": "Save the sent payload as a new product in the database.",
-				"parameters": [
-					{
-						"name": "body",
-						"in": "body",
-						"schema": {
-							"type": "object",
-							"properties": {
-								"payload": {
-									"$ref": "#/definitions/ProductWithoutID"
-								}
-							}
-						}
-					}
-				],
-				"responses": {
-					"200": {
-						"schema": { "type": "array", "items": { "$ref": "#/definitions/Product" } }
-					},
-					"401": {
-						"description": "Not logged in or not an admin",
-						"schema": { "$ref": "#/definitions/40X Error" }
-					},
-					"500": {
-						"description": "Internal Server Error",
-						"schema": { "$ref": "#/definitions/Internal Server Error" }
-					}
-				}
-			}
-		},
-		"/admin/{id}": {
+		"/cart_items/by_cart_id/{id}": 
+		{
 			"delete": {
-				"tags": ["admin"],
-				"description": "Permanently delete product from database.",
+				"tags": ["cart items"],
+				"summary": "Delete all cart items",
 				"parameters": [
 					{
 						"name": "id",
 						"in": "path",
 						"required": true,
-						"type": "string"
+						"type": "integer"
 					}
 				],
 				"responses": {
 					"200": {
-						"schema": { "type": "array", "items": { "$ref": "#/definitions/Product" } }
+						"description": "all cart items was deleted succesfully from cart"
 					},
-					"401": {
-						"description": "Not logged in or not an admin",
+					"600": {
+						"description": "Error",
 						"schema": { "$ref": "#/definitions/40X Error" }
+					}
+				}
+			}
+		},
+		"/carts": {
+			"post": {
+				"tags": ["carts"],
+				"summary": "Add new cart",
+				"parameters": [
+					{
+						"name": "authorization",
+						"in": "header",
+						"required": true,
+						"type": "string",
+						"example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMDAwMDAwMCwicm9sZSI6InVzZXIiLCJpYXQiOjE2NTc3OTQyMDl9.wBticOTi8xYDk-YByzV7umhYviq0EKxZNVhS5nSHmv0"
+					}
+				],
+				"responses": {
+					"200": {
+						"schema": {"$ref": "#/definitions/cart"}
 					},
-					"500": {
-						"description": "Internal Server Error",
-						"schema": { "$ref": "#/definitions/Internal Server Error" }
+					"600": {
+						"description": "Error",
+						"schema": { "$ref": "#/definitions/40X Error" }
+					}
+				}
+			},
+			"get": {
+				"tags": ["carts"],
+				"summary": "Get last cart",
+				"parameters": [
+					{
+						"name": "authorization",
+						"in": "header",
+						"required": true,
+						"type": "string",
+						"example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMDAwMDAwMCwicm9sZSI6InVzZXIiLCJpYXQiOjE2NTc3OTQyMDl9.wBticOTi8xYDk-YByzV7umhYviq0EKxZNVhS5nSHmv0"
+					}
+				],
+				"responses": {
+					"200": {
+						"schema": {"$ref": "#/definitions/cart"}
+					},
+					"600": {
+						"description": "Error",
+						"schema": { "$ref": "#/definitions/40X Error" }
 					}
 				}
 			}
 		}
 	},
 	"definitions": {
-		"User Cart": {
+		"cart_item": {
 			"type": "object",
-			"required": ["_id", "userID", "total", "createdAt"],
-			"properties": {
-				"_id": { "type": "string", "example": "66fffee3dfca" },
-				"userID": { "type": "integer", "format": "int32", "example": "123456782" },
-				"total": { "type": "integer", "format": "decimal", "example": "105.52" },
-				"createdAt": { "type": "string", "format": "date-time" },
-				"items": { "type": "array", "items": { "$ref": "#/definitions/User CartItem" } },
-				"orderID": { "$ref": "#/definitions/Order" }
+			"properties": 
+			{
+				"id": { "type": "integer", "example": "97" },
+				"name": { "type": "string","example": "Cream Cheese" },
+				"unitPrice": { "type": "integer", "example": "105.52" },
+				"quantity": { "type": "integer", "example": "2" },
+				"imgUrl": { "type": "imgUrl", "example": "cream-cheese.png" },
+				"productId": { "type": "integer", "example": "3" },
+				"cartId": { "type": "integer", "example": "55" }
+			}
+		},
+		"cart": {
+			"type": "object",
+			"properties": 
+			{
+				"id": { "type": "integer", "example": "70" },
+				"creationDate": { "type": "date-time","example": "2022-07-14T10:13:23.082Z" },
+				"isOpen": { "type": "integer", "enum": [0, 1], "example": "0" }
 			}
 		},
 		"User CartWithoutOrderID": {
