@@ -36,21 +36,10 @@ async function getLastOrderDate(userId){
     return orderDate;
 }
 
-async function getOrderDetails(cartId){
-    let sql = `SELECT id, final_price as finalPrice,
-                 city, street, shipping_date as shippingDate, order_date as orderDate,
-                 payment_last_digits as paymentLastDigits
-                 FROM orders
-                 WHERE cart_id = ?`
-    let parameters = [cartId]
-    let unOrganizedOrderDetails = await connection.executeWithParameters(sql, parameters);
-    return unOrganizedOrderDetails;
-}
 
 module.exports = {
     getAmountOfOrders,
     addNewOrder,
     getBusyDays,
-    getLastOrderDate,
-    getOrderDetails
+    getLastOrderDate
 }

@@ -56,19 +56,6 @@ router.get('/', async (request, response) =>{
     }
 });
 
-//GET ORDER DETAILS
-//GET http://localhost:4200/orders/order_details/cartId
-router.get('/order_details/:id', async (request, response) =>{
-    let cartId = request.params.id
-    try {
-        let orderDetails = await ordersLogic.getOrderDetails(cartId);
-        response.json(orderDetails);
-    } catch (e) {
-        console.error(e);
-        response.status(600).send(e.message);
-    }
-});
-
 router.get('/receipt/:id', async (request, response)=>{
     try {
         response.sendFile(path.resolve(__dirname,'../receipts/', request.params.id+'.txt'))

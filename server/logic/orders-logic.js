@@ -35,10 +35,6 @@ async function getLastOrderDate(tokenData){
     return orderDateAsArrayOfObject[0].orderDate;
 }
 
-async function getOrderDetails(cartId){
-    let orderDetails = await ordersDal.getOrderDetails(cartId);
-    return orderDetails;
-}
 
 async function createReceipt(cartItemsArray, cartId, finalPrice){ 
     let str = 'Receipt No. ' + cartId
@@ -61,6 +57,5 @@ module.exports = {
     getAmountOfOrders,
     addNewOrder,
     getBusyDays,
-    getLastOrderDate,
-    getOrderDetails
+    getLastOrderDate
 }
