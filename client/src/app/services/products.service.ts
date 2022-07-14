@@ -44,7 +44,7 @@ export class ProductsService {
   public getAmountOfProducts(): void {
     this._http.get<any>(this.baseUrl + 'amount_of_products')
       .subscribe((serverResponse) => {
-        this.amountOfProducts = serverResponse[0].amountOfProducts;
+        this.amountOfProducts = serverResponse.amountOfProducts;
       },
         err => {
           console.log(err);

@@ -3,7 +3,7 @@ const connection = require("./connection-wrapper");
 async function getAmountOfProducts(){
     let sql = `SELECT count(*) as amountOfProducts
                 FROM products`
-    let amountOfProducts = await connection.execute(sql);
+    let [amountOfProducts] = await connection.execute(sql);
     return amountOfProducts;
 }
 
