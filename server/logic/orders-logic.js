@@ -52,7 +52,6 @@ async function createReceipt(cartItemsArray, cartId, finalPrice){
 
     try {
         await fs.writeFile('./receipts/'+cartId+'.txt', str)
-        console.log('File created');
     } catch (err) {
         console.log(err);
     }

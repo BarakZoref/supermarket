@@ -12,7 +12,6 @@ async function isCartItemExistsInCart(cartItemDetails){
     let sql = `SELECT * FROM cart_items WHERE product_id = ? AND cart_id = ?`
     let parameters = [cartItemDetails.productId, cartItemDetails.cartId];
     let dbResponse = await connection.executeWithParameters(sql, parameters);
-    console.log("dbResponse: ", dbResponse);
     if(dbResponse.length){
         return true;
     }
