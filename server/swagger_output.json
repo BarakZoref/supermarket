@@ -39,7 +39,10 @@
 				],
 				"responses": {
 					"200": { "description": "Accepted credentials", "schema": { "$ref": "#/definitions/User" } },
-					"600": { "description": "Error", "schema": { "$ref": "#/definitions/40X Error" } }
+					"600": { 
+						"description": "Error",
+						"schema": { "$ref": "#/definitions/600 Error" }
+						}
 				}
 			}
 		},
@@ -70,7 +73,7 @@
 					},
 					"600": {
 						"description": "Error",
-						"schema": { "$ref": "#/definitions/40X Error" }
+						"schema": { "$ref": "#/definitions/600 Error" }
 					}
 				}
 			}
@@ -118,7 +121,7 @@
 					},
 					"600": {
 						"description": "Error",
-						"schema": { "$ref": "#/definitions/40X Error" }
+						"schema": { "$ref": "#/definitions/600 Error" }
 					}
 				}
 			}
@@ -153,7 +156,7 @@
 					},
 					"600": {
 						"description": "Error",
-						"schema": { "$ref": "#/definitions/40X Error" }
+						"schema": { "$ref": "#/definitions/600 Error" }
 					}
 				}
 			}
@@ -176,7 +179,7 @@
 					},
 					"600": {
 						"description": "Error",
-						"schema": { "$ref": "#/definitions/40X Error" }
+						"schema": { "$ref": "#/definitions/600 Error" }
 					}
 				}
 			},
@@ -197,7 +200,7 @@
 					},
 					"600": {
 						"description": "Error",
-						"schema": { "$ref": "#/definitions/40X Error" }
+						"schema": { "$ref": "#/definitions/600 Error" }
 					}
 				}
 			}
@@ -229,7 +232,7 @@
 					},
 					"600": {
 						"description": "Error",
-						"schema": { "$ref": "#/definitions/40X Error" }
+						"schema": { "$ref": "#/definitions/600 Error" }
 					}
 				}
 			}
@@ -253,7 +256,7 @@
 					},
 					"600": {
 						"description": "Error",
-						"schema": { "$ref": "#/definitions/40X Error" }
+						"schema": { "$ref": "#/definitions/600 Error" }
 					}
 				}
 			}
@@ -277,7 +280,7 @@
 					},
 					"600": {
 						"description": "Error",
-						"schema": { "$ref": "#/definitions/40X Error" }
+						"schema": { "$ref": "#/definitions/600 Error" }
 					}
 				}
 			},
@@ -299,7 +302,7 @@
 					},
 					"600": {
 						"description": "Error",
-						"schema": { "$ref": "#/definitions/40X Error" }
+						"schema": { "$ref": "#/definitions/600 Error" }
 					}
 				}
 			}
@@ -314,7 +317,7 @@
 					},
 					"600": {
 						"description": "Error",
-						"schema": { "$ref": "#/definitions/40X Error" }
+						"schema": { "$ref": "#/definitions/600 Error" }
 					}
 				}
 			}
@@ -329,7 +332,7 @@
 					},
 					"600": {
 						"description": "Error",
-						"schema": { "$ref": "#/definitions/40X Error" }
+						"schema": { "$ref": "#/definitions/600 Error" }
 					}
 				}
 			}
@@ -386,7 +389,7 @@
 					},
 					"600": {
 						"description": "Error",
-						"schema": { "$ref": "#/definitions/40X Error" }
+						"schema": { "$ref": "#/definitions/600 Error" }
 					}
 				}
 			},
@@ -408,7 +411,7 @@
 					},
 					"600": {
 						"description": "Error",
-						"schema": { "$ref": "#/definitions/40X Error" }
+						"schema": { "$ref": "#/definitions/600 Error" }
 					}
 				}
 			}
@@ -423,7 +426,7 @@
 					},
 					"600": {
 						"description": "Error",
-						"schema": { "$ref": "#/definitions/40X Error" }
+						"schema": { "$ref": "#/definitions/600 Error" }
 					}
 				}
 			}
@@ -454,7 +457,7 @@
 					},
 					"600": {
 						"description": "Error",
-						"schema": { "$ref": "#/definitions/40X Error" }
+						"schema": { "$ref": "#/definitions/600 Error" }
 					}
 				}
 			}
@@ -469,7 +472,7 @@
 					},
 					"600": {
 						"description": "Error",
-						"schema": { "$ref": "#/definitions/40X Error" }
+						"schema": { "$ref": "#/definitions/600 Error" }
 					}
 				}
 			}
@@ -484,7 +487,7 @@
 					},
 					"600": {
 						"description": "Error",
-						"schema": { "$ref": "#/definitions/40X Error" }
+						"schema": { "$ref": "#/definitions/600 Error" }
 					}
 				}
 			},
@@ -530,7 +533,7 @@
 					},
 					"600": {
 						"description": "Error",
-						"schema": { "$ref": "#/definitions/40X Error" }
+						"schema": { "$ref": "#/definitions/600 Error" }
 					}
 				}
 			},
@@ -580,7 +583,7 @@
 					},
 					"600": {
 						"description": "Error",
-						"schema": { "$ref": "#/definitions/40X Error" }
+						"schema": { "$ref": "#/definitions/600 Error" }
 					}
 				}
 			}
@@ -611,7 +614,7 @@
 					},
 					"600": {
 						"description": "Error",
-						"schema": { "$ref": "#/definitions/40X Error" }
+						"schema": { "$ref": "#/definitions/600 Error" }
 					}
 				}
 			}
@@ -660,7 +663,7 @@
 			}
 		},
 
-		"40X Error": {
+		"600 Error": {
 			"type": "object",
 			"properties": {
 				"err": { "example": true },
