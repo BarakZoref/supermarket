@@ -56,6 +56,8 @@ router.get('/', async (request, response) =>{
     }
 });
 
+//GET RECEIPT
+//GET http://localhost:4200/receipt/cartId
 router.get('/receipt/:id', async (request, response)=>{
     try {
         response.sendFile(path.resolve(__dirname,'../receipts/', request.params.id+'.txt'))
