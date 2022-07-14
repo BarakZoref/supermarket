@@ -427,7 +427,69 @@
 					}
 				}
 			}
-		}
+		},
+		"/orders/receipt/{id}": {
+			"get": {
+				"tags": ["orders"],
+				"summary": "Get receipt by cart id",
+				"parameters": [
+					{
+						"name": "authorization",
+						"in": "header",
+						"required": true,
+						"type": "string",
+						"example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMDAwMDAwMCwicm9sZSI6InVzZXIiLCJpYXQiOjE2NTc3OTQyMDl9.wBticOTi8xYDk-YByzV7umhYviq0EKxZNVhS5nSHmv0"
+					},
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"type": "integer",
+						"example": 72
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "file was successfully downloaded"
+					},
+					"600": {
+						"description": "Error",
+						"schema": { "$ref": "#/definitions/40X Error" }
+					}
+				}
+			}
+		},
+		"/products/amount_of_products":{
+			"get": {
+				"tags": ["products"],
+				"summary": "Get amount of products in the store",
+				"responses": {
+					"200": {
+						"schema": { "type": "object", "properties": {"amountOfProducts": {"example": 15} }}
+					},
+					"600": {
+						"description": "Error",
+						"schema": { "$ref": "#/definitions/40X Error" }
+					}
+				}
+			}
+		},
+		"/products":{
+			"get": {
+				"tags": ["products"],
+				"summary": "Get an array of all products in the store",
+				"responses": {
+					"200": {
+						"schema": {"type": "array", "items": { "$ref":"#/definitions/product"}}
+					},
+					"600": {
+						"description": "Error",
+						"schema": { "$ref": "#/definitions/40X Error" }
+					}
+				}
+			}
+		},
+		
 	},
 	"definitions": {
 		"cart item": {
@@ -460,189 +522,23 @@
 				"name": { "type": "string","example": "Dairy" }
 			}
 		},
-		"User CartWithoutOrderID": {
+		"product": {
 			"type": "object",
-			"required": ["_id", "userID", "total", "createdAt"],
-			"properties": {
-				"_id": { "type": "string", "example": "66fffee3dfca" },
-				"userID": { "type": "integer", "format": "int32", "example": "123456782" },
-				"total": { "type": "integer", "format": "decimal", "example": "105.52" },
-				"createdAt": { "type": "string", "format": "date-time" },
-				"items": { "type": "array", "items": { "$ref": "#/definitions/User CartItem" } }
+			"properties": 
+			{
+				"id": { "type": "integer", "example": "3" },
+				"name": { "type": "string","example": "Cream Cheese" },
+				"categoryId": { "type": "integer","example": 1 },
+				"price": { "type": "number","example": 9 },
+				"imgUrl": { "type": "string","example": "cream-cheese.png" }
 			}
 		},
-		"User CartWithoutItems": {
-			"type": "object",
-			"required": ["_id", "userID", "total", "createdAt"],
-			"properties": {
-				"_id": { "type": "string", "example": "66fffee3dfca" },
-				"userID": { "type": "integer", "format": "int32", "example": "123456782" },
-				"total": { "type": "integer", "format": "decimal", "example": "0" },
-				"createdAt": { "type": "string", "format": "date-time" },
-				"items": { "type": "array", "example": [] }
-			}
-		},
-		"User CartItem": {
-			"type": "object",
-			"required": ["productID", "quantity", "_id"],
-			"properties": {
-				"productID": { "type": "string", "example": "66fee436fg" },
-				"quantity": { "type": "integer", "format": "int16", "example": "4" },
-				"_id": { "type": "string", "example": "66ff45d6cvb" }
-			}
-		},
-		"User": {
-			"type": "object",
-			"required": ["token", "userName", "role"],
-			"properties": {
-				"name": {
-					"type": "object",
-					"required": ["first", "last"],
-					"properties": { "first": { "type": "string", "example": "Peter" }, "last": { "type": "string", "example": "Parker" } }
-				},
-				"address": {
-					"type": "object",
-					"required": ["city", "street"],
-					"properties": {
-						"city": { "type": "string", "example": "Queens, New York City, New York" },
-						"street": { "type": "string", "example": "It's a secret 😶" }
-					}
-				},
-				"_id": { "type": "integer", "format": "int32", "example": "123456782" },
-				"email": { "type": "string", "example": "Incredible.arachnid.person@gmail.com" },
-				"role": { "type": "string", "enum": ["user", "admin"] },
-				"carts": {
-					"type": "array",
-					"items": {
-						"type": "array",
-						"$ref": "#/definitions/User Cart"
-					}
-				}
-			}
-		},
-		"User WithoutOrderID": {
-			"type": "object",
-			"required": ["_id", "email", "role"],
-			"properties": {
-				"name": {
-					"type": "object",
-					"required": ["first", "last"],
-					"properties": { "first": { "type": "string", "example": "Peter" }, "last": { "type": "string", "example": "Parker" } }
-				},
-				"address": {
-					"type": "object",
-					"required": ["city", "street"],
-					"properties": {
-						"city": { "type": "string", "example": "Queens, New York City, New York" },
-						"street": { "type": "string", "example": "It's a secret 😶" }
-					}
-				},
-				"_id": { "type": "integer", "format": "int32", "example": "123456782" },
-				"email": { "type": "string", "example": "Incredible.arachnid.person@gmail.com" },
-				"role": { "type": "string", "enum": ["user", "admin"] },
-				"carts": {
-					"type": "array",
-					"items": {
-						"type": "array",
-						"$ref": "#/definitions/User CartWithoutOrderID"
-					}
-				}
-			}
-		},
-		"User WithoutItems": {
-			"type": "object",
-			"required": ["_id", "email", "role"],
-			"properties": {
-				"name": {
-					"type": "object",
-					"required": ["first", "last"],
-					"properties": { "first": { "type": "string", "example": "Peter" }, "last": { "type": "string", "example": "Parker" } }
-				},
-				"address": {
-					"type": "object",
-					"required": ["city", "street"],
-					"properties": {
-						"city": { "type": "string", "example": "Queens, New York City, New York" },
-						"street": { "type": "string", "example": "It's a secret 😶" }
-					}
-				},
-				"_id": { "type": "integer", "format": "int32", "example": "123456782" },
-				"email": { "type": "string", "example": "Incredible.arachnid.person@gmail.com" },
-				"role": { "type": "string", "enum": ["user", "admin"] },
-				"carts": {
-					"type": "array",
-					"items": {
-						"type": "array",
-						"$ref": "#/definitions/User CartWithoutItems"
-					}
-				}
-			}
-		},
-		"Product": {
-			"type": "object",
-			"required": ["name", "_id", "priceInteger", "priceDecimal", "imageURL", "isInWeight"],
-			"properties": {
-				"_id": { "type": "string", "example": "66fee436fg" },
-				"categoryID": { "type": "object", "properties": { "_id": { "type": "string", "example": "Dairy & Eggs" } } },
-				"imageURL": { "type": "string", "example": "assets/Milk.png" },
-				"isInWeight": { "type": "boolean", "example": false },
-				"name": { "type": "string", "example": "Milk" },
-				"priceDecimal": { "type": "integer", "format": "int8", "example": 90 },
-				"priceInteger": { "type": "integer", "format": "int8", "example": 8 }
-			}
-		},
-		"ProductWithoutID": {
-			"type": "object",
-			"required": ["name", "priceInteger", "priceDecimal", "imageURL", "isInWeight"],
-			"properties": {
-				"categoryID": { "type": "object", "properties": { "_id": { "type": "string", "example": "Dairy & Eggs" } } },
-				"imageURL": { "type": "string", "example": "assets/Milk.png" },
-				"isInWeight": { "type": "boolean", "example": false },
-				"name": { "type": "string", "example": "Milk" },
-				"priceDecimal": { "type": "integer", "format": "int8", "example": 90 },
-				"priceInteger": { "type": "integer", "format": "int8", "example": 8 }
-			}
-		},
-		"Cart": {
-			"type": "object",
-			"required": ["_id", "userID", "total", "createdAt"],
-			"properties": {
-				"_id": { "type": "string", "example": "66fffee3dfca" },
-				"userID": { "type": "integer", "format": "int32", "example": "123456782" },
-				"total": { "type": "integer", "format": "decimal", "example": "105.52" },
-				"createdAt": { "type": "string", "format": "date-time" },
-				"items": { "type": "array", "items": { "$ref": "#/definitions/Product" } }
-			}
-		},
-		"Order": {
-			"type": "object",
-			"required": ["_id", "lastFourCardDigits", "shipping", "dateMade"],
-			"properties": {
-				"shipping": {
-					"type": "object",
-					"properties": {
-						"city": { "type": "string", "example": "Queens, New York City, New York", "required": true },
-						"street": { "type": "string", "example": "It's a secret 😶", "required": true },
-						"date": { "type": "string", "format": "date-time", "required": true }
-					}
-				},
-				"_id": { "type": "string", "example": "66fffee3dfca" },
-				"lastFourCardDigits": { "type": "integer", "format": "int16", "example": "1234" },
-				"dateMade": { "type": "string", "format": "date-time" }
-			}
-		},
+
 		"40X Error": {
 			"type": "object",
 			"properties": {
 				"err": { "example": true },
 				"msg": { "example": "Message written in description" }
-			}
-		},
-		"Internal Server Error": {
-			"type": "object",
-			"properties": {
-				"err": { "example": true },
-				"msg": { "example": "Server failed... Message Given:" }
 			}
 		}
 	}
