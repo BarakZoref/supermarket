@@ -32,7 +32,7 @@ export class CartService {
   getLastCart(): void{
     this._http.get<ICart>(this.baseUrl, {})
     .subscribe(cart => {
-      if(cart.isOpen){
+      if(cart?.isOpen){
         this.currentCartSubject.next(cart);
       }
     },

@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit {
       this._usersService.setCurrentUser(newUser);
       if(newUser.role == 'user'){
         let cartFromServer = response.cart;
-        if(cartFromServer.isOpen){
+        if(cartFromServer && cartFromServer.isOpen){
           this._cartService.setCurrentCart(cartFromServer);
         }
       }
