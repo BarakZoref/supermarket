@@ -20,7 +20,7 @@ export class OrdersService {
   public getAmountOfOrders(): void {
     this._http.get<any>(this.baseUrl + 'amount_of_orders')
       .subscribe((amountOfOrdersAsObject) => {
-        this.amountOfOrders = amountOfOrdersAsObject[0].amountOfOrders;
+        this.amountOfOrders = amountOfOrdersAsObject.amountOfOrders;
         console.log("amount of orders: ", this.amountOfOrders);
       },
         err => {
