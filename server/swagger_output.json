@@ -193,7 +193,7 @@
 				],
 				"responses": {
 					"200": {
-						"schema": { "type":"array", "items": { "$ref": "#/definitions/cart_item"} }
+						"schema": { "type":"array", "items": { "$ref": "#/definitions/cart item"} }
 					},
 					"600": {
 						"description": "Error",
@@ -303,16 +303,140 @@
 					}
 				}
 			}
+		},
+		"/categories": {
+			"get": {
+				"tags": ["categories"],
+				"summary": "Get all categories",
+				"responses": {
+					"200": {
+						"schema": { "type":"array", "items": { "$ref": "#/definitions/category"} }
+					},
+					"600": {
+						"description": "Error",
+						"schema": { "$ref": "#/definitions/40X Error" }
+					}
+				}
+			}
+		},
+		"/orders/amount_of_orders": {
+			"get": {
+				"tags": ["orders"],
+				"summary": "Get amount of orders",
+				"responses": {
+					"200": {
+						"schema": { "type": "object", "properties": {"amountOfOrders": {"example": 10} }}
+					},
+					"600": {
+						"description": "Error",
+						"schema": { "$ref": "#/definitions/40X Error" }
+					}
+				}
+			}
+		},
+		"/orders": {
+			"post": {
+				"tags": ["orders"],
+				"summary": "Add new order",
+				"parameters": [
+					{
+						"name": "authorization",
+						"in": "header",
+						"required": true,
+						"type": "string",
+						"example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMDAwMDAwMCwicm9sZSI6InVzZXIiLCJpYXQiOjE2NTc3OTQyMDl9.wBticOTi8xYDk-YByzV7umhYviq0EKxZNVhS5nSHmv0"
+					},
+					{
+						"name": "body",
+						"in": "body",
+						"schema": {
+							"type": "object",
+							"properties": {
+									"cartId":{
+										"type": "integer",
+										"example": 72
+									},
+									"finalPrice":{
+										"type": "number",
+										"example": 100
+									},
+									"city": {
+										"example": "Jerusalem"
+									},
+									"street": {
+										"example": "aluf sade"
+									},
+									"shippingDate": {
+										"example": "2022-06-02T14:02:02.661Z"
+									},
+									"paymentLastDigits": {
+										"example": 1234
+									},
+									"cartItemsArray":{
+										"type": "array", "items": { "$ref": "#/definitions/cart item" }
+									}
+							}
+						}
+					}					
+				],
+				"responses": {
+					"200": {
+						"description": "order id",
+						"schema": {"type": "integer", "example": 50}
+					},
+					"600": {
+						"description": "Error",
+						"schema": { "$ref": "#/definitions/40X Error" }
+					}
+				}
+			},
+			"get": {
+				"tags": ["orders"],
+				"summary": "Get last order date",
+				"parameters": [
+					{
+						"name": "authorization",
+						"in": "header",
+						"required": true,
+						"type": "string",
+						"example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMDAwMDAwMCwicm9sZSI6InVzZXIiLCJpYXQiOjE2NTc3OTQyMDl9.wBticOTi8xYDk-YByzV7umhYviq0EKxZNVhS5nSHmv0"
+					}
+				],
+				"responses": {
+					"200": {
+						"schema": { "type":"date-time", "example": "2022-07-14T13:17:48.000Z"}
+					},
+					"600": {
+						"description": "Error",
+						"schema": { "$ref": "#/definitions/40X Error" }
+					}
+				}
+			}
+		},
+		"/orders/busy_days": {
+			"get": {
+				"tags": ["orders"],
+				"summary": "Get array of dates which have 3 or more shippings",
+				"responses": {
+					"200": {
+						"schema": { "type": "array", "items":{ "properties": {"shippingDate": {"type": "date-time", "example": "2022-08-03T14:36:08.000Z"} }}}
+					},
+					"600": {
+						"description": "Error",
+						"schema": { "$ref": "#/definitions/40X Error" }
+					}
+				}
+			}
 		}
 	},
 	"definitions": {
-		"cart_item": {
+		"cart item": {
 			"type": "object",
 			"properties": 
 			{
 				"id": { "type": "integer", "example": "97" },
 				"name": { "type": "string","example": "Cream Cheese" },
-				"unitPrice": { "type": "integer", "example": "105.52" },
+				"unitPrice": { "type": "number", "example": "105.52" },
 				"quantity": { "type": "integer", "example": "2" },
 				"imgUrl": { "type": "imgUrl", "example": "cream-cheese.png" },
 				"productId": { "type": "integer", "example": "3" },
@@ -326,6 +450,14 @@
 				"id": { "type": "integer", "example": "70" },
 				"creationDate": { "type": "date-time","example": "2022-07-14T10:13:23.082Z" },
 				"isOpen": { "type": "integer", "enum": [0, 1], "example": "0" }
+			}
+		},
+		"category": {
+			"type": "object",
+			"properties": 
+			{
+				"id": { "type": "integer", "example": "1" },
+				"name": { "type": "string","example": "Dairy" }
 			}
 		},
 		"User CartWithoutOrderID": {
