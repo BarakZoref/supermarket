@@ -13,7 +13,7 @@ router.get('/amount_of_orders', async (request, response) =>{
         response.json(amountOfOrders);
     } catch (e) {
         console.error(e);
-        response.status(600).send(e.message);
+        response.status(600).send({err: true, msg: e.message});
     }
 });
 
@@ -27,7 +27,7 @@ router.post('/', async (request, response) =>{
         response.json(orderId);
     } catch (e) {
         console.error(e);
-        response.status(600).send(e.message);
+        response.status(600).send({err: true, msg: e.message});
     }
 });
 
@@ -39,7 +39,7 @@ router.get('/busy_days', async (request, response) =>{
         response.json(busyDays);
     } catch (e) {
         console.error(e);
-        response.status(600).send(e.message);
+        response.status(600).send({err: true, msg: e.message});
     }
 });
 
@@ -52,7 +52,7 @@ router.get('/', async (request, response) =>{
         response.json(orderDate);
     } catch (e) {
         console.error(e);
-        response.status(600).send(e.message);
+        response.status(600).send({err: true, msg: e.message});
     }
 });
 
@@ -63,7 +63,7 @@ router.get('/receipt/:id', async (request, response)=>{
         response.sendFile(path.resolve(__dirname,'../receipts/', request.params.id+'.txt'))
     } catch (e) {
         console.error(e);
-        response.status(600).send(e.message);
+        response.status(600).send({err: true, msg: e.message});
     }
    
 });

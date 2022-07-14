@@ -10,7 +10,7 @@ router.get('/amount_of_products', async (request, response) =>{
         response.json(amountOfProducts);
     } catch (e) {
         console.error(e);
-        response.status(600).send(e.message);
+        response.status(600).send({err: true, msg: e.message});
     }
 });
 
@@ -22,11 +22,11 @@ router.get('/', async (request, response) =>{
         response.json(allProducts);
     } catch (e) {
         console.error(e);
-        response.status(600).send(e.message);
+        response.status(600).send({err: true, msg: e.message});
     }
 });
 
-//GET PRODUCTS BY CATEGORIES
+//GET PRODUCTS BY CATEGORY
 //GET http://localhost:4200/products/categoryId
 router.get('/:categoryId', async (request, response) =>{
     let categoryId = request.params.categoryId;
@@ -35,7 +35,7 @@ router.get('/:categoryId', async (request, response) =>{
         response.json(products);
     } catch (e) {
         console.error(e);
-        response.status(600).send(e.message);
+        response.status(600).send({err: true, msg: e.message});
     }
 });
 
@@ -48,7 +48,7 @@ router.post('/', async (request, response) =>{
         response.json({err: false, msg: "product was added successfuly"});
     } catch (e) {
         console.error(e);
-        response.status(600).send(e.message);
+        response.status(600).send({err: true, msg: e.message});
     }
 });
 
@@ -61,7 +61,7 @@ router.put('/', async (request, response) =>{
         response.json({err: false, msg: "product was edited successfuly"});
     } catch (e) {
         console.error(e);
-        response.status(600).send(e.message);
+        response.status(600).send({err: true, msg: e.message});
     }
 });
 

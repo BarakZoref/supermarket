@@ -11,7 +11,7 @@ router.post('/', async (request, response)=>{
         response.json({cartItemId});
     } catch (e) {
         console.error(e);
-        response.status(600).send(e.message);
+        response.status(600).send({err: true, msg: e.message});
     }
 });
 
@@ -24,7 +24,7 @@ router.delete('/:id', async (request, response)=>{
         response.json({err: false, msg: "cart item was deleted successfuly"});
     } catch (e) {
         console.error(e);
-        response.status(600).send(e.message);
+        response.status(600).send({err: true, msg: e.message});
     }
 });
 
@@ -37,7 +37,7 @@ router.put('/', async (request, response)=>{
         response.json({err: false, msg: "cart item was updated successfuly"});
     } catch (e) {
         console.error(e);
-        response.status(600).send(e.message);
+        response.status(600).send({err: true, msg: e.message});
     }
 });
 
@@ -50,7 +50,7 @@ router.delete('/by_cart_id/:id', async (request, response)=>{
         response.json({err: false, msg: "all cart items of the cart was deleted successfuly"});
     } catch (e) {
         console.error(e);
-        response.status(600).send(e.message);
+        response.status(600).send({err: true, msg: e.message});
     }
 });
 
@@ -63,7 +63,7 @@ router.get('/:id', async (request, response)=>{
         response.json(cartItems);
     } catch (e) {
         console.error(e);
-        response.status(600).send(e.message);
+        response.status(600).send({err: true, msg: e.message});
     }
 });
 

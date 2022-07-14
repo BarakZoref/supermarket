@@ -16,7 +16,7 @@ router.post('/', async (request, response)=>{
         response.json(newCart);
     } catch (e) {
         console.error(e);
-        response.status(600).send(e.message);
+        response.status(600).send({err: true, msg: e.message});
     }
 });
 
@@ -33,7 +33,7 @@ router.get('/', async (request, response)=>{
         response.json(cart);
     } catch (e) {
         console.error(e);
-        response.status(600).send(e.message);
+        response.status(600).send({err: true, msg: e.message});
     }
 });
 module.exports = router
