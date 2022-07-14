@@ -487,9 +487,135 @@
 						"schema": { "$ref": "#/definitions/40X Error" }
 					}
 				}
+			},
+			"post": {
+				"tags": ["products"],
+				"summary": "Add a product to the store",
+				"parameters":[
+					{
+						"name": "body",
+						"in": "body",
+						"schema": {
+							"type": "object",
+							"properties": {
+								"name":{
+									"type": "string",
+									"example": "Milky"
+								},
+								"categoryId":{
+									"type": "integer",
+									"example": 1
+								},
+								"price":{
+									"type": "number",
+									"example": 32
+								},
+								"imgUrl":{
+									"type": "string",
+									"example": "milky.png"
+								}
+							}
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"schema":{
+							"type": "object",
+							"properties": {
+								"err": { "example": false },
+								"msg": { "example": "product was added succesfully" }
+							}
+						}
+					},
+					"600": {
+						"description": "Error",
+						"schema": { "$ref": "#/definitions/40X Error" }
+					}
+				}
+			},
+			"put": {
+				"tags": ["products"],
+				"summary": "Edit a specific product in the store",
+				"parameters":[
+					{
+						"name": "body",
+						"in": "body",
+						"schema": {
+							"type": "object",
+							"properties": {
+								"id": {
+									"type": "integer",
+									"example": 3
+								},
+								"name":{
+									"type": "string",
+									"example": "Cream Cheese"
+								},
+								"categoryId":{
+									"type": "integer",
+									"example": 1
+								},
+								"price":{
+									"type": "number",
+									"example": 10.9
+								},
+								"imgUrl":{
+									"type": "string",
+									"example": "milky.png"
+								}
+							}
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"schema":{
+							"type": "object",
+							"properties": {
+								"err": { "example": false },
+								"msg": { "example": "product was edited succesfully" }
+							}
+						}
+					},
+					"600": {
+						"description": "Error",
+						"schema": { "$ref": "#/definitions/40X Error" }
+					}
+				}
 			}
 		},
-		
+		"/products/{id}": {
+			"get": {
+				"tags": ["products"],
+				"summary": "Get products of specific category",
+				"parameters": [
+					{
+						"name": "authorization",
+						"in": "header",
+						"required": true,
+						"type": "string",
+						"example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMDAwMDAwMCwicm9sZSI6InVzZXIiLCJpYXQiOjE2NTc3OTQyMDl9.wBticOTi8xYDk-YByzV7umhYviq0EKxZNVhS5nSHmv0"
+					},
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"type": "integer",
+						"example": 1
+					}
+				],
+				"responses": {
+					"200": {
+						"schema": {"type": "array", "items": { "$ref":"#/definitions/product"}}
+					},
+					"600": {
+						"description": "Error",
+						"schema": { "$ref": "#/definitions/40X Error" }
+					}
+				}
+			}
+		}
 	},
 	"definitions": {
 		"cart item": {
