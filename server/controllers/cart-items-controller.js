@@ -42,7 +42,7 @@ router.put('/', async (request, response)=>{
 });
 
 //DELETE ALL CART ITEMS
-//DELETE http://localhost:4200/cart_items/by_cart_id
+//DELETE http://localhost:4200/cart_items/by_cart_id/cartItemId
 router.delete('/by_cart_id/:id', async (request, response)=>{
     let cartId = request.params.id;
     try {
