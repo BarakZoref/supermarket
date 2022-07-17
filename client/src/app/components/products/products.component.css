@@ -1,24 +1,9 @@
-/* .products-and-categories{
-  margin-top: 10px;
-  width:70%;
-} */
-
 .nav-bar {
   text-align: center;
   align-items: center;
   align-self: center;
   width: 100%;
 }
-
-
-/* .category{
-  padding-left: 10px;
-  padding-right: 10px;
-  cursor: pointer;
-  border-right: 2px solid;
-  font-size: medium;
-} */
-
 
 .products{
   display: flex;
@@ -44,11 +29,6 @@
 }
 
 .button{
-  /* width: 50%;
-  height: 30%;
-  font-size: 10px;
-  text-align: center;
-  padding: px; */
   width: 200px;
   height: 50px;
   margin: 0 auto;

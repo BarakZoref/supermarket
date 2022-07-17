@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import ICart from 'src/app/models/icart.model';
 import ICategory from 'src/app/models/icategory.model';
 import IProduct from 'src/app/models/iproduct.model';
 import IUser from 'src/app/models/iuser.model';
 import { CartItemsService } from 'src/app/services/cart-items.service';
-import { CartService } from 'src/app/services/cart.service';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { ProductsService } from 'src/app/services/products.service';
 import { UsersService } from 'src/app/services/users.service';
@@ -50,14 +48,6 @@ export class ProductsComponent implements OnInit {
     }
   }
 
-  // onSpecificCategoryClicked(categoryId){
-  //   this._productsService.getProductsByCategoryId(categoryId)
-  // }
-
-  // onAllProductsCategoryClicked(){
-  //   this._productsService.getAllProducts();
-  // }
-
   onAddToCartClicked(productToAdd){
     this.productToAdd = productToAdd;
     this.displayModal = true;
@@ -66,7 +56,6 @@ export class ProductsComponent implements OnInit {
   onEditProductClicked(product){
     this._productsService.setProduct(product);
   }
-
 
   onSelectedCategoryClicked = (event: any) => {
     let selectedCategoryValue = event.originalEvent.target.innerText;
@@ -79,6 +68,5 @@ export class ProductsComponent implements OnInit {
     else{
       this._productsService.getProductsByCategoryId(selectedCategory.id)
     }
-
   }
 }

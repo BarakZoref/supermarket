@@ -1,9 +1,3 @@
-  <!-- <div>
-    <a class="category" (click)=" onAllProductsCategoryClicked()">All Products</a>
-    <a class="category" (click)=" onSpecificCategoryClicked(category.id)" *ngFor="let category of categories">{{category.name}}</a>
-  </div> -->
-
-
   <div class="navbar">
     <p-tabView
       class="nav-bar" [scrollable]="true" [(activeIndex)]="_categoriesService.selectedCategory"
@@ -26,16 +20,3 @@
   </div>
 
   <app-add-or-edit-cart-item *ngIf="displayModal" [product]="productToAdd" [(displayModal)]="displayModal"></app-add-or-edit-cart-item>
-
-<!-- <p-dialog  header="Please choose the amount" [(visible)]="displayModal" [breakpoints]="{'960px': '75vw'}" [modal]="true" [style]="{width: '30vw'}"
-    [draggable]="false" [resizable]="false">
-    <div class="amount-input-container">
-      <button class="plus-or-minus-button" pButton (click)="onMinusButtonClicked()">-</button>
-      <input class="product-amount-input" [(ngModel)]="amountOfProduct" type="number" min="0" max="10">
-      <button class="plus-or-minus-button" pButton (click)="onPlusButtonClicked()">+</button>
-    </div>
-    <h3 class="amount-error" *ngIf="amountOfProduct<0 || amountOfProduct>10">Error: the amount of product must be between 1-10</h3>
-    <ng-template pTemplate="footer">
-        <p-button (click)="onChooseAmountOfProductClicked()" label="Ok" styleClass="p-button-text"></p-button>
-    </ng-template>
-</p-dialog> -->

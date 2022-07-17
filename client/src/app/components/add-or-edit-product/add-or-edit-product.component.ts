@@ -3,7 +3,6 @@ import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms
 import { Router } from '@angular/router';
 import { CategoriesService } from 'src/app/services/categories.service';
 import ICategory from 'src/app/models/icategory.model';
-import IProduct from 'src/app/models/iproduct.model';
 import { ProductsService } from 'src/app/services/products.service';
 import { Subscription } from 'rxjs';
 

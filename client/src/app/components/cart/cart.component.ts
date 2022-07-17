@@ -38,12 +38,10 @@ export class CartComponent implements OnInit {
 
   deleteCartItem(cartItemId): void{
     this._cartItemsService.deleteCartItem(cartItemId, this.currentCart.id);
-    // this._cartItemsService.getCartItems(this.currentCart.id);
   }
 
   deleteAllCartItems(): void{
     this._cartItemsService.deleteAllCartItems(this.currentCart.id);
-    // this._cartItemsService.getCartItems(this.currentCart.id);
   }
 
   editItemQuantity(cartItem): void{

@@ -119,7 +119,6 @@ export class AddOrEditCartItemComponent implements OnInit {
       }
       this.displayModal = false;
       this.displayModalChange.emit(false);
-      // this._cartItemsService.getCartItems(this.currentCart.id);
     }
   }
 

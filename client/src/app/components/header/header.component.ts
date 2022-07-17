@@ -44,7 +44,6 @@ export class HeaderComponent implements OnInit {
   onSearchChanged(input): void{
     this._productsService.getProductsBySearchInput(input);
     this._categoriesService.selectedCategory = 0;
-    // this._productsService.products = this._productsService.products.filter((product)=>product.name.startsWith(input))
   }
 
 }

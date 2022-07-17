@@ -1,16 +1,3 @@
-<!-- <a routerLink="login">Login</a>
-<a routerLink="register">Register</a> -->
-<!-- <div class="start-page-container">
-  <div class="left-div">
-    <router-outlet></router-outlet>
-  </div>
-  <div class="middle-div">
-    <p>middle div</p>
-  </div>
-  <div class="right-div">
-    <p>right div</p>
-  </div>
-</div> -->
 
 <div class="start-page-container">
   <router-outlet></router-outlet>
@@ -25,8 +12,6 @@
   </p>
   </div>
   <div class="card">
-    <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt
-        quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!</p> -->
     <p>Available products in out store: {{_productsService.amountOfProducts}}</p>
     <p>Number of orders submitted in our store: {{_ordersService.amountOfOrders}}</p>
     <div *ngIf="currentUser && currentUser.role == 'user'">

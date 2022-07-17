@@ -15,7 +15,6 @@ h1, .no-cart-items{
 
 .cart-item{
   display: flex;
-  /* border: 2px solid; */
   margin: 5px;
   padding: 5px;
 }
