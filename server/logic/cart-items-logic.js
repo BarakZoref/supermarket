@@ -5,8 +5,7 @@ async function addToCart(cartItemDetails){
     if(isCartItemExistsInCart){
         throw new Error("Error: cart item already exists in the cart")
     }
-    const cartItemId = await cartItemsDal.addToCart(cartItemDetails);
-    return cartItemId;
+    await cartItemsDal.addToCart(cartItemDetails);
 }
 
 

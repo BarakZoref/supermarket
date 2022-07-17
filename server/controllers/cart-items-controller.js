@@ -7,8 +7,8 @@ const router = express.Router();
 router.post('/', async (request, response)=>{
     let cartItemDetails = request.body;
     try {
-        let cartItemId = await cartItemsLogic.addToCart(cartItemDetails);
-        response.json({cartItemId});
+        await cartItemsLogic.addToCart(cartItemDetails);
+        response.json({err: false, msg: "cart item was added to cart successfuly"});
     } catch (e) {
         console.error(e);
         response.status(600).send({err: true, msg: e.message});
@@ -34,7 +34,7 @@ router.put('/', async (request, response)=>{
     let cartItemDetails = request.body;
     try {
         await cartItemsLogic.updateCartItemsQuantity(cartItemDetails);
-        response.json({err: false, msg: "cart item was updated successfuly"});
+        response.json({err: false, msg: "cart item quantity was updated successfuly"});
     } catch (e) {
         console.error(e);
         response.status(600).send({err: true, msg: e.message});
