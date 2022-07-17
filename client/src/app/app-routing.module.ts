@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BeforeShoppingComponent } from './components/before-shopping/before-shopping.component';
+import { DocComponent } from './components/doc/doc.component';
 import { LoginComponent } from './components/login/login.component';
 import { OrderComponent } from './components/order/order.component';
 import { Page404Component } from './components/page404/page404.component';
@@ -9,6 +10,7 @@ import { RegisterStepTwoComponent } from './components/register-step-two/registe
 import { RegisterComponent } from './components/register/register.component';
 import { StartScreenComponent } from './components/start-screen/start-screen.component';
 import { StoreComponent } from './components/store/store.component';
+import { AdminGuard } from './guards/admin.guard';
 import { LoginGuard } from './guards/login.guard';
 
 const routes: Routes = [
@@ -32,6 +34,7 @@ const routes: Routes = [
   },
   { path: 'store', canActivate: [LoginGuard], component: StoreComponent },
   { path: 'order', component: OrderComponent},
+  { path: 'doc', canActivate: [LoginGuard, AdminGuard], component: DocComponent},
   { path: "", redirectTo: "/start-screen/login", pathMatch: "full" },
   { path: "**", component: Page404Component } // Page not Found (Must be the last one!!!)
 

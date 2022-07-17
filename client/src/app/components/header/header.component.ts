@@ -38,7 +38,7 @@ export class HeaderComponent implements OnInit {
   onLogOutClicked(): void{
     sessionStorage.removeItem("userDetails");
     this._usersService.setCurrentUser(null);
-    this.router.navigate(['/']);
+    this.router.navigate(['/start-screen/login']);
   }
 
   onSearchChanged(input): void{

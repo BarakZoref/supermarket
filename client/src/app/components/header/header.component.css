@@ -20,6 +20,14 @@ input{
   margin-left: 20px;
 }
 
+.nav-link{
+  color: green;
+}
+
+.nav-link:hover{
+  color: lightgreen;
+}
+
 /* .navbar{
   background-color: wheat;
 } */
