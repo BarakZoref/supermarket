@@ -31,14 +31,16 @@
 						"schema": {
 							"type": "object",
 							"properties": {
-								"userName": { "example": "barak@gmail.com" },
+								"userName": { "example": "example@gmail.com" },
 								"password": { "example": "123456" }
 							}
 						}
 					}
 				],
 				"responses": {
-					"200": { "description": "Accepted credentials", "schema": { "$ref": "#/definitions/User" } },
+					"200": {
+						"schema": {"$ref": "#/definitions/user"}
+					},
 					"600": { 
 						"description": "Error",
 						"schema": { "$ref": "#/definitions/600 Error" }
@@ -117,7 +119,13 @@
 				],
 				"responses": {
 					"200": {
-						"description": "User was created successfuly"
+						"schema": {
+							"type": "object",
+							"properties": {
+								"err": { "example": false },
+								"msg": { "example": "user was added successfuly!" }
+							}
+						}
 					},
 					"600": {
 						"description": "Error",
@@ -152,7 +160,13 @@
 				],
 				"responses": {
 					"200": {
-						"description": "cart item was added successfuly"
+						"schema": {
+							"type": "object",
+							"properties": {
+								"err": { "example": false },
+								"msg": { "example": "cart item was added to cart successfuly" }
+							}
+						}
 					},
 					"600": {
 						"description": "Error",
@@ -175,7 +189,13 @@
 				],
 				"responses": {
 					"200": {
-						"description": "cart item was deleted successfuly from the cart"
+						"schema": {
+							"type": "object",
+							"properties": {
+								"err": { "example": false },
+								"msg": { "example": "cart item was deleted successfuly" }
+							}
+						}
 					},
 					"600": {
 						"description": "Error",
@@ -228,7 +248,13 @@
 				],
 				"responses": {
 					"200": {
-						"description": "cart item quantity was updated successfuly"
+						"schema": {
+							"type": "object",
+							"properties": {
+								"err": { "example": false },
+								"msg": { "example": "cart item quantity was updated successfuly" }
+							}
+						}
 					},
 					"600": {
 						"description": "Error",
@@ -252,7 +278,13 @@
 				],
 				"responses": {
 					"200": {
-						"description": "all cart items was deleted succesfully from cart"
+						"schema": {
+							"type": "object",
+							"properties": {
+								"err": { "example": false },
+								"msg": { "example": "all cart items of the cart was deleted successfuly" }
+							}
+						}
 					},
 					"600": {
 						"description": "Error",
@@ -621,6 +653,23 @@
 		}
 	},
 	"definitions": {
+		"user":{
+			"type": "object",
+			"properties": {
+				"token": {"type":"string", "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMDAwMDAwMCwicm9sZSI6InVzZXIiLCJpYXQiOjE2NTgwNTA5MDh9.CZMl8Ap2ewTTcr2S-Jh9fa8xAuW2XAurXPC7qj4aArw"},
+				"firstName": {"type": "string", "example": "example"},
+				"lastName":{"type": "string", "example": "example"},
+				"city": {"type": "string", "example": "Jerusalem"},
+				"street": {"type": "string", "example": "Rabin 3"},
+				"cart": {
+					"type": "object", "example": {
+						"id": 72,
+						"creationDate": "2022-07-14T10:54:48.000Z",
+						"isOpen": 0
+					}
+				}
+			}
+		},
 		"cart item": {
 			"type": "object",
 			"properties": 
