@@ -28,6 +28,7 @@
 					{
 						"name": "body",
 						"in": "body",
+						"required": true,
 						"schema": {
 							"type": "object",
 							"properties": {
@@ -56,6 +57,7 @@
 					{
 						"name": "body",
 						"in": "body",
+						"required": true,
 						"schema": {
 							"type": "object",
 							"properties": {
@@ -88,10 +90,12 @@
 					{
 						"name": "body",
 						"in": "body",
+						"required": true,
 						"schema": {
 							"type": "object",
 							"properties": {
 								"userName": {
+									"type": "string",
 									"example": "email@email.com"
 								},
 								"id": {
@@ -99,18 +103,23 @@
 									"example": "123456782"
 								},
 								"password": {
+									"type": "string",
 									"example": "123456"
 								},
 								"firstName": {
+									"type": "string",
 									"example": "Peter"
 								},
 								"lastName": {
+									"type": "string",
 									"example": "Parker"
 								},
 								"city": {
+									"type": "string",
 									"example": "Queens, New York"
 								},
 								"street": {
+									"type": "string",
 									"example": "Secret st."
 								}
 							}
@@ -122,8 +131,8 @@
 						"schema": {
 							"type": "object",
 							"properties": {
-								"err": { "example": false },
-								"msg": { "example": "user was added successfuly!" }
+								"err": {"type": "boolean", "example": false },
+								"msg": {"type": "string", "example": "user was added successfuly!" }
 							}
 						}
 					},
@@ -140,18 +149,29 @@
 				"summary": "Add new cart item",
 				"parameters": [
 					{
+						"name": "authorization",
+						"in": "header",
+						"required": true,
+						"type": "string",
+						"example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMDAwMDAwMCwicm9sZSI6InVzZXIiLCJpYXQiOjE2NTc3OTQyMDl9.wBticOTi8xYDk-YByzV7umhYviq0EKxZNVhS5nSHmv0"
+					},
+					{
 						"name": "body",
 						"in": "body",
+						"required": true,
 						"schema": {
 							"type": "object",
 							"properties": {
 								"productId": {
+									"type": "integer",
 									"example": 3
 								},
 								"quantity": {
+									"type": "integer",
 									"example": 5
 								},
 								"cartId": {
+									"type": "integer",
 									"example": 21
 								}
 							}
@@ -163,8 +183,8 @@
 						"schema": {
 							"type": "object",
 							"properties": {
-								"err": { "example": false },
-								"msg": { "example": "cart item was added to cart successfuly" }
+								"err": {"type": "boolean", "example": false },
+								"msg": {"type": "string", "example": "cart item was added to cart successfuly" }
 							}
 						}
 					},
@@ -181,6 +201,13 @@
 				"summary": "Delete cart item",
 				"parameters": [
 					{
+						"name": "authorization",
+						"in": "header",
+						"required": true,
+						"type": "string",
+						"example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMDAwMDAwMCwicm9sZSI6InVzZXIiLCJpYXQiOjE2NTc3OTQyMDl9.wBticOTi8xYDk-YByzV7umhYviq0EKxZNVhS5nSHmv0"
+					},
+					{
 						"name": "id",
 						"in": "path",
 						"required": true,
@@ -192,8 +219,8 @@
 						"schema": {
 							"type": "object",
 							"properties": {
-								"err": { "example": false },
-								"msg": { "example": "cart item was deleted successfuly" }
+								"err": {"type": "boolean", "example": false },
+								"msg": {"type": "string", "example": "cart item was deleted successfuly" }
 							}
 						}
 					},
@@ -231,15 +258,25 @@
 				"summary": "update cart item quantity",
 				"parameters": [
 					{
+						"name": "authorization",
+						"in": "header",
+						"required": true,
+						"type": "string",
+						"example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMDAwMDAwMCwicm9sZSI6InVzZXIiLCJpYXQiOjE2NTc3OTQyMDl9.wBticOTi8xYDk-YByzV7umhYviq0EKxZNVhS5nSHmv0"
+					},
+					{
 						"name": "body",
 						"in": "body",
+						"required": true,
 						"schema": {
 							"type": "object",
 							"properties": {
 								"cartItemId": {
+									"type": "integer",
 									"example": 81
 								},
 								"quantity": {
+									"type": "integer",
 									"example": 6
 								}
 							}
@@ -251,8 +288,8 @@
 						"schema": {
 							"type": "object",
 							"properties": {
-								"err": { "example": false },
-								"msg": { "example": "cart item quantity was updated successfuly" }
+								"err": { "type": "boolean", "example": false },
+								"msg": {"type": "string", "example": "cart item quantity was updated successfuly" }
 							}
 						}
 					},
@@ -270,6 +307,13 @@
 				"summary": "Delete all cart items",
 				"parameters": [
 					{
+						"name": "authorization",
+						"in": "header",
+						"required": true,
+						"type": "string",
+						"example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMDAwMDAwMCwicm9sZSI6InVzZXIiLCJpYXQiOjE2NTc3OTQyMDl9.wBticOTi8xYDk-YByzV7umhYviq0EKxZNVhS5nSHmv0"
+					},
+					{
 						"name": "id",
 						"in": "path",
 						"required": true,
@@ -281,8 +325,8 @@
 						"schema": {
 							"type": "object",
 							"properties": {
-								"err": { "example": false },
-								"msg": { "example": "all cart items of the cart was deleted successfuly" }
+								"err": { "type": "boolean", "example": false },
+								"msg": {"type": "string", "example": "all cart items of the cart was deleted successfuly" }
 							}
 						}
 					},
@@ -384,6 +428,7 @@
 					{
 						"name": "body",
 						"in": "body",
+						"required": true,
 						"schema": {
 							"type": "object",
 							"properties": {
@@ -396,15 +441,19 @@
 										"example": 100
 									},
 									"city": {
+										"type": "string",
 										"example": "Jerusalem"
 									},
 									"street": {
+										"type": "string",
 										"example": "aluf sade"
 									},
 									"shippingDate": {
+										"type": "date-time",
 										"example": "2022-06-02T14:02:02.661Z"
 									},
 									"paymentLastDigits": {
+										"type": "integer",
 										"example": 1234
 									},
 									"cartItemsArray":{
@@ -452,6 +501,15 @@
 			"get": {
 				"tags": ["orders"],
 				"summary": "Get array of dates which have 3 or more shippings",
+				"parameters":[
+					{
+						"name": "authorization",
+						"in": "header",
+						"required": true,
+						"type": "string",
+						"example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMDAwMDAwMCwicm9sZSI6InVzZXIiLCJpYXQiOjE2NTc3OTQyMDl9.wBticOTi8xYDk-YByzV7umhYviq0EKxZNVhS5nSHmv0"
+					}
+				],
 				"responses": {
 					"200": {
 						"schema": { "type": "array", "items":{ "properties": {"shippingDate": {"type": "date-time", "example": "2022-08-03T14:36:08.000Z"} }}}
@@ -513,6 +571,15 @@
 			"get": {
 				"tags": ["products"],
 				"summary": "Get an array of all products in the store",
+				"parameters":[
+					{
+						"name": "authorization",
+						"in": "header",
+						"required": true,
+						"type": "string",
+						"example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMDAwMDAwMCwicm9sZSI6InVzZXIiLCJpYXQiOjE2NTc3OTQyMDl9.wBticOTi8xYDk-YByzV7umhYviq0EKxZNVhS5nSHmv0"
+					}
+				],
 				"responses": {
 					"200": {
 						"schema": {"type": "array", "items": { "$ref":"#/definitions/product"}}
@@ -528,8 +595,16 @@
 				"summary": "Add a product to the store",
 				"parameters":[
 					{
+						"name": "authorization",
+						"in": "header",
+						"required": true,
+						"type": "string",
+						"example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMDAwMDAwMCwicm9sZSI6InVzZXIiLCJpYXQiOjE2NTc3OTQyMDl9.wBticOTi8xYDk-YByzV7umhYviq0EKxZNVhS5nSHmv0"
+					},
+					{
 						"name": "body",
 						"in": "body",
+						"required": true,
 						"schema": {
 							"type": "object",
 							"properties": {
@@ -558,8 +633,8 @@
 						"schema":{
 							"type": "object",
 							"properties": {
-								"err": { "example": false },
-								"msg": { "example": "product was added succesfully" }
+								"err": { "type": "boolean", "example": false },
+								"msg": { "type": "string", "example": "product was added succesfully" }
 							}
 						}
 					},
@@ -574,8 +649,16 @@
 				"summary": "Edit a specific product in the store",
 				"parameters":[
 					{
+						"name": "authorization",
+						"in": "header",
+						"required": true,
+						"type": "string",
+						"example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMDAwMDAwMCwicm9sZSI6InVzZXIiLCJpYXQiOjE2NTc3OTQyMDl9.wBticOTi8xYDk-YByzV7umhYviq0EKxZNVhS5nSHmv0"
+					},
+					{
 						"name": "body",
 						"in": "body",
+						"required": true,
 						"schema": {
 							"type": "object",
 							"properties": {
@@ -608,8 +691,8 @@
 						"schema":{
 							"type": "object",
 							"properties": {
-								"err": { "example": false },
-								"msg": { "example": "product was edited succesfully" }
+								"err": { "type": "boolean", "example": false },
+								"msg": { "type": "string", "example": "product was edited succesfully" }
 							}
 						}
 					},
@@ -715,8 +798,8 @@
 		"600 Error": {
 			"type": "object",
 			"properties": {
-				"err": { "example": true },
-				"msg": { "example": "Message written in description" }
+				"err": { "type": "boolean", "example": true },
+				"msg": {"type":"string", "example": "Message written in description" }
 			}
 		}
 	}
