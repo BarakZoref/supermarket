@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { StateService } from 'src/app/services/state.service';
 import { UsersService } from 'src/app/services/users.service';
 
@@ -18,10 +19,21 @@ export class RegisterStepTwoComponent implements OnInit {
     private _usersService: UsersService,
     private _stateService: StateService,
     private formBuilder: UntypedFormBuilder,
+    private _messageService: MessageService,
     public router: Router
   ) { }
 
   ngOnInit(): void {
+
+    let registrationDetailsAsString: string = sessionStorage.getItem("registrationDetails");
+    if(registrationDetailsAsString){
+      this._usersService.userRegisterData = JSON.parse(registrationDetailsAsString);
+    }
+    else{
+      this._messageService.add({ key: 'appToast', severity: 'error', summary: 'Error', detail: 'first stage must be completed before going to second stage' });
+      this.router.navigate(['/start-screen/register/step-one'])
+    }
+
     this.userRegisterForm = this.formBuilder.group({
       city: [this.registerUserData.city, [Validators.required]],
       street: [this.registerUserData.street,[Validators.required, Validators.maxLength(40)]],
@@ -30,9 +42,6 @@ export class RegisterStepTwoComponent implements OnInit {
     })
 
     this.cities = this._stateService.cities;
-
-    let registrationDetailsAsString: string = sessionStorage.getItem("registrationDetails");
-    this._usersService.userRegisterData = JSON.parse(registrationDetailsAsString);
 
   }
 
