@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-sm navbar-light bg-light">
 
-  <span class="logo">Giant Food</span>
+  <span class="logo" (click)="router.navigate(['/'])">Giant Food</span>
   <span class="name" *ngIf="!currentUser">Hello Guest</span>
   <span class="name" *ngIf="currentUser">Hello {{currentUser.firstName}}</span>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
