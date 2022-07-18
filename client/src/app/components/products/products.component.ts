@@ -32,7 +32,12 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit(): void {
     let categoriesSubscription = this._categoriesService.followCategories().subscribe(categories=>{
-        for (const category of categories) {this.categories.push(category)}
+      if(categories){
+        for (const category of categories)
+         {
+          this.categories.push(category)
+        }
+      }
       });
     this._productsService.getAllProducts();
     let usersSubscription = this._usersService.followCurrentUser().subscribe(newUser=>{

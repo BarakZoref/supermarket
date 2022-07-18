@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MessageService } from 'primeng/api';
+import { BehaviorSubject, Observable } from 'rxjs';
 import ICartItem from '../models/icart-item.model';
+import ICart from '../models/icart.model';
 import IServerResponse from '../models/iserver-response.model';
 
 @Injectable({
@@ -9,7 +11,7 @@ import IServerResponse from '../models/iserver-response.model';
 })
 export class CartItemsService {
 
-  cartItems: ICartItem[];
+  private cartItems: ICartItem[];
   totalPrice: number;
 
   private baseUrl = 'http://localhost:3001/cart_items/'
@@ -17,6 +19,16 @@ export class CartItemsService {
     public _http: HttpClient,
     private _messageService: MessageService
   ) { }
+
+  private cartItemsSubject = new BehaviorSubject<ICartItem[]>(null);
+
+  followCartItems(): Observable<ICartItem[]>{
+    return this.cartItemsSubject.asObservable();
+  }
+
+  setCartItems(newCartItems: ICartItem[]): void{
+    this.cartItemsSubject.next(newCartItems);
+  }
 
    public addToCart(newCartItem): void{
     this._http.post<any>(this.baseUrl, newCartItem)
@@ -73,7 +85,7 @@ export class CartItemsService {
   public getCartItems(cartId): void{
     this._http.get<ICartItem[]>(this.baseUrl + cartId)
     .subscribe(cartItems => {
-      this.cartItems = cartItems
+      this.cartItemsSubject.next(cartItems);
       this.totalPrice = 0;
       for(let cartItem of cartItems){
         this.totalPrice+=cartItem.quantity*cartItem.unitPrice;

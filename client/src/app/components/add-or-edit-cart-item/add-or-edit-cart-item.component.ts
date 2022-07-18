@@ -28,7 +28,8 @@ export class AddOrEditCartItemComponent implements OnInit {
   amountOfProduct: number;
   amountOfProductError: boolean = false;
   private currentCart: ICart;
-  cartsSubscription: Subscription;
+  cartItems: ICartItem[];
+  subscriptions: Subscription[] = [];
 
   constructor(
     public _cartItemsService: CartItemsService,
@@ -36,8 +37,16 @@ export class AddOrEditCartItemComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    let cartsSubscription = this._cartService.followCurrentCart().subscribe(newCart=>{
+      this.currentCart = newCart;
+    });
+    let cartItemsSubscription = this._cartItemsService.followCartItems().subscribe(newCartItems=>{
+      this.cartItems = newCartItems
+    });
+    this.subscriptions.push(cartsSubscription, cartItemsSubscription);
+
     if(this.product){// if the input is from the add item
-      const cartItem= this._cartItemsService.cartItems?.find((cartItem) => cartItem.productId==this.product.id);
+      const cartItem= this.cartItems?.find((cartItem) => cartItem.productId==this.product.id);
       console.log("cart item!", cartItem);
 
       if(cartItem){
@@ -60,13 +69,12 @@ export class AddOrEditCartItemComponent implements OnInit {
     else{//if the input is from the edit
       this.amountOfProduct = this.cartItem.quantity;
     }
-    this.cartsSubscription = this._cartService.followCurrentCart().subscribe(newCart=>{
-      this.currentCart = newCart;
-    })
   }
 
   ngOnDestroy(): void{
-    this.cartsSubscription.unsubscribe();
+    for(let sub of this.subscriptions){
+      sub.unsubscribe();
+    }
   }
 
   onMinusButtonClicked(){
@@ -95,7 +103,7 @@ export class AddOrEditCartItemComponent implements OnInit {
 
   onChooseAmountOfProductClicked(){
     if(this.amountOfProduct == 0){
-      if(this._cartItemsService.cartItems.find(cartItem=> cartItem.id == this.cartItem.id)){
+      if(this.cartItems.find(cartItem=> cartItem.id == this.cartItem.id)){
         this._cartItemsService.deleteCartItem(this.cartItem.id, this.currentCart.id);
       }
       this.displayModal = false;

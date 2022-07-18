@@ -21,6 +21,10 @@ export class CategoriesService {
     return this.categoriesSubject.asObservable();
   }
 
+  setCategories(newCategories: ICategory[]): void{
+    this.categoriesSubject.next(newCategories);
+  }
+
 
   public getAllCategories(): void {
     this._http.get<ICategory[]>('http://localhost:3001/categories')

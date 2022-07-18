@@ -50,7 +50,7 @@ export class StateService {
           this._cartItemsService.getCartItems(newCart.id);
         }
         else{
-          this._cartItemsService.cartItems = null;
+          this._cartItemsService.setCartItems(null);
         }
     })
    }

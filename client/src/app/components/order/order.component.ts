@@ -9,6 +9,7 @@ import { UsersService } from 'src/app/services/users.service';
 import { saveAs } from 'file-saver';
 import { StateService } from 'src/app/services/state.service';
 import { Subscription } from 'rxjs';
+import ICartItem from 'src/app/models/icart-item.model';
 
 
 @Component({
@@ -25,8 +26,9 @@ export class OrderComponent implements OnInit {
   minDate: Date;
   displayModal: boolean = false;
   currentUser: IUser;
+  cartItems: ICartItem[];
 
-  usersSubscription: Subscription;
+  subscriptions: Subscription[] = [];
 
   searchInput: string;
 
@@ -41,9 +43,14 @@ export class OrderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this. usersSubscription =this._usersService.followCurrentUser().subscribe(newUser=>{
+    let usersSubscription =this._usersService.followCurrentUser().subscribe(newUser=>{
       this.currentUser = newUser;
     });
+
+    let cartItemsSubscription = this._cartItemsService.followCartItems().subscribe(newCartItems=>{
+      this.cartItems = newCartItems
+    });
+    this.subscriptions.push(usersSubscription, cartItemsSubscription);
     this.userOrderForm = this.formBuilder.group({
       city: [this.orderUserData.city, [Validators.required]],
       street: [this.orderUserData.street,[Validators.required, Validators.maxLength(40)]],
@@ -59,16 +66,18 @@ export class OrderComponent implements OnInit {
   }
 
   ngOnDestroy(): void{
-    this.usersSubscription.unsubscribe();
+    for(let sub of this.subscriptions){
+      sub.unsubscribe();
+    }
   }
 
   order(): void{
     this.orderUserData = this.userOrderForm.value;
-    const cartId = this._cartItemsService.cartItems[0].cartId;
+    const cartId = this.cartItems[0].cartId;
     let orderDetailsToBeSent = {
       cartId,
       finalPrice: this._cartItemsService.totalPrice,
-      cartItemsArray: this._cartItemsService.cartItems,
+      cartItemsArray: this.cartItems,
       city: this.orderUserData.city,
       street: this.orderUserData.street,
       shippingDate: this.orderUserData.shippingDate,

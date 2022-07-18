@@ -17,7 +17,8 @@ export class CartComponent implements OnInit {
   currentCartItem: ICartItem;
   displayModal: boolean = false;
   currentCart: ICart;
-  cartsSubscription: Subscription;
+  cartItems: ICartItem[];
+  subscriptions: Subscription[] = [];
   constructor(
     public _cartItemsService: CartItemsService,
     public _cartService: CartService,
@@ -26,13 +27,19 @@ export class CartComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.cartsSubscription = this._cartService.followCurrentCart().subscribe(newCart=>{
+    let cartsSubscription = this._cartService.followCurrentCart().subscribe(newCart=>{
       this.currentCart = newCart;
-    })
+    });
+    let cartItemsSubscription = this._cartItemsService.followCartItems().subscribe(newCartItems=>{
+      this.cartItems = newCartItems
+    });
+    this.subscriptions.push(cartsSubscription, cartItemsSubscription);
   }
 
   ngOnDestroy(): void{
-    this.cartsSubscription.unsubscribe();
+    for(let sub of this.subscriptions){
+      sub.unsubscribe();
+    }
   }
 
   deleteCartItem(cartItemId): void{
@@ -49,7 +56,7 @@ export class CartComponent implements OnInit {
   }
 
   onOrderButtonClicked(): void{
-    if(this._cartItemsService.cartItems.length){
+    if(this.cartItems.length){
       this.router.navigate(['/order']);
     }
     else{
