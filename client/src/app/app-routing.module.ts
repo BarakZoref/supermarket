@@ -13,6 +13,7 @@ import { StoreComponent } from './components/store/store.component';
 import { AdminGuard } from './guards/admin.guard';
 import { HomeRedirectionGuard } from './guards/home-redirection.guard';
 import { LoginGuard } from './guards/login.guard';
+import { OrderGuard } from './guards/order.guard';
 
 const routes: Routes = [
 
@@ -34,7 +35,7 @@ const routes: Routes = [
     ],
   },
   { path: 'store', canActivate: [LoginGuard], component: StoreComponent },
-  { path: 'order', component: OrderComponent},
+  { path: 'order', canActivate: [OrderGuard], component: OrderComponent},
   { path: 'doc', canActivate: [LoginGuard, AdminGuard], component: DocComponent},
   { path: "", redirectTo: "/start-screen/login", pathMatch: "full" },
   { path: "**", component: Page404Component } // Page not Found (Must be the last one!!!)
