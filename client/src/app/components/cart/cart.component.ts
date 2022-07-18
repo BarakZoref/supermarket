@@ -18,7 +18,6 @@ export class CartComponent implements OnInit {
   displayModal: boolean = false;
   currentCart: ICart;
   cartsSubscription: Subscription;
-
   constructor(
     public _cartItemsService: CartItemsService,
     public _cartService: CartService,
@@ -57,5 +56,19 @@ export class CartComponent implements OnInit {
       this._messageService.add({ key: 'appToast', severity: 'error', summary: 'Error', detail: 'There are no cart items in the cart' });
     }
   }
+
+  showConfirm() {
+    this._messageService.clear();
+    this._messageService.add({key: 'c', sticky: true, severity:'warn', summary:'Are you sure?', detail:'Confirm to proceed'});
+}
+
+onConfirm() {
+  this._messageService.clear('c');
+  this.deleteAllCartItems();
+}
+
+onReject() {
+  this._messageService.clear('c');
+}
 
 }

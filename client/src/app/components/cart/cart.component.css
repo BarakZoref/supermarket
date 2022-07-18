@@ -40,12 +40,12 @@ h1, .no-cart-items{
   font-size: 10px;
 }
 
-h4, .delete-all-items-button, .order-button{
+.total-price, .delete-all-items-button, .order-button{
   margin-left: 2px;
   margin-bottom: 1px;
 }
 
-h4{
+.total-price{
   background-color: #3B82F6;
   padding: 10px;
   border-radius: 3px;
@@ -60,4 +60,23 @@ h4{
   flex-direction: column;
 }
 
+.clearModalButton {
+  min-width: 10rem;
+  margin-right: .5rem;
+}
+
+@media screen and (max-width: 960px) {
+  .clearModalButton {
+      width: 100%;
+      margin-bottom: .5rem;
+  }
+}
+
+.clearModalButtonDiv{
+  display: flex;
+}
+
+.p-text-center{
+  text-align: center;
+}
 
