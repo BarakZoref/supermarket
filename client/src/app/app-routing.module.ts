@@ -11,6 +11,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { StartScreenComponent } from './components/start-screen/start-screen.component';
 import { StoreComponent } from './components/store/store.component';
 import { AdminGuard } from './guards/admin.guard';
+import { HomeRedirectionGuard } from './guards/home-redirection.guard';
 import { LoginGuard } from './guards/login.guard';
 
 const routes: Routes = [
@@ -19,8 +20,8 @@ const routes: Routes = [
     path: 'start-screen',
     component: StartScreenComponent,
     children: [
-      {path: 'login', component: LoginComponent},
-      {path: 'register', component: RegisterComponent,
+      {path: 'login', canActivate: [HomeRedirectionGuard], component: LoginComponent},
+      {path: 'register', canActivate: [HomeRedirectionGuard], component: RegisterComponent,
         children: [
           {path: 'step-one', component: RegisterStepOneComponent},
           {path: 'step-two', component: RegisterStepTwoComponent},

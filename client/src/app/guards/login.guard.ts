@@ -8,7 +8,7 @@ import { MessageService } from 'primeng/api';
 })
 export class LoginGuard implements CanActivate {
 
-  private role: string;
+  // private role: string;
 
   public constructor(
     private router: Router,
@@ -16,7 +16,7 @@ export class LoginGuard implements CanActivate {
   }
 
   public canActivate(): boolean{
-      let helper = new JwtHelperService();
+      // let helper = new JwtHelperService();
       let userDetails: string = sessionStorage.getItem("userDetails");
       let currentUser = JSON.parse(userDetails);
 
