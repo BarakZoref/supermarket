@@ -95,6 +95,9 @@ export class AddOrEditCartItemComponent implements OnInit {
 
   onChooseAmountOfProductClicked(){
     if(this.amountOfProduct == 0){
+      if(this._cartItemsService.cartItems.find(cartItem=> cartItem.id == this.cartItem.id)){
+        this._cartItemsService.deleteCartItem(this.cartItem.id, this.currentCart.id);
+      }
       this.displayModal = false;
       this.displayModalChange.emit(false);
       return;
