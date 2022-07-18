@@ -1,5 +1,4 @@
-<!-- <div class="card"> -->
-  <p-button (click)="onResumeShoppingButtonClicked()" *ngIf="currentUser.role == 'user' && currentCart">Resume Shopping</p-button>
-  <p-button (click)="onStartShoppingButtonClicked()" *ngIf="currentUser.role == 'user' &&  !currentCart">Start Shopping</p-button>
-  <p-button (click)="onEditStoreButtonClicked()" *ngIf="currentUser.role == 'admin'">Edit Store</p-button>
-<!-- </div> -->
+<p-button (click)="onResumeShoppingButtonClicked()" *ngIf="currentUser.role == 'user' && currentCart">Resume Shopping</p-button>
+<p-button (click)="onStartShoppingButtonClicked()" *ngIf="currentUser.role == 'user' &&  !currentCart">Start Shopping</p-button>
+<p-button (click)="onEditStoreButtonClicked()" *ngIf="currentUser.role == 'admin'">Edit Store</p-button>
+

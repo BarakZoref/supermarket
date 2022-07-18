@@ -1,20 +1,21 @@
 .store{
   display: flex;
+  justify-content: space-between;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 10px;
 }
 
 
-app-cart, app-add-or-edit-product{
-  width:30%;
-  height: 87vh;
-}
-
-app-cart{
+app-cart, app-add-or-edit-product, app-products{
+  /* width:30%; */
+  height: 83vh;
   overflow: auto;
 }
 
-app-products{
-  height: 87vh;
+/* .card{
   overflow: auto;
-}
+  height: 89vh;
+} */
 
 

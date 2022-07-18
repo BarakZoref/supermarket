@@ -7,10 +7,11 @@
 }
 
 .nav-link{
-  color: green !important;
+  color: blue !important;
   cursor: pointer;
 }
 
 .nav-link:hover{
-  color: lightgreen !important;
+  color: lightblue !important;
 }
+

@@ -1,5 +1,4 @@
 <div class="add-or-edit-container">
-  <br><br>
   <h1>{{isEdit? 'Edit Product': 'Add Product'}}</h1>
 <form [formGroup]="productForm" (ngSubmit)="addNewProductDetailsToServer()">
   <div class="container">
@@ -64,7 +63,7 @@
     </div>
   <div class="buttons">
     <button pButton type="button" (click)="goBackStartScreen()"> &lt; Go Back</button>
-    <button pButton type="submit" [disabled]="productForm.invalid || productForm.pristine" [label]="isEdit ? 'Edit Product' : 'Add Product'"></button>
+    <button class="add-or-edit-button" pButton type="submit" [disabled]="productForm.invalid || productForm.pristine" [label]="isEdit ? 'Edit Product' : 'Add Product'"></button>
     <button pButton type="button" (click)="clear()" label="clear"></button>
   </div>
 </form>

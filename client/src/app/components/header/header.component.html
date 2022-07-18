@@ -10,12 +10,12 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
     </ul>
-    <button *ngIf="currentUser?.role == 'admin'" class="btn btn-outline-success my-2 my-sm-0" (click)="router.navigate(['/doc'])">Documentation</button>
+    <button *ngIf="currentUser?.role == 'admin'" class="btn btn-outline-primary my-2 my-sm-0" (click)="router.navigate(['/doc'])">Documentation</button>
     <a (click)="onLogOutClicked()" *ngIf="currentUser" class="nav-link">Log Out<span class="sr-only">(current)</span></a>
     <form *ngIf="router.url === '/store'" class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search product" aria-label="Search"
       [(ngModel)]="productInput" (ngModelChange)="onSearchChanged($event)" name="productSearch">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
     </form>
   </div>
 </nav>

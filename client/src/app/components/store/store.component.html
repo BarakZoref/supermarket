@@ -1,8 +1,8 @@
 <div class="store">
-  <app-cart *ngIf="currentUser.role == 'user' && showCart"></app-cart>
+  <app-cart class="card" *ngIf="currentUser.role == 'user' && showCart"></app-cart>
   <button *ngIf="currentUser.role == 'user' && showCart" pButton type="button" icon="pi pi-angle-double-left" class="p-button-rounded" (click)="showCart=false"></button>
   <button *ngIf="currentUser.role == 'user' && !showCart" pButton type="button" icon="pi pi-angle-double-right" class="p-button-rounded" (click)="showCart=true"></button>
-  <app-add-or-edit-product *ngIf="currentUser.role == 'admin'"></app-add-or-edit-product>
-  <app-products [ngStyle]="{'width': showCart ? '70%' : '100%'}" ></app-products>
+  <app-add-or-edit-product class="card" *ngIf="currentUser.role == 'admin'"></app-add-or-edit-product>
+  <app-products class="card" [ngStyle]="{'width': showCart ? '65%' : '95%'}" ></app-products>
 </div>
 

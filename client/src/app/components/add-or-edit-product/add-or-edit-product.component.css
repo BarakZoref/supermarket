@@ -24,3 +24,8 @@
 h1{
   text-align: center;
 }
+
+.add-or-edit-button{
+  margin-left: 3px;
+  margin-right: 3px;
+}
