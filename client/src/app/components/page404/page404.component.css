@@ -1,3 +1,10 @@
-h1{
+/* h1{
+  text-align: center;
+} */
+img{
+  width: 310px;
+}
+div{
+  padding-top: 10px;
   text-align: center;
 }
