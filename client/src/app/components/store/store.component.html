@@ -3,6 +3,6 @@
   <button *ngIf="currentUser.role == 'user' && showCart" pButton type="button" icon="pi pi-angle-double-left" class="p-button-rounded" (click)="showCart=false"></button>
   <button *ngIf="currentUser.role == 'user' && !showCart" pButton type="button" icon="pi pi-angle-double-right" class="p-button-rounded" (click)="showCart=true"></button>
   <app-add-or-edit-product class="card" *ngIf="currentUser.role == 'admin'"></app-add-or-edit-product>
-  <app-products class="card" [ngStyle]="{'width': showCart ? '65%' : '95%'}" ></app-products>
+  <app-products class="card" ></app-products>
 </div>
 

@@ -13,9 +13,25 @@ app-cart, app-add-or-edit-product, app-products{
   overflow: auto;
 }
 
-/* .card{
-  overflow: auto;
-  height: 89vh;
-} */
+app-cart{
+  width: 35%;
+}
+
+app-products{
+  min-width: 60%;
+  width: 100%;
+  padding: 0 !important;
+}
+
+@media screen and (max-width: 960px) {
+  app-cart{
+    display: block;
+    width: fit-content;
+    height: fit-content;
+  }
+  .store{
+    display: block;
+  }
+}
 
 

@@ -74,4 +74,12 @@ h4{
   cursor: pointer;
 }
 
+@media screen and (max-width: 960px) {
+  .card{
+    height: fit-content;
+    max-width: 95%;
+    margin-bottom: 10px;
+  }
+}
+
 

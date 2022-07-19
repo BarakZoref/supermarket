@@ -5,6 +5,10 @@
   width: 100%;
 }
 
+.navbar{
+  padding: 0;
+}
+
 .products{
   display: flex;
   flex-wrap: wrap;
