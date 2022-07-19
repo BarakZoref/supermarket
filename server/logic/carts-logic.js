@@ -2,7 +2,6 @@ const cartsDal = require('../dal/carts-dal');
 
 async function addCart(userId){
     let creationDate = new Date();
-    console.log("creation date", creationDate)
     let cartId = await cartsDal.addCart(userId, creationDate);
     let newCart = {
         id: cartId,
