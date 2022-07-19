@@ -3,28 +3,27 @@
   <div class="card">
     <router-outlet></router-outlet>
   </div>
-  <div class="card">
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt
-        quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt
-        quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt
-        quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt
+  <div class="card middle-card">
+    <p>
+      Welcome to Giant Food, the best super market in the country! <br>
+      We sell all kind of groceries, with the cheapest prices. <br>
+      We also have a shippment service, you just need to write the adress and the required shipment
+      date and we will be there with your cart.
   </p>
+  <img class="middle-img" src="../../../assets/start-screen/cart.jpg" alt="">
   </div>
-  <div class="card">
-    <p>Available products in out store: {{_productsService.amountOfProducts}}</p>
-    <p>Number of orders submitted in our store: {{_ordersService.amountOfOrders}}</p>
+  <div class="card right-card">
+    <p>Available products: <br> <strong>{{_productsService.amountOfProducts}}</strong></p>
+    <p>Number of orders submitted: <br> <strong>{{_ordersService.amountOfOrders}}</strong></p>
     <div *ngIf="currentUser && currentUser.role == 'user'">
-      <h2 *ngIf="(currentUser && !_ordersService.lastOrderDate && !currentCart)">Welcome to your first purchase</h2>
+      <p *ngIf="(currentUser && !_ordersService.lastOrderDate && !currentCart)">Welcome to your first purchase</p>
       <div  *ngIf="currentCart">
-        <h2>You have open cart from:</h2>
-        <h2>{{ currentCart?.creationDate | date:'medium' }}</h2>
+        <p>You have open cart from:</p>
+        <p><strong>{{ currentCart?.creationDate | date:'medium' }}</strong></p>
       </div>
       <div *ngIf="!currentCart && _ordersService.lastOrderDate">
-        <h2>Your last order was at:</h2>
-        <h2>{{ _ordersService.lastOrderDate | date:'medium' }}</h2>
+        <p>Your last order was at:</p>
+        <p><strong>{{ _ordersService.lastOrderDate | date:'medium' }}</strong></p>
       </div>
     </div>
   </div>

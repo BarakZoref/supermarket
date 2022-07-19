@@ -14,4 +14,12 @@
   /* height: 89vh; */
 }
 
+.middle-card, .right-card{
+  text-align: center;
+}
+
+.middle-img{
+  width: 203px;
+}
+
 

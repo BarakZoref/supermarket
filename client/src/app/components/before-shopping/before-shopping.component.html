@@ -1,4 +1,9 @@
-<p-button (click)="onResumeShoppingButtonClicked()" *ngIf="currentUser.role == 'user' && currentCart">Resume Shopping</p-button>
-<p-button (click)="onStartShoppingButtonClicked()" *ngIf="currentUser.role == 'user' &&  !currentCart">Start Shopping</p-button>
-<p-button (click)="onEditStoreButtonClicked()" *ngIf="currentUser.role == 'admin'">Edit Store</p-button>
+<div>
+  <button pButton (click)="onResumeShoppingButtonClicked()" *ngIf="currentUser.role == 'user' && currentCart">Resume Shopping</button>
+  <button pButton (click)="onStartShoppingButtonClicked()" *ngIf="currentUser.role == 'user' &&  !currentCart">Start Shopping</button>
+  <button pButton (click)="onEditStoreButtonClicked()" *ngIf="currentUser.role == 'admin'">Edit Store</button>
+</div>
+
+  <img src="../../../assets/start-screen/shop.jpg" alt="">
+
 
