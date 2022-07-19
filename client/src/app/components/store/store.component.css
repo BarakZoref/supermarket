@@ -8,7 +8,6 @@
 
 
 app-cart, app-add-or-edit-product, app-products{
-  /* width:30%; */
   height: 83vh;
   overflow: auto;
 }

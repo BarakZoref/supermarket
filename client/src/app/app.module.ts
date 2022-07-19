@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StoreComponent } from './components/store/store.component';
 import { LoginComponent } from './components/login/login.component';
@@ -43,7 +42,6 @@ import { DocComponent } from './components/doc/doc.component';
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent,
     StoreComponent,
     LoginComponent,
     StartScreenComponent,
