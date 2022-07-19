@@ -21,7 +21,6 @@ export class OrdersService {
     this._http.get<any>(this.baseUrl + 'amount_of_orders')
       .subscribe((amountOfOrdersAsObject) => {
         this.amountOfOrders = amountOfOrdersAsObject.amountOfOrders;
-        console.log("amount of orders: ", this.amountOfOrders);
       },
         err => {
           console.log(err);
@@ -46,7 +45,6 @@ export class OrdersService {
           let busyDay = new Date(busyDayAsString.shippingDate);
           this.busyDays.push(busyDay);
         }
-        console.log("get Busy Days: ", this.busyDays);
       },
         err => {
           console.log(err);
@@ -57,7 +55,6 @@ export class OrdersService {
   public getLastOrderDate(): void{
     this._http.get<Date>(this.baseUrl)
     .subscribe((lastOrderDate: Date) => {
-      console.log("last order date", lastOrderDate);
       this.lastOrderDate = lastOrderDate;
     },
       err => {
@@ -68,13 +65,6 @@ export class OrdersService {
 
   public getReceipt(cartId){
    return this._http.get(this.baseUrl + 'receipt/' +cartId, {responseType: "blob"});
-    // .subscribe((file: any)=>{
-    //   console.log(file);
-    // },
-    // err=>{
-    //   console.log(err);
-    //   alert("couldn't get receipt");
-    // })
 
    }
 

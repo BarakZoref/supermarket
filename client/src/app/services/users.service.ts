@@ -77,7 +77,6 @@ export class UsersService{
     let isExist: boolean;
     let p = this._http.post<boolean>(this.baseUrl + 'is_exist', { id, userName }).toPromise();
     await p.then(response => {
-      console.log("response", response)
       isExist = response;
     }).catch(error => {
       console.log(error);

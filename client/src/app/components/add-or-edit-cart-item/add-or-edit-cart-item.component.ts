@@ -47,7 +47,6 @@ export class AddOrEditCartItemComponent implements OnInit {
 
     if(this.product){// if the input is from the add item
       const cartItem= this.cartItems?.find((cartItem) => cartItem.productId==this.product.id);
-      console.log("cart item!", cartItem);
 
       if(cartItem){
         this.cartItem = cartItem;

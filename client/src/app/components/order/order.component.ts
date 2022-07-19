@@ -95,8 +95,6 @@ export class OrderComponent implements OnInit {
   }
 
   onStreetDoubleClick(): void{
-    console.log(this.currentUser.street);
-
     this.userOrderForm.controls.street.setValue(this.currentUser.street);
   }
 
