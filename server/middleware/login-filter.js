@@ -22,6 +22,10 @@ function authenticateJwtRequestToken() {
         // if (request.method == 'POST' && request.url.endsWith('/users')) {
         //     return true;
         // }
+
+        if (request.method == 'GET' && request.url.includes('/doc/')) {
+            return true;
+        };
        
 
         // If the url resides in our whitelist urls

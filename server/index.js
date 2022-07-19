@@ -15,7 +15,7 @@ const swaggerFile = require('./swagger_output.json');
 
 server.use(cors({ origin: "http://localhost:4200"})); 
 // Extract the JSON from the body and create request.body object containing it: 
-// server.use(loginFilter());
+server.use(loginFilter());
 
 server.use(express.json());
 server.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile));
