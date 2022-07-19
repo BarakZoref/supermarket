@@ -2,23 +2,25 @@ import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { MessageService } from 'primeng/api';
+import IUser from '../models/iuser.model';
+import { UsersService } from '../services/users.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginGuard implements CanActivate {
 
-  // private role: string;
-
   public constructor(
     private router: Router,
-    private _messageService: MessageService){
+    private _messageService: MessageService,
+    private _usersService: UsersService){
   }
 
   public canActivate(): boolean{
-      // let helper = new JwtHelperService();
-      let userDetails: string = sessionStorage.getItem("userDetails");
-      let currentUser = JSON.parse(userDetails);
+      let currentUser: IUser;
+      this._usersService.followCurrentUser().subscribe((newUser) => {
+        currentUser = newUser;
+      });
 
       if(currentUser){
         return true;
