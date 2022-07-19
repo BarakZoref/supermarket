@@ -19,9 +19,6 @@ whiteListUrls.add('/doc/');
 function authenticateJwtRequestToken() {
     
     return expressJwt({ secret, algorithms: ['sha1', 'RS256', 'HS256'] }).unless(request => {
-        // if (request.method == 'POST' && request.url.endsWith('/users')) {
-        //     return true;
-        // }
 
         if (request.method == 'GET' && request.url.includes('/doc/')) {
             return true;
