@@ -37,14 +37,16 @@ async function getLastOrderDate(tokenData){
 
 
 async function createReceipt(cartItemsArray, cartId, finalPrice){ 
-    let str = 'Receipt No. ' + cartId
+    let str = 'Receipt No. ' + cartId + '\n';
     for (const cartItem of cartItemsArray) {
+        let cartItemPrice = (cartItem.quantity*cartItem.unitPrice)
+        let roundedCartItemPrice = (Math.round(cartItemPrice * 100) / 100).toFixed(2);
         str += `
-        ${cartItem.name} X ${cartItem.quantity} = ₪${cartItem.quantity*cartItem.unitPrice}
-        _______________________________`
+        ${cartItem.name} X ${cartItem.quantity} = ₪${roundedCartItemPrice}
+_______________________________`
     }
     str+=`
-    Final Price: ₪${finalPrice}`;
+Final Price: ₪${finalPrice}`;
 
     try {
         await fs.writeFile('./receipts/'+cartId+'.txt', str)
