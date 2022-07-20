@@ -35,7 +35,7 @@ const routes: Routes = [
     ],
   },
   { path: 'store', canActivate: [LoginGuard], component: StoreComponent },
-  { path: 'order', canActivate: [OrderGuard], component: OrderComponent},
+  { path: 'order', canActivate: [LoginGuard, OrderGuard], component: OrderComponent},
   { path: 'doc', canActivate: [LoginGuard, AdminGuard], component: DocComponent},
   { path: "", redirectTo: "/start-screen/login", pathMatch: "full" },
   { path: "**", component: Page404Component } // Page not Found (Must be the last one!!!)
