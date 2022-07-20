@@ -21,4 +21,9 @@
   width: 203px;
 }
 
+@media screen and (max-width: 960px) {
+  .card {
+      height: fit-content;
+  }
+}
 

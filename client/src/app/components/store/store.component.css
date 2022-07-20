@@ -29,7 +29,8 @@ app-products{
     height: fit-content;
   }
   .store{
-    display: block;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 }
 
