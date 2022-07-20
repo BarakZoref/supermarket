@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import IUser from 'src/app/models/iuser.model';
+import { StateService } from 'src/app/services/state.service';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
@@ -14,6 +15,7 @@ export class StoreComponent implements OnInit {
   subscription: Subscription;
   constructor(
     public _usersService: UsersService,
+    private _stateService: StateService
   ) { }
 
   ngOnInit(): void {
@@ -23,6 +25,7 @@ export class StoreComponent implements OnInit {
 
   ngOnDestroy(): void{
     this.subscription.unsubscribe();
+    this._stateService.searchProductInput = "";
   }
 
 }

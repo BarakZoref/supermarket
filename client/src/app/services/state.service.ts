@@ -25,6 +25,8 @@ export class StateService {
     'Ashqelon'
   ];
 
+  searchProductInput: string;
+
   constructor(
     public _ordersService: OrdersService,
     public _usersService: UsersService,

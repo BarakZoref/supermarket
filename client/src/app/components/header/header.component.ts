@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import IUser from 'src/app/models/iuser.model';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { ProductsService } from 'src/app/services/products.service';
+import { StateService } from 'src/app/services/state.service';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
@@ -12,8 +13,6 @@ import { UsersService } from 'src/app/services/users.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
-  productInput: string;
   usersSubscription: Subscription;
   currentUser: IUser;
 
@@ -21,7 +20,8 @@ export class HeaderComponent implements OnInit {
     public router: Router,
     public _usersService: UsersService,
     public _productsService: ProductsService,
-    private _categoriesService: CategoriesService
+    private _categoriesService: CategoriesService,
+    public _stateService: StateService
      ) { }
 
   ngOnInit(): void {
