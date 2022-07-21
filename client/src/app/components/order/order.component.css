@@ -6,8 +6,7 @@
 }
 
 .card{
-  width: 400px;
-  height: 87vh;
+  width: 315px;
 }
 
 .cart-item-img{
@@ -22,14 +21,14 @@
   padding: 5px;
 }
 
-h4{
+/* h4{
   background-color: #3B82F6;
   padding: 10px;
   border-radius: 3px;
   font-size: 15px;
   align-self: center;
   color: white;
-}
+} */
 
 .order-page-container{
   height: 100%;
@@ -44,9 +43,8 @@ h4{
 .bottom-div{
   position: sticky;
   bottom: 0;
-  display: flex;
   margin-top: auto;
-  justify-content: space-around;
+  text-align: center;
 }
 
 .back-button{

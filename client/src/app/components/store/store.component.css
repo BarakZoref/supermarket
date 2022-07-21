@@ -22,6 +22,10 @@ app-products{
   padding: 0 !important;
 }
 
+app-add-or-edit-product{
+  margin-right: 10px;
+}
+
 @media screen and (max-width: 960px) {
   app-cart{
     display: block;

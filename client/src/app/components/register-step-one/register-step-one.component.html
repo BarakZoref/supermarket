@@ -1,5 +1,4 @@
 
-<br>
 <form [formGroup]="userRegisterForm" (ngSubmit)="submit()">
 <div class="container">
   <div>
@@ -23,11 +22,11 @@
     <span class="p-float-label">
       <input formControlName="userName" type="text" pInputText name="username" />
       <br>
-      <label for="float-input">Username *</label>
+      <label for="float-input">Email *</label>
     </span>
     <div class="errors-div" *ngIf="userRegisterForm.controls['userName'].invalid && (userRegisterForm.controls['userName'].dirty || userRegisterForm.controls['userName'].touched)">
       <div *ngIf="userRegisterForm.controls['userName'].errors.required">
-      Please enter username
+      Please enter email
       </div>
       <div *ngIf="userRegisterForm.controls['userName'].errors.email">
         Please enter valid email

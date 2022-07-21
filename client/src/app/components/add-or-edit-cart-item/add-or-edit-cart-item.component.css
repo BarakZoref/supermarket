@@ -1,9 +1,6 @@
 .plus-or-minus-button{
-  width: 20px;
-  margin: 0 2px;
   padding: 0;
   display: inline-block;
-  text-align: center;
 }
 .product-amount-input{
   width: 50px;

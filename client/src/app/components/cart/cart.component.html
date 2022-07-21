@@ -13,8 +13,8 @@
   </div>
   <h2 class="no-cart-items" *ngIf="!cartItems?.length">there are no cart items</h2>
   <div class="bottom-div">
-    <h4 class="total-price">Total: {{_cartItemsService.totalPrice | currency: "ILS"}}</h4>
-    <button class="delete-all-items-button" (click)="showConfirm()" pButton type="button" label="Delete all items"></button>
+    <h4>Total: {{_cartItemsService.totalPrice | currency: "ILS"}}</h4>
+    <button class="delete-all-items-button" (click)="showConfirm()" pButton type="button" label="Delete all"></button>
     <button class="order-button" pButton type="button" label="Order" (click)="onOrderButtonClicked()"></button>
   </div>
 </div>

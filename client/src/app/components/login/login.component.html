@@ -2,13 +2,12 @@
   <br>
 <form [formGroup]="userLoginForm" (ngSubmit)="login()">
   <span class="p-float-label">
-    <input formControlName="userName"  type="text" pInputText name="username" />
-    <br>
-    <label for="float-input">Username</label>
+    <input formControlName="userName"  type="text" pInputText id="username" name="username"/>
+    <label for="username">Email</label>
   </span>
   <div class="errors-div" *ngIf="userLoginForm.controls['userName'].invalid && (userLoginForm.controls['userName'].dirty || userLoginForm.controls['userName'].touched)">
     <div *ngIf="userLoginForm.controls['userName'].errors.required">
-    Please enter username
+    Please enter email
     </div>
     <div *ngIf="userLoginForm.controls['userName'].errors.email">
       Please enter valid email
@@ -17,7 +16,7 @@
       Maximum length is 50 characters
     </div>
   </div>
-  <br><br>
+  <br>
   <span class="p-float-label">
     <input formControlName="password" type="password" pInputText  name="password"/>
     <label for="float-input">Password</label>

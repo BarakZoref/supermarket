@@ -35,27 +35,15 @@ h1, .no-cart-items{
 .bottom-div{
   position: sticky;
   bottom: 0;
-  display: flex;
-  flex-wrap: wrap;
   margin-top: auto;
+  text-align: center;
 }
 
 .delete-all-items-button, .order-button{
   font-size: 10px;
-}
-
-.total-price, .delete-all-items-button, .order-button{
-  margin-left: 2px;
   margin-bottom: 1px;
-}
-
-.total-price{
-  background-color: #3B82F6;
-  padding: 10px;
-  border-radius: 3px;
-  font-size: 15px;
-  align-self: center;
-  color: white;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .cart-container{
