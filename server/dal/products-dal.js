@@ -10,7 +10,8 @@ async function getAmountOfProducts(){
 
 async function getAllProducts(){
     let sql = `SELECT id, name, category_id as categoryId, ROUND(price,2) as price, img_url as imgUrl
-                FROM products`
+                FROM products
+                ORDER BY name ASC`
     let allProducts = await connection.execute(sql);
     return allProducts;
 }
@@ -18,7 +19,8 @@ async function getAllProducts(){
 async function getProductsByCategoryId(categoryId){
     let sql = `SELECT id, name, category_id as categoryId, ROUND(price,2) as price, img_url as imgUrl
              FROM products
-            WHERE category_id = ?`;
+            WHERE category_id = ?
+            ORDER BY name ASC`;
     let parameters = [categoryId]
     let products = await connection.executeWithParameters(sql, parameters);
     return products;
