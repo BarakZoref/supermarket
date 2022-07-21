@@ -23,6 +23,12 @@ h1, .no-cart-items{
   overflow: auto;
 }
 
+.edit-and-delete-buttons{
+  position: sticky;
+  right: 0;
+  margin-left: auto;
+}
+
 .delete-item-button, .edit-item-button{
   font-size: 10px;
   background: transparent;
