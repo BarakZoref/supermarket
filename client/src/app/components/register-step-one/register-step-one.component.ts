@@ -11,9 +11,9 @@ import { UsersService } from 'src/app/services/users.service';
 })
 export class RegisterStepOneComponent implements OnInit {
 
-  registerUserConnectionData: any = { id: "", userName: "", password: "", confirmPassword: "" };
+  private registerUserConnectionData: any = { id: "", userName: "", password: "", confirmPassword: "" };
+  private isUserNotExist: boolean = true;
   userRegisterForm: UntypedFormGroup;
-  isUserNotExist: boolean = true;
 
 
   constructor(

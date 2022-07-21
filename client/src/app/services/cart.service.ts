@@ -11,7 +11,7 @@ export class CartService {
 
   private baseUrl: string = "http://localhost:3001/carts/"
   constructor(
-    public _http: HttpClient,
+    private _http: HttpClient,
     private _messageService: MessageService
   ) { }
 

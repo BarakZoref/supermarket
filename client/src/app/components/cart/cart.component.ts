@@ -16,14 +16,14 @@ export class CartComponent implements OnInit {
 
   currentCartItem: ICartItem;
   displayModal: boolean = false;
-  currentCart: ICart;
   cartItems: ICartItem[];
-  subscriptions: Subscription[] = [];
+  private currentCart: ICart;
+  private subscriptions: Subscription[] = [];
   constructor(
     public _cartItemsService: CartItemsService,
-    public _cartService: CartService,
-    public _messageService: MessageService,
-    public router: Router
+    private _cartService: CartService,
+    private _messageService: MessageService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {

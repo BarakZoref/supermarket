@@ -15,7 +15,5 @@ import { UsersService } from './services/users.service';
 export class AppComponent {
 
   constructor(
-    private _stateService: StateService,
-    private _messageService: MessageService
     ) {}
 }

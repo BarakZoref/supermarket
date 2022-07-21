@@ -12,7 +12,7 @@ export class CategoriesService {
   selectedCategory: number = 0;
 
   constructor(
-    public _http: HttpClient,
+    private _http: HttpClient,
     private _messageService: MessageService
   ) { }
 

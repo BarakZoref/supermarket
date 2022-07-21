@@ -13,7 +13,7 @@ export class OrdersService {
   busyDays: Array<Date> = new Array<Date>();
   private baseUrl: string = "http://localhost:3001/orders/"
   constructor(
-    public _http: HttpClient,
+    private _http: HttpClient,
     private _messageService: MessageService
   ) { }
 

@@ -19,8 +19,8 @@ export class StartScreenComponent implements OnInit {
     public _productsService: ProductsService,
     public _ordersService: OrdersService,
     public _cartItemsService: CartItemsService,
-    public _cartService: CartService,
-    public _usersService: UsersService
+    private _cartService: CartService,
+    private _usersService: UsersService
   ) { }
 
   subscriptions: Subscription[] = [];

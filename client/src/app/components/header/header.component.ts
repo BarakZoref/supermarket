@@ -13,14 +13,14 @@ import { UsersService } from 'src/app/services/users.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  usersSubscription: Subscription;
+  private usersSubscription: Subscription;
   currentUser: IUser;
 
   constructor(
-    public router: Router,
-    public _usersService: UsersService,
-    public _productsService: ProductsService,
+    private _usersService: UsersService,
+    private _productsService: ProductsService,
     private _categoriesService: CategoriesService,
+    public router: Router,
     public _stateService: StateService
      ) { }
 

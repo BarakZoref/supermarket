@@ -16,17 +16,17 @@ import { MessageService } from 'primeng/api';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  loginUserData: IUserLoginData = { userName: "", password: "" };
 
+  private loginUserData: IUserLoginData = { userName: "", password: "" };
   userLoginForm: UntypedFormGroup;
 
   constructor(
-    private router: Router,
-    public _usersService: UsersService,
-    private formBuilder: UntypedFormBuilder,
-    private _cartService: CartService,
     public _ordersService: OrdersService,
     public _cartItemsService: CartItemsService,
+    private router: Router,
+    private _usersService: UsersService,
+    private formBuilder: UntypedFormBuilder,
+    private _cartService: CartService,
     private _messageService: MessageService
   ) { }
 

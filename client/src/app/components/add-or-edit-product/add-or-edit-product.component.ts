@@ -14,12 +14,12 @@ import { Subscription } from 'rxjs';
 })
 export class AddOrEditProductComponent implements OnInit {
 
-  productData: any = { productName: "", category: "", price: "", imgUrl: "" };
+  private productData: any = { productName: "", category: "", price: "", imgUrl: "" };
   productForm: UntypedFormGroup;
   categories: ICategory[];
-  productToEditId: number;
+  private productToEditId: number;
   isEdit: boolean = false;
-  subscriptions: Subscription[] = []
+  private subscriptions: Subscription[] = []
 
   constructor(
     private formBuilder: UntypedFormBuilder,

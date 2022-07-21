@@ -18,27 +18,24 @@ import ICartItem from 'src/app/models/icart-item.model';
   styleUrls: ['./order.component.css']
 })
 export class OrderComponent implements OnInit {
-  orderUserData: any = { city: "", street: "", shippingDate: "", creditCardNumber: "" };
+  private orderUserData: any = { city: "", street: "", shippingDate: "", creditCardNumber: "" };
+  private currentUser: IUser;
+  private subscriptions: Subscription[] = [];
   userOrderForm: UntypedFormGroup;
   cities: string[];
-
   invalidDates: Array<Date>;
   minDate: Date;
   displayModal: boolean = false;
-  currentUser: IUser;
   cartItems: ICartItem[];
-
-  subscriptions: Subscription[] = [];
-
   searchInput: string;
 
   constructor(
-    public _cartItemsService: CartItemsService,
-    public _ordersService: OrdersService,
-    public _usersService: UsersService,
-    public _cartService: CartService,
-    public _stateService: StateService,
+    private _ordersService: OrdersService,
+    private _usersService: UsersService,
+    private _cartService: CartService,
+    private _stateService: StateService,
     private formBuilder: UntypedFormBuilder,
+    public _cartItemsService: CartItemsService,
     public router: Router
   ) { }
 

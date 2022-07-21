@@ -12,9 +12,9 @@ import { UsersService } from 'src/app/services/users.service';
 export class StoreComponent implements OnInit {
   showCart: boolean = true;
   currentUser: IUser;
-  subscription: Subscription;
+  private subscription: Subscription;
   constructor(
-    public _usersService: UsersService,
+    private _usersService: UsersService,
     private _stateService: StateService
   ) { }
 

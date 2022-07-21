@@ -22,13 +22,13 @@ export class ProductsComponent implements OnInit {
   amountOfProductError: boolean = false;
   currentUser: IUser;
   categories: ICategory[] = [{id:0, name: 'All'}]
-  subscriptions: Subscription[] = [];
+  private subscriptions: Subscription[] = [];
 
   constructor(
     public _categoriesService: CategoriesService,
     public _productsService: ProductsService,
     public _cartItemsService: CartItemsService,
-    public _usersService: UsersService,
+    private _usersService: UsersService,
     private _stateService: StateService
   ) { }
 

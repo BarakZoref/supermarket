@@ -12,7 +12,7 @@ import { UsersService } from 'src/app/services/users.service';
 })
 export class RegisterStepTwoComponent implements OnInit {
 
-  registerUserData: any = { city: "", street: "", firstName: "", lastName: "" };
+  private registerUserData: any = { city: "", street: "", firstName: "", lastName: "" };
   userRegisterForm: UntypedFormGroup;
   cities: string[];
   constructor(
@@ -20,7 +20,7 @@ export class RegisterStepTwoComponent implements OnInit {
     private _stateService: StateService,
     private formBuilder: UntypedFormBuilder,
     private _messageService: MessageService,
-    public router: Router
+    private router: Router
   ) { }
 
   ngOnInit(): void {

@@ -18,11 +18,11 @@ export class BeforeShoppingComponent implements OnInit {
   currentCart: ICart;
   subscriptions: Subscription[] = [];
   constructor(
-    public _cartService: CartService,
     public _ordersService: OrdersService,
     public _cartItemsService: CartItemsService,
     public _usersService: UsersService,
-    public router: Router
+    private _cartService: CartService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {

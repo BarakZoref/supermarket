@@ -24,17 +24,17 @@ export class AddOrEditCartItemComponent implements OnInit {
   displayModal: boolean = false;
 
   @Output()
-  displayModalChange = new EventEmitter();
+  private displayModalChange = new EventEmitter();
 
   amountOfProduct: number;
   amountOfProductError: boolean = false;
   private currentCart: ICart;
-  cartItems: ICartItem[];
-  subscriptions: Subscription[] = [];
+  private cartItems: ICartItem[];
+  private subscriptions: Subscription[] = [];
 
   constructor(
-    public _cartItemsService: CartItemsService,
-    public _cartService: CartService,
+    private _cartItemsService: CartItemsService,
+    private _cartService: CartService,
     private _messageService: MessageService
   ) { }
 
