@@ -57,7 +57,7 @@
         <label for="Enter credit card number">Enter credit card number *:</label>
         <br>
         <span class="p-float-label">
-          <p-inputMask mask="9999-9999-9999-9999" formControlName="creditCardNumber" placeholder="1111-1111-1111-1111"></p-inputMask>
+          <p-inputMask mask="9999-9999-9999-9999" formControlName="creditCardNumber" placeholder="XXXX_XXXX_XXXX_XXXX"></p-inputMask>
         </span>
         <div class="errors-div" *ngIf="userOrderForm.controls['creditCardNumber'].invalid && (userOrderForm.controls['creditCardNumber'].dirty || userOrderForm.controls['creditCardNumber'].touched)">
           <div *ngIf="userOrderForm.controls['creditCardNumber'].errors.required">
