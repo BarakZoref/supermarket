@@ -28,11 +28,11 @@ export class StateService {
   searchProductInput: string;
 
   constructor(
-    public _ordersService: OrdersService,
-    public _usersService: UsersService,
-    public _cartService: CartService,
-    public _cartItemsService: CartItemsService,
-    public _categoriesService: CategoriesService
+    private _ordersService: OrdersService,
+    private _usersService: UsersService,
+    private _cartService: CartService,
+    private _cartItemsService: CartItemsService,
+    private _categoriesService: CategoriesService
   ) {
     this._categoriesService.getAllCategories();
     this._usersService.followCurrentUser().subscribe(newUser=>{
