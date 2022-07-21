@@ -96,6 +96,7 @@ export class AddOrEditProductComponent implements OnInit {
     else{
       this._productsService.addProduct(productDetailsToBeSent);
     }
+    this._productsService.getAllProducts();
     this.clear();
   }
 
