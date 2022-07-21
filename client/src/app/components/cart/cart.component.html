@@ -1,15 +1,15 @@
 <div class="cart-container">
   <h1>My Cart</h1>
   <div class="cart-items">
-  <div class="cart-item" *ngFor="let cartItem of cartItems">
-    <img class="cart-item-img" src="{{'/assets/images/' + cartItem.imgUrl }}" alt="" />
-    <div>
-      {{ cartItem.name }} X {{ cartItem.quantity }}<br />
-      {{ cartItem.unitPrice * cartItem.quantity | currency: "ILS" }}
+    <div class="cart-item" *ngFor="let cartItem of cartItems">
+      <img class="cart-item-img" src="{{'/assets/images/' + cartItem.imgUrl }}" alt="" />
+      <div>
+        {{ cartItem.name }} X {{ cartItem.quantity }}<br />
+        {{ cartItem.unitPrice * cartItem.quantity | currency: "ILS" }}
+      </div>
+      <button class="edit-item-button" (click)="editItemQuantity(cartItem)">✍</button>
+      <button class="delete-item-button" (click)="deleteCartItem(cartItem.id)">❌</button>
     </div>
-    <button class="edit-item-button" (click)="editItemQuantity(cartItem)">✍</button>
-    <button class="delete-item-button" (click)="deleteCartItem(cartItem.id)">❌</button>
-  </div>
   </div>
   <h2 class="no-cart-items" *ngIf="!cartItems?.length">there are no cart items</h2>
   <div class="bottom-div">
