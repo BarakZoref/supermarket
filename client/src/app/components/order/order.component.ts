@@ -77,7 +77,6 @@ export class OrderComponent implements OnInit {
     let orderDetailsToBeSent = {
       cartId,
       finalPrice: this._cartItemsService.totalPrice,
-      cartItemsArray: this.cartItems,
       city: this.orderUserData.city,
       street: this.orderUserData.street,
       shippingDate: this.orderUserData.shippingDate,

@@ -1,5 +1,6 @@
 const ordersDal = require('../dal/orders-dal');
 const cartsLogic = require('../logic/carts-logic');
+const cartItemsLogic = require('../logic/cart-items-logic');
 const fs = require('fs/promises');
 
 
@@ -16,8 +17,8 @@ async function addNewOrder(orderDetails, tokenData){
     }
     orderDetails.userId = tokenData.userId;
     let orderId = await ordersDal.addNewOrder(orderDetails);
+    await createReceipt(orderDetails.cartId, orderDetails.finalPrice);
     await cartsLogic.closeCart(orderDetails.cartId);
-    await createReceipt(orderDetails.cartItemsArray, orderDetails.cartId, orderDetails.finalPrice);
     return orderId;
 }
 
@@ -36,7 +37,9 @@ async function getLastOrderDate(tokenData){
 }
 
 
-async function createReceipt(cartItemsArray, cartId, finalPrice){ 
+async function createReceipt(cartId, finalPrice){ 
+    let cartItemsArray = await cartItemsLogic.getCartItems(cartId);
+    console.log(cartItemsArray);
     let str = 'Receipt No. ' + cartId + '\n';
     for (const cartItem of cartItemsArray) {
         let cartItemPrice = (cartItem.quantity*cartItem.unitPrice)
