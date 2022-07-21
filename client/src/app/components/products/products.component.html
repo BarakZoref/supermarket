@@ -9,7 +9,7 @@
   <div class="products">
     <div class="product" *ngFor="let product of _productsService.products">
       <div>
-        <img class="product-img" src="{{'/assets/images/' + product.imgUrl}}" alt="">
+        <img class="product-img" src="{{'/assets/images/products/' + product.imgUrl}}" alt="">
       </div>
       <h2>{{product.name}}</h2>
       <h2>{{product.price | currency:"ILS"}}</h2>

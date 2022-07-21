@@ -1,7 +1,7 @@
 html, body{
   height: 100vh;
   margin: 0;
-  background-image: url("./assets/backgrounds/background3.jpg");
+  background-image: url("./assets/images/backgrounds/background3.jpg");
   background-size:cover;
 }
 

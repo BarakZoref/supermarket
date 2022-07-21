@@ -3,7 +3,7 @@
     <input class="cart-item-search form-control mr-sm-2" [(ngModel)]="searchInput" type="search" placeholder="Search product" aria-label="Search">
     <div class="cart-items">
       <div class="cart-item" *ngFor="let cartItem of cartItems">
-        <img class="cart-item-img" src="{{'/assets/images/' +  cartItem.imgUrl }}" alt="" />
+        <img class="cart-item-img" src="{{'/assets/images/products/' +  cartItem.imgUrl }}" alt="" />
         <div>
           <span [innerHtml]="cartItem.name | mark: searchInput">  </span>   X {{ cartItem.quantity }}<br />
           {{ cartItem.unitPrice * cartItem.quantity | currency: "ILS" }}

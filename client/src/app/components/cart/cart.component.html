@@ -2,7 +2,7 @@
   <h1>My Cart</h1>
   <div class="cart-items">
     <div class="cart-item" *ngFor="let cartItem of cartItems">
-      <img class="cart-item-img" src="{{'/assets/images/' + cartItem.imgUrl }}" alt="" />
+      <img class="cart-item-img" src="{{'/assets/images/products/' + cartItem.imgUrl }}" alt="" />
       {{ cartItem.name }} <br>
         X {{ cartItem.quantity }} <br>
         {{ cartItem.unitPrice * cartItem.quantity | currency: "ILS" }}
