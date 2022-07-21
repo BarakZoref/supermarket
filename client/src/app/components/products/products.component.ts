@@ -6,6 +6,7 @@ import IUser from 'src/app/models/iuser.model';
 import { CartItemsService } from 'src/app/services/cart-items.service';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { ProductsService } from 'src/app/services/products.service';
+import { StateService } from 'src/app/services/state.service';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
@@ -27,7 +28,8 @@ export class ProductsComponent implements OnInit {
     public _categoriesService: CategoriesService,
     public _productsService: ProductsService,
     public _cartItemsService: CartItemsService,
-    public _usersService: UsersService
+    public _usersService: UsersService,
+    private _stateService: StateService
   ) { }
 
   ngOnInit(): void {
@@ -73,5 +75,6 @@ export class ProductsComponent implements OnInit {
     else{
       this._productsService.getProductsByCategoryId(selectedCategory.id)
     }
+    this._stateService.searchProductInput = "";
   }
 }
