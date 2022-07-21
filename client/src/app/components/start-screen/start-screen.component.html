@@ -15,6 +15,13 @@
   <div class="card right-card">
     <p>Available products: <br> <strong>{{_productsService.amountOfProducts}}</strong></p>
     <p>Number of orders submitted: <br> <strong>{{_ordersService.amountOfOrders}}</strong></p>
+    <br>
+    <div *ngIf="!currentUser" class="user-details">
+      <p>Admin Email: barak234@gmail.com</p>
+      <p>Password: 987654</p><br>
+      <p>Random user Email: barak@gmail.com</p>
+      <p>Password: 123456</p>
+    </div>
     <div *ngIf="currentUser && currentUser.role == 'user'">
       <p *ngIf="(currentUser && !_ordersService.lastOrderDate && !currentCart)">Welcome to your first purchase</p>
       <div  *ngIf="currentCart">
