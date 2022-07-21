@@ -11,7 +11,6 @@ import IServerResponse from '../models/iserver-response.model';
 })
 export class CartItemsService {
 
-  private cartItems: ICartItem[];
   totalPrice: number;
 
   private baseUrl = 'http://localhost:3001/cart_items/'
