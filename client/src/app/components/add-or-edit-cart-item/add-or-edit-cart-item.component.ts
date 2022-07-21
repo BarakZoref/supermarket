@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { MessageService } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import ICartItem from 'src/app/models/icart-item.model';
 import ICart from 'src/app/models/icart.model';
@@ -33,7 +34,8 @@ export class AddOrEditCartItemComponent implements OnInit {
 
   constructor(
     public _cartItemsService: CartItemsService,
-    public _cartService: CartService
+    public _cartService: CartService,
+    private _messageService: MessageService
   ) { }
 
   ngOnInit(): void {
@@ -101,6 +103,10 @@ export class AddOrEditCartItemComponent implements OnInit {
   }
 
   onChooseAmountOfProductClicked(){
+    if(this.amountOfProduct == undefined){
+      this._messageService.add({ key: 'appToast', severity: 'error', summary: 'Error', detail: 'Invalid input' });
+      return;
+    }
     if(this.amountOfProduct == 0){
       if(this.cartItems.find(cartItem=> cartItem.id == this.cartItem.id)){
         this._cartItemsService.deleteCartItem(this.cartItem.id, this.currentCart.id);
