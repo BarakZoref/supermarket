@@ -81,6 +81,7 @@ export class OrderComponent implements OnInit {
     }
 
     this._ordersService.addNewOrder(orderDetailsToBeSent);
+    this._cartService.openCart();
     this._ordersService.getLastOrderDate();
     this.displayModal = true;
   }

@@ -23,12 +23,12 @@
       <p>Password: 123456</p>
     </div>
     <div *ngIf="currentUser && currentUser.role == 'user'">
-      <p *ngIf="(currentUser && !_ordersService.lastOrderDate && !currentCart)">Welcome to your first purchase</p>
-      <div  *ngIf="currentCart">
+      <p *ngIf="(currentUser && !_ordersService.lastOrderDate && !cartItems?.length)">Welcome to your first purchase</p>
+      <div  *ngIf="cartItems?.length">
         <p>You have open cart from:</p>
         <p><strong>{{ currentCart?.creationDate | date:'medium' }}</strong></p>
       </div>
-      <div *ngIf="!currentCart && _ordersService.lastOrderDate">
+      <div *ngIf="!cartItems?.length && _ordersService.lastOrderDate">
         <p>Your last order was at:</p>
         <p><strong>{{ _ordersService.lastOrderDate | date:'medium' }}</strong></p>
       </div>

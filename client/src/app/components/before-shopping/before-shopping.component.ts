@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import ICartItem from 'src/app/models/icart-item.model';
 import ICart from 'src/app/models/icart.model';
 import IUser from 'src/app/models/iuser.model';
+import { CartService } from 'src/app/services/cart.service';
 import { UsersService } from 'src/app/services/users.service';
 import { CartItemsService } from '../../services/cart-items.service';
-import { CartService } from '../../services/cart.service';
 import { OrdersService } from '../../services/orders.service';
 
 @Component({
@@ -16,6 +17,7 @@ import { OrdersService } from '../../services/orders.service';
 export class BeforeShoppingComponent implements OnInit {
   currentUser: IUser;
   currentCart: ICart;
+  cartItems: ICartItem[];
   subscriptions: Subscription[] = [];
   constructor(
     public _ordersService: OrdersService,
@@ -26,14 +28,19 @@ export class BeforeShoppingComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-   let cartsSubscription = this._cartService.followCurrentCart().subscribe(newCart=>{
-      this.currentCart = newCart;
-    });
     let usersSubscription = this._usersService.followCurrentUser().subscribe(newUser=>{
       this.currentUser = newUser;
-    })
-
-    this.subscriptions.push(cartsSubscription, usersSubscription);
+    });
+    let cartItemsSubscription = this._cartItemsService.followCartItems().subscribe(newCartItems =>{
+      this.cartItems = newCartItems
+    });
+    let cartSubscription = this._cartService.followCurrentCart().subscribe(newCart=>{
+      this.currentCart = newCart
+    });
+    this.subscriptions.push(usersSubscription, cartItemsSubscription, cartSubscription);
+    if(!this.currentCart){
+      this._cartService.openCart();
+    }
   }
 
   ngOnDestroy(): void{
@@ -46,7 +53,6 @@ export class BeforeShoppingComponent implements OnInit {
     this.router.navigate(['/store']);
   }
   onStartShoppingButtonClicked(): void{
-    this._cartService.openCart();
     this.router.navigate(['/store']);
   }
 

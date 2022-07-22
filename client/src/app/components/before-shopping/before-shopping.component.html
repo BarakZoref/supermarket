@@ -1,6 +1,6 @@
 <div>
-  <button pButton (click)="onResumeShoppingButtonClicked()" *ngIf="currentUser.role == 'user' && currentCart">Resume Shopping</button>
-  <button pButton (click)="onStartShoppingButtonClicked()" *ngIf="currentUser.role == 'user' &&  !currentCart">Start Shopping</button>
+  <button pButton (click)="onResumeShoppingButtonClicked()" *ngIf="currentUser.role == 'user' && cartItems?.length">Resume Shopping</button>
+  <button pButton (click)="onStartShoppingButtonClicked()" *ngIf="currentUser.role == 'user' &&  !cartItems?.length">Start Shopping</button>
   <button pButton (click)="onEditStoreButtonClicked()" *ngIf="currentUser.role == 'admin'">Edit Store</button>
 </div>
 
