@@ -5,6 +5,7 @@ import { CategoriesService } from 'src/app/services/categories.service';
 import ICategory from 'src/app/models/icategory.model';
 import { ProductsService } from 'src/app/services/products.service';
 import { Subscription } from 'rxjs';
+import { StateService } from 'src/app/services/state.service';
 
 
 @Component({
@@ -25,6 +26,7 @@ export class AddOrEditProductComponent implements OnInit {
     private formBuilder: UntypedFormBuilder,
     private _categoriesService: CategoriesService,
     private _productsService: ProductsService,
+    private _stateService: StateService,
     private router: Router
   ) { }
 
@@ -92,6 +94,7 @@ export class AddOrEditProductComponent implements OnInit {
     if(this.isEdit){
       productDetailsToBeSent.id = this.productToEditId;
       this._productsService.editProduct(productDetailsToBeSent);
+      this._stateService.searchProductInput = "";
     }
     else{
       this._productsService.addProduct(productDetailsToBeSent);
